@@ -7,6 +7,8 @@
  */
 package Entities;
 
+import Enumerations.EstadoProyecto;
+
 /**
  * Clase que contiene la información del Proyecto
  */
@@ -17,6 +19,7 @@ public class Proyecto {
     private int numEstudiantesRequeridos;
     private int numEstudiantesAsignados;
     private String fechaRegistro;
+    private EstadoProyecto estado;
 
     /**
      * Constructor sin parametros de la clase Proyecto.
@@ -29,6 +32,7 @@ public class Proyecto {
         numEstudiantesRequeridos = 0;
         numEstudiantesAsignados = 0;
         fechaRegistro = "";
+        estado = null;
     }
 
     /**
@@ -40,15 +44,17 @@ public class Proyecto {
      * @param numEstudiantesRequeridosIn la cantidad de estudiantes requeridos
      * @param numEstudiantesAsignadosIn la cantidad de estudiantes asignados
      * @param fechaRegistroIn la fecha de registro del proyecto en el sistema
+     * @param estadoIn el estado actual del proyecto
      */
     public Proyecto( int idIn, String nombreIn, String descripcionIn, int numEstudiantesRequeridosIn,
-                     int numEstudiantesAsignadosIn, String fechaRegistroIn ) {
+                     int numEstudiantesAsignadosIn, String fechaRegistroIn, EstadoProyecto estadoIn ) {
         idProyecto = idIn;
         nombre = nombreIn;
         descripcion = descripcionIn;
         numEstudiantesRequeridos = numEstudiantesRequeridosIn;
         numEstudiantesAsignados = numEstudiantesAsignadosIn;
         fechaRegistro = fechaRegistroIn;
+        estado = estadoIn;
     }
 
     /**
@@ -63,11 +69,12 @@ public class Proyecto {
         numEstudiantesRequeridos = original.numEstudiantesRequeridos;
         numEstudiantesAsignados = original.numEstudiantesAsignados;
         fechaRegistro = original.fechaRegistro;
+        estado = original.estado;
     }
 
     /**
      * Regresa el nombre del proyecto
-     * @return
+     * @return el nombre del proyecto
      */
     public String GetNombre() {
         return nombre;
@@ -75,7 +82,7 @@ public class Proyecto {
 
     /**
      * Regresa la descripción del proyecto
-     * @return
+     * @return la descripción del proyecto
      */
     public String GetDescripcion() {
         return descripcion;
@@ -84,7 +91,7 @@ public class Proyecto {
     /**
      * Regresa la cantidad de estudiantes requeridos para
      * realizar este proyecto
-     * @return
+     * @return cantidad de estudiantes requeridos
      */
     public int GetEstudiantesRequeridos() {
         return numEstudiantesRequeridos;
@@ -92,7 +99,7 @@ public class Proyecto {
 
     /**
      * Regresa la cantidad de estudiantes asignados a este proyecto
-     * @return
+     * @return cantidad de estudiantes asignados
      */
     public int GetEstudiantesAsignados() {
         return numEstudiantesAsignados;
@@ -100,15 +107,23 @@ public class Proyecto {
 
     /**
      * Regresa la fecha de registro en el sistema del proyecto
-     * @return
+     * @return la fecha de registro del proyecto al sistema
      */
     public String GetFechaRegistro() {
         return fechaRegistro;
     }
 
     /**
+     * Regresa el estado actual del proyecto
+     * @return el estado actual del proyecto
+     */
+    public EstadoProyecto GetEstado() {
+        return estado;
+    }
+
+    /**
      * Cambia el nombre del proyecto al valor introducido
-     * @param nombreIn
+     * @param nombreIn el nuevo nombre del proyecto
      */
     public void SetNombre( String nombreIn ) {
         nombre = nombreIn;
@@ -116,7 +131,7 @@ public class Proyecto {
 
     /**
      * Cambia la descripción del proyecto al valor introducido
-     * @param descripcionIn
+     * @param descripcionIn la nueva descripción del proyecto
      */
     public void SetDescripcion( String descripcionIn ) {
         descripcion = descripcionIn;
@@ -124,7 +139,7 @@ public class Proyecto {
 
     /**
      * Cambia la cantidad de estudiantes requeridos al valor introducido
-     * @param cantidad
+     * @param cantidad la nueva cantidad de estudiantes requeridos
      */
     public void SetEstudiantesRequeridos( int cantidad ) {
         numEstudiantesRequeridos = cantidad;
@@ -132,7 +147,7 @@ public class Proyecto {
 
     /**
      * Cambia la cantidad de estudiantes asignados al valor introducido
-     * @param cantidad
+     * @param cantidad la nueva cantidad de estudiantes asignados
      */
     public void SetEstudiantesAsignados( int cantidad ) {
         numEstudiantesAsignados = cantidad;
@@ -140,7 +155,7 @@ public class Proyecto {
 
     /**
      * Cambia la fecha de registro al valor introducido
-     * @param fechaIn
+     * @param fechaIn la nueva fecha de registro
      */
     public void SetFechaRegistro( String fechaIn ) {
         fechaRegistro = fechaIn;
