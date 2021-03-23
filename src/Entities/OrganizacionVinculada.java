@@ -7,24 +7,26 @@
  */
 package Entities;
 
+import Enumerations.TipoSector;
+
 /**
  * Clase que contiene la información de Organización Vinculada
  */
 public class OrganizacionVinculada {
     private String nombre;
     private String direccion;
-    private int sector;
+    private TipoSector sector;
     private String telefono;
     private String correoElectronico;
 
     /**
      * Constructor sin parámetros de la clase OrganizaciónVinculada.
-     * Crea una instancia con valores en 0 y cadenas vacias.
+     * Crea una instancia con valores nulos y cadenas vacias.
      */
     public OrganizacionVinculada() {
         nombre = "";
         direccion = "";
-        sector = 0;
+        sector = null;
         telefono = "";
         correoElectronico = "";
     }
@@ -38,7 +40,7 @@ public class OrganizacionVinculada {
      * @param telefonoIn el telefono de la organización
      * @param correoIn el correo electronico de la organización
      */
-    public OrganizacionVinculada( String nombreIn, String direccionIn, int sectorIn, String telefonoIn,
+    public OrganizacionVinculada( String nombreIn, String direccionIn, TipoSector sectorIn, String telefonoIn,
                                   String correoIn ) {
         nombre = nombreIn;
         direccion = direccionIn;
@@ -76,7 +78,7 @@ public class OrganizacionVinculada {
      * Regresa el sector de la organización vinculada
      * @return el sector de la organización
      */
-    public int GetSector() {
+    public TipoSector GetSector() {
         return sector;
     }
 
@@ -116,7 +118,7 @@ public class OrganizacionVinculada {
      * Cambia el sector de la organización vinculada al valor introducido
      * @param sectorIn el nuevo sector
      */
-    public void SetSector( int sectorIn ) {
+    public void SetSector( TipoSector sectorIn ) {
         sector = sectorIn;
     }
 
