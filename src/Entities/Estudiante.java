@@ -31,6 +31,16 @@ public class Estudiante extends UsuarioUV {
     }
 
     /**
+     * Constructor de la clase Estudiante. Crea una nueva
+     * instancia de Estudiante a partir de una instancia existente.
+     * @param original instancia existente de Estudiante.
+     */
+    public Estudiante( Estudiante original ) {
+        this( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
+                original.correoElectronico, original.telefono, original.matricula, original.nrc, original.estado );
+    }
+
+    /**
      * Constructor de la clase Estudiante. Crea una insancia con
      * los valores introducidos.
      * @param idIn el ID del Estudiante asignado por el SMBDR.
@@ -50,19 +60,6 @@ public class Estudiante extends UsuarioUV {
         matricula = matriculaIn;
         nrc = nrcIn;
         estado = estadoIn;
-    }
-
-    /**
-     * Constructor de la clase Estudiante. Crea una nueva
-     * instancia de Estudiante a partir de una instancia existente.
-     * @param original instancia existente de Estudiante.
-     */
-    public Estudiante( Estudiante original ) {
-        super( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
-                original.correoElectronico, original.telefono );
-        matricula = original.matricula;
-        nrc = original.nrc;
-        estado = original.estado;
     }
 
     /**

@@ -32,6 +32,15 @@ public class InformeProblema {
     }
 
     /**
+     * Crea una instancia a partir de otra instancia existente.
+     * @param original la instancia existente
+     */
+    public InformeProblema( InformeProblema original ) {
+        this( original.identificador, original.fechaEnviada, original.enviadoPor, original.estudiante,
+                original.asunto, original.contenido );
+    }
+
+    /**
      * Crea una instancia a partir de los valores introducidos
      * @param identificadorIn el identificador del informe
      * @param fechaEnviadaIn la fecha en la que fue enviado el informe
@@ -48,15 +57,6 @@ public class InformeProblema {
         estudiante = estudianteIn;
         asunto = asuntoIn;
         contenido = contenidoIn;
-    }
-
-    /**
-     * Crea una instancia a partir de otra instancia existente.
-     * @param original la instancia existente
-     */
-    public InformeProblema( InformeProblema original ) {
-        this( original.identificador, original.fechaEnviada, original.enviadoPor, original.estudiante,
-                original.asunto, original.contenido );
     }
 
     /**

@@ -27,6 +27,15 @@ public class Reporte extends Documento {
     }
 
     /**
+     * Crea una instancia de la clase a partir de una instancia existente.
+     * @param original la instancia existente
+     */
+    public Reporte( Reporte original ) {
+        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega,
+                original.horasReportadas, original.tipo );
+    }
+
+    /**
      * Crea una instancia de la clase con los valores introducidos.
      * @param idIn el id del reporte
      * @param tituloIn el título del reporte
@@ -40,15 +49,6 @@ public class Reporte extends Documento {
         super( idIn, tituloIn, descripcionIn, fechaIn );
         horasReportadas = horasReportadasIn;
         tipo = tipoIn;
-    }
-
-    /**
-     * Crea una instancia de la clase a partir de una instancia existente.
-     * @param original la instancia existente
-     */
-    public Reporte( Reporte original ) {
-        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega,
-                original.horasReportadas, original.tipo );
     }
 
     /**

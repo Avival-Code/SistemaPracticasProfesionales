@@ -28,6 +28,14 @@ public class Expediente {
     }
 
     /**
+     * Crea una nueva instancia de expediente a partir de otra que ya existe.
+     * @param original la instancia de expediente que ya existe
+     */
+    public Expediente( Expediente original ) {
+        this( original.claveExpediente, original.fechaAsignacion, original.horasAcumuladas, original.numeroArchivos );
+    }
+
+    /**
      * Crea una instancia con los valores introducidos.
      * @param claveIn la clave del expediente
      * @param fechaAsignacionIn la fecha en la cual se asignó el proyecto al estudiante
@@ -39,14 +47,6 @@ public class Expediente {
         fechaAsignacion = fechaAsignacionIn;
         horasAcumuladas = horasAcumuladasIn;
         numeroArchivos = numeroArchivosIn;
-    }
-
-    /**
-     * Crea una nueva instancia de expediente a partir de otra que ya existe.
-     * @param original la instancia de expediente que ya existe
-     */
-    public Expediente( Expediente original ) {
-        this( original.claveExpediente, original.fechaAsignacion, original.horasAcumuladas, original.numeroArchivos );
     }
 
     /**

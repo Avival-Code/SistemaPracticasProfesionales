@@ -27,6 +27,14 @@ public class Documento {
     }
 
     /**
+     * Crea una instancia a partir de una instancia existente de la misma clase.
+     * @param original la instancia existe
+     */
+    public Documento( Documento original ) {
+        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega );
+    }
+
+    /**
      * Crea una intancia a partir de los valores introducidos
      * @param idIn el id del documento
      * @param tituloIn el titulo del documento
@@ -38,14 +46,6 @@ public class Documento {
         titulo = tituloIn;
         descripcion = descripcionIn;
         fechaEntrega = fechaIn;
-    }
-
-    /**
-     * Crea una instancia a partir de una instancia existente de la misma clase.
-     * @param original la instancia existe
-     */
-    public Documento( Documento original ) {
-        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega );
     }
 
     /**

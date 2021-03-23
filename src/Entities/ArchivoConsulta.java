@@ -26,6 +26,14 @@ public class ArchivoConsulta {
     }
 
     /**
+     * Crea una instancia de la clase a partir de  una instancia existente
+     * @param original la instancia existente
+     */
+    public ArchivoConsulta( ArchivoConsulta original ) {
+        this( original.idArchivo, original.titulo, original.descripcion );
+    }
+
+    /**
      * Crea una instancia de la clase a partir de los valores introducidos
      * @param idIn el id del archivo
      * @param tituloIn el título del archivo
@@ -38,42 +46,26 @@ public class ArchivoConsulta {
     }
 
     /**
-     * Crea una instancia de la clase a partir de  una instancia existente
-     * @param original la instancia existente
-     */
-    public ArchivoConsulta( ArchivoConsulta original ) {
-        this( original.idArchivo, original.titulo, original.descripcion );
-    }
-
-    /**
      * Regresa el título del archivo
      * @return el título del archivo
      */
-    public String GetTitulo() {
-        return titulo;
-    }
+    public String GetTitulo() { return titulo; }
 
     /**
      * Regresa la descripción del archivo
      * @return la descripción del archivo
      */
-    public String GetDescripcion() {
-        return descripcion;
-    }
+    public String GetDescripcion() { return descripcion; }
 
     /**
      * Cambia el título del arhivo al valor introducido
      * @param tituloIn el nuevo título
      */
-    public void SetTitulo( String tituloIn ) {
-        titulo = tituloIn;
-    }
+    public void SetTitulo( String tituloIn ) { titulo = tituloIn; }
 
     /**
      * Cambia la descripción del archivo al valor introducido
      * @param descripcionIn la nueva descripción
      */
-    public void SetDescripcion( String descripcionIn ) {
-        descripcion = descripcionIn;
-    }
+    public void SetDescripcion( String descripcionIn ) { descripcion = descripcionIn; }
 }

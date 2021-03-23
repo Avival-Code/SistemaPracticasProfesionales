@@ -38,6 +38,16 @@ public class UsuarioUV {
     }
 
     /**
+     * Constructor de la superclase UsuarioUV. Crea una nueva
+     * instancia de UsuarioUV a partir de una instancia existente.
+     * @param original instancia existente de UsuarioUV
+     */
+    public UsuarioUV( UsuarioUV original ) {
+        this( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
+                original.correoElectronico, original.telefono );
+    }
+
+    /**
      * Constructor de la superclase UsuarioUV. Crea una instancia
      * con los valores introducidos al constructor.
      * @param idIn el ID del usuario asignado por el SMBDR.
@@ -57,16 +67,6 @@ public class UsuarioUV {
         contrasena = contrasenaIn;
         correoElectronico = correoIn;
         telefono = telefonoIn;
-    }
-
-    /**
-     * Constructor de la superclase UsuarioUV. Crea una nueva
-     * instancia de UsuarioUV a partir de una instancia existente.
-     * @param original instancia existente de UsuarioUV
-     */
-    public UsuarioUV( UsuarioUV original ) {
-        this( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
-                original.correoElectronico, original.telefono );
     }
 
     /**

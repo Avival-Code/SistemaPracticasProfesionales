@@ -25,6 +25,16 @@ public class Coordinador extends UsuarioUV {
     }
 
     /**
+     * Constructor de la clase Coordinador. Crea una nueva
+     * instancia de Coordinador a partir de una instancia existente.
+     * @param original instancia existente de coordinador.
+     */
+    public Coordinador( Coordinador original ) {
+        this( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
+                original.correoElectronico, original.telefono, original.numeroPersonal );
+    }
+
+    /**
      * Constructor de la clase Coordinador. Crea una insancia con
      * los valores introducidos.
      * @param idIn el ID del coordinador asignado por el SMBDR.
@@ -40,17 +50,6 @@ public class Coordinador extends UsuarioUV {
                         String correoIn, String telefonoIn, String numeroPersonalIn ) {
         super( idIn, nombresIn, apellidosIn, usuarioIn, contrasenaIn, correoIn, telefonoIn );
         numeroPersonal = numeroPersonalIn;
-    }
-
-    /**
-     * Constructor de la clase Coordinador. Crea una nueva
-     * instancia de Coordinador a partir de una instancia existente.
-     * @param original instancia existente de coordinador.
-     */
-    public Coordinador( Coordinador original ) {
-        super( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
-               original.correoElectronico, original.telefono );
-        numeroPersonal = original.numeroPersonal;
     }
 
     /**

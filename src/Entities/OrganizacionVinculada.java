@@ -32,6 +32,15 @@ public class OrganizacionVinculada {
     }
 
     /**
+     * Crea una nueva instancia de la clase OrganizaciónVinculada a partir
+     * de una instancia existente.
+     * @param original la instancia que se desea duplicar
+     */
+    public OrganizacionVinculada( OrganizacionVinculada original ) {
+        this( original.nombre, original.direccion, original.sector, original.telefono, original.correoElectronico);
+    }
+
+    /**
      * Constructor de la clase OrganizaciónVinculada. Crea una instancia
      * con los valores introducidos.
      * @param nombreIn el nombre del organización
@@ -47,15 +56,6 @@ public class OrganizacionVinculada {
         sector = sectorIn;
         telefono = telefonoIn;
         correoElectronico = correoIn;
-    }
-
-    /**
-     * Crea una nueva instancia de la clase OrganizaciónVinculada a partir
-     * de una instancia existente.
-     * @param original la instancia que se desea duplicar
-     */
-    public OrganizacionVinculada( OrganizacionVinculada original ) {
-        this( original.nombre, original.direccion, original.sector, original.telefono, original.correoElectronico);
     }
 
     /**

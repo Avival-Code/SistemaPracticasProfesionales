@@ -36,6 +36,16 @@ public class Proyecto {
     }
 
     /**
+     * Constructor de clase Proyecto. Crea una instancia a partir
+     * de una isntancia existente de la clase Proyecto.
+     * @param original
+     */
+    public Proyecto( Proyecto original ) {
+        this( original.idProyecto, original.nombre, original.descripcion, original.numEstudiantesRequeridos,
+                original.numEstudiantesAsignados, original.fechaRegistro, original.estado );
+    }
+
+    /**
      * Constructor de clase Proyecto. Crea una insancia con los
      * valores introducidos.
      * @param idIn el ID del proyecto.
@@ -55,21 +65,6 @@ public class Proyecto {
         numEstudiantesAsignados = numEstudiantesAsignadosIn;
         fechaRegistro = fechaRegistroIn;
         estado = estadoIn;
-    }
-
-    /**
-     * Constructor de clase Proyecto. Crea una instancia a partir
-     * de una isntancia existente de la clase Proyecto.
-     * @param original
-     */
-    public Proyecto( Proyecto original ) {
-        idProyecto = original.idProyecto;
-        nombre = original.nombre;
-        descripcion = original.descripcion;
-        numEstudiantesRequeridos = original.numEstudiantesRequeridos;
-        numEstudiantesAsignados = original.numEstudiantesAsignados;
-        fechaRegistro = original.fechaRegistro;
-        estado = original.estado;
     }
 
     /**

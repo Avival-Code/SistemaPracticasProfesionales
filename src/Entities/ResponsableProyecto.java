@@ -30,6 +30,16 @@ public class ResponsableProyecto {
     }
 
     /**
+     * Constructor de la clase ResponsableProyecto. Crea una nueva
+     * instancia de ResponsableProyecto a partir de una instancia existente.
+     * @param original la instancia existente de ResponsableProyecto
+     */
+    public ResponsableProyecto( ResponsableProyecto original ) {
+        this( original.idResponsableProyecto, original.nombres, original.apellidos, original.correoElectronico,
+                original.telefono );
+    }
+
+    /**
      * Constructor de la clase ResponsableProyecto. Crea una insancia con
      * los valores introducidos.
      * @param idResponsableIn
@@ -45,19 +55,6 @@ public class ResponsableProyecto {
         apellidos = apellidosIn;
         correoElectronico = correoIn;
         telefono = telefonoIn;
-    }
-
-    /**
-     * Constructor de la clase ResponsableProyecto. Crea una nueva
-     * instancia de ResponsableProyecto a partir de una instancia existente.
-     * @param original la instancia existente de ResponsableProyecto
-     */
-    public ResponsableProyecto( ResponsableProyecto original ) {
-        idResponsableProyecto = original.idResponsableProyecto;
-        nombres = original.nombres;
-        apellidos = original.apellidos;
-        correoElectronico = original.correoElectronico;
-        telefono = original.telefono;
     }
 
     /**

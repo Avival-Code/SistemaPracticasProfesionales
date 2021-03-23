@@ -27,6 +27,16 @@ public class Docente extends UsuarioUV {
     }
 
     /**
+     * Constructor de la clase Docente. Crea una nueva
+     * instancia de Docente a partir de una instancia existente.
+     * @param original instancia existente de coordinador.
+     */
+    public Docente( Docente original ) {
+        this( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
+                original.correoElectronico, original.telefono, original.numeroPersonal, original.nrc );
+    }
+
+    /**
      * Constructor de la clase Docente. Crea una insancia con
      * los valores introducidos.
      * @param idIn el ID del Docente asignado por el SMBDR.
@@ -39,21 +49,10 @@ public class Docente extends UsuarioUV {
      * @param numeroPersonalIn número de personal del Docente, utilizado como clave única.
      */
     public Docente( int idIn, String nombresIn, String apellidosIn, String usuarioIn, String contrasenaIn,
-                   String correoElectronicoIn, String telefonoIn, String numeroPersonalIn ) {
+                   String correoElectronicoIn, String telefonoIn, String numeroPersonalIn, String nrcIn ) {
         super( idIn, nombresIn, apellidosIn, usuarioIn, contrasenaIn, correoElectronicoIn, telefonoIn );
         numeroPersonal = numeroPersonalIn;
-    }
-
-    /**
-     * Constructor de la clase Docente. Crea una nueva
-     * instancia de Docente a partir de una instancia existente.
-     * @param original instancia existente de coordinador.
-     */
-    public Docente( Docente original ) {
-        super( original.idUsuario, original.nombres, original.apellidos, original.usuario, original.contrasena,
-                original.correoElectronico, original.telefono );
-        numeroPersonal = original.numeroPersonal;
-        nrc = original.nrc;
+        nrc = nrcIn;
     }
 
     /**
