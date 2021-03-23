@@ -11,10 +11,10 @@ package Entities;
  * Clase que contiene la información de Documento
  */
 public class Documento {
-    private int idDocumento;
-    private String titulo;
-    private String descripcion;
-    private String fechaEntrega;
+    protected int idDocumento;
+    protected String titulo;
+    protected String descripcion;
+    protected String fechaEntrega;
 
     /**
      * Crea una instancia con un id = 0 y cadenas vacías
