@@ -12,8 +12,6 @@ package Database;
 import Entities.Estudiante;
 import Entities.UsuarioUV;
 import Enumerations.EstadoEstudiante;
-
-import javax.swing.plaf.nimbus.State;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -58,8 +56,9 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             for( int i = 0; i < usuariosTemp.size(); i++ )
             {
                 result.next();
-                estudiantes.add( new Estudiante( usuariosTemp.get( i ), result.getString( 0 ), result.getString( 2 ),
-                        EstadoEstudiante.values()[ result.getInt( 3 ) ] ) );
+                estudiantes.add( new Estudiante( usuariosTemp.get( i ),
+                                                 result.getString( 0 ), result.getString( 2 ),
+                                                 EstadoEstudiante.values()[ result.getInt( 3 ) ] ) );
             }
 
             result.close();
@@ -101,11 +100,49 @@ public class EstudianteDAO implements EstudianteDAOInterface{
     @Override
     public boolean Update( Estudiante estudiante ) {
         boolean updated = false;
-        return false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+            Statement statement = connection.GetConnection().createStatement();
+            String query = "UPDATE Estudiante SET NRC = '" + estudiante.GetNrc() +
+                           "', estado = " + estudiante.GetEstado() +
+                           " WHERE Matricula = '" + estudiante.GetMatricula() + "';";
+            statement.executeQuery( query );
+
+            usuarios.Update( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
+                                            estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
+                                            estudiante.GetTelefono() ) );
+
+            updated = true;
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
+
+        connection.StopConnection();
+        return updated;
     }
 
     @Override
     public boolean Delete( String matricula ) {
-        return false;
+        boolean deleted = false;
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+            Estudiante estudiante = Read( matricula );
+            Statement statement = connection.GetConnection().createStatement();
+            String query = "DELETE FROM Estudiante WHERE Matricula = '" + matricula + "';";
+
+            statement.executeQuery( query );
+            usuarios.Delete( Integer.toString( estudiante.GetID() ) );
+
+            deleted = true;
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
+
+        connection.StopConnection();
+        return deleted;
     }
 }
