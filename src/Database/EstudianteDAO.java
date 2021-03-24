@@ -16,7 +16,7 @@ import java.util.List;
 public class EstudianteDAO implements EstudianteDAOInterface{
     @Override
     public boolean Create( Estudiante estudiante ) {
-        boolean fueCreado = false;
+        boolean wasCreated = false;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 
@@ -26,7 +26,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         } catch( Exception exception ) {
             exception.printStackTrace();
         }
-        return fueCreado;
+        return wasCreated;
     }
 
     @Override

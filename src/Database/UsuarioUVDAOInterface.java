@@ -18,7 +18,7 @@ import java.util.List;
 public interface UsuarioUVDAOInterface {
 
     /**
-     * Crea un UsuarioUV en la base de datos
+     * Crea una nueva instancia de UsuarioUV en la base de datos
      * @param usuario el usuario que se desea crear en la base de datos
      * @return booleano indicando éxito o fracaso
      */
@@ -50,8 +50,8 @@ public interface UsuarioUVDAOInterface {
     /**
      * Elimina un UsuarioUV de la base de datos utilizando el id
      * introducido
-     * @param IdUsuario el id del usuario que se desea eliminar
+     * @param idUsuario el id del usuario que se desea eliminar
      * @return booleano indicando éxito o fracaso
      */
-    boolean Delete( String IdUsuario );
+    boolean Delete( String idUsuario );
 }

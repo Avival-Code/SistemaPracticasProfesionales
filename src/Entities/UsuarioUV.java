@@ -70,6 +70,14 @@ public class UsuarioUV {
     }
 
     /**
+     * Regresa el id del usuario
+     * @return el id del usuario
+     */
+    public int GetID() {
+        return idUsuario;
+    }
+
+    /**
      * Regresa los nombres del UsuarioUV.
      * @return
      */
