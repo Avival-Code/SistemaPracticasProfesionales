@@ -92,4 +92,8 @@ public class InformationReader {
     public String GetPassword() {
         return information.get( 5 );
     }
+
+    public String GetUrl() {
+        return information.get( 6 ) + GetHostname() + ":" + GetPort() + "/" + GetDatabase();
+    }
 }
