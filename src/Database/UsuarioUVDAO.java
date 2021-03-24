@@ -95,7 +95,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
 
         try {
             Statement statement = connection.GetConnection().createStatement();
-            ResultSet result = statement.executeQuery( "SELECT * FROM UsuarioUV WHERE IDUsuario = '" + idUsuario + "';" );
+            ResultSet result = statement.executeQuery( "SELECT * FROM UsuarioUV WHERE IDUsuario = " + idUsuario + ";" );
 
             if( result.next() ) {
                 usuario = new UsuarioUV( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
@@ -121,7 +121,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
      */
     @Override
     public boolean Update( UsuarioUV usuario ) {
-        boolean updateSuccessful = false;
+        boolean updated = false;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 
@@ -132,13 +132,13 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
                            "', Contrasena = '" + usuario.GetContrasena() + "', CorreoElectronico = '" + usuario.GetCorreo() +
                            "', Telefono = '" + usuario.GetTelefono() + "'WHERE IDUsuario = " + usuario.GetID() + ";";
             statement.executeQuery( query );
-            updateSuccessful = true;
+            updated = true;
         } catch( Exception exception ) {
             exception.printStackTrace();
         }
 
         connection.StopConnection();
-        return updateSuccessful;
+        return updated;
     }
 
     /**

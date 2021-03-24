@@ -12,6 +12,8 @@ package Database;
 import Entities.Estudiante;
 import Entities.UsuarioUV;
 import Enumerations.EstadoEstudiante;
+
+import javax.swing.plaf.nimbus.State;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -77,15 +79,28 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         connection.StartConnection();
 
         try {
+            Statement statement = connection.GetConnection().createStatement();
+            ResultSet result = statement.executeQuery( "SELECT * FROM Estudiante WHERE matricula = '" + matricula + "';" );
 
+            if( result.next() ) {
+                int idUsuario = result.getInt( 1 );
+                String nrc = result.getString( 2 );
+                EstadoEstudiante estado = EstadoEstudiante.values()[ result.getInt( 3 ) ];
+
+                UsuarioUV usuario = usuarios.Read( Integer.toString( idUsuario ) );
+                estudiante = new Estudiante( usuario, matricula, nrc, estado );
+            }
         } catch( Exception exception ) {
             exception.printStackTrace();
         }
-        return null;
+
+        connection.StopConnection();
+        return estudiante;
     }
 
     @Override
     public boolean Update( Estudiante estudiante ) {
+        boolean updated = false;
         return false;
     }
 
