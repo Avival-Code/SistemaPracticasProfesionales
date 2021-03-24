@@ -41,6 +41,19 @@ public class Estudiante extends UsuarioUV {
     }
 
     /**
+     * Crea una instancia de Estudiante a partir de un UsuarioUV, una
+     * matrícula, un nrc y un EstadoEstudiante.
+     * @param usuario el usuario que será utilizado para crear el estudiante
+     * @param matriculaIn la matrícula del estudiante
+     * @param nrcIn el nrc al que pertenece el estudiante
+     * @param estadoIn el estado actual del estudiante
+     */
+    public Estudiante( UsuarioUV usuario, String matriculaIn, String nrcIn, EstadoEstudiante estadoIn ) {
+        this( usuario.idUsuario, usuario.nombres, usuario.apellidos, usuario.usuario, usuario.contrasena, usuario.correoElectronico,
+              usuario.telefono, matriculaIn, nrcIn, estadoIn );
+    }
+
+    /**
      * Constructor de la clase Estudiante. Crea una insancia con
      * los valores introducidos.
      * @param idIn el ID del Estudiante asignado por el SMBDR.

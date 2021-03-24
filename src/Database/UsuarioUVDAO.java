@@ -62,7 +62,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
 
         try {
             Statement statement = connection.GetConnection().createStatement();
-            ResultSet result = statement.executeQuery( "SELECT * FROM UsuarioUV" );
+            ResultSet result = statement.executeQuery( "SELECT * FROM UsuarioUV;" );
 
             while( result.next() ) {
                 usuarios.add( new UsuarioUV( result.getInt( 0 ), result.getString( 1 ),

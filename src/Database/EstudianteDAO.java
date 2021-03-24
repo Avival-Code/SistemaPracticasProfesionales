@@ -10,10 +10,16 @@
 package Database;
 
 import Entities.Estudiante;
+import Entities.UsuarioUV;
+import Enumerations.EstadoEstudiante;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EstudianteDAO implements EstudianteDAOInterface{
+    private UsuarioUVDAO usuarios = new UsuarioUVDAO();
+
     @Override
     public boolean Create( Estudiante estudiante ) {
         boolean wasCreated = false;
@@ -21,8 +27,15 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         connection.StartConnection();
 
         try {
+            usuarios.Create( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
+                                            estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
+                                            estudiante.GetTelefono() ) );
             Statement statement = connection.GetConnection().createStatement();
-            String query = "INSERT INTO Estudiante()";
+            String query = "INSERT INTO Estudiante( Matricula, IDUsuario, NRC, Estado ) VALUES( '" +
+                           estudiante.GetMatricula() + "', '" + estudiante.GetID() + "', '" +
+                           estudiante.GetNrc() + "', " + estudiante.GetEstado() + " );";
+
+            wasCreated = true;
         } catch( Exception exception ) {
             exception.printStackTrace();
         }
@@ -31,11 +44,43 @@ public class EstudianteDAO implements EstudianteDAOInterface{
 
     @Override
     public List< Estudiante > ReadAll() {
-        return null;
+        List< Estudiante > estudiantes = new ArrayList<>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+            Statement statement = connection.GetConnection().createStatement();
+            ResultSet result = statement.executeQuery( "SELECT * FROM Estudiantes;" );
+            List< UsuarioUV > usuariosTemp = usuarios.ReadAll();
+
+            for( int i = 0; i < usuariosTemp.size(); i++ )
+            {
+                result.next();
+                estudiantes.add( new Estudiante( usuariosTemp.get( i ), result.getString( 0 ), result.getString( 2 ),
+                        EstadoEstudiante.values()[ result.getInt( 3 ) ] ) );
+            }
+
+            result.close();
+            statement.close();
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
+
+        connection.StopConnection();
+        return estudiantes;
     }
 
     @Override
     public Estudiante Read( String matricula ) {
+        Estudiante estudiante = new Estudiante();
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
         return null;
     }
 
