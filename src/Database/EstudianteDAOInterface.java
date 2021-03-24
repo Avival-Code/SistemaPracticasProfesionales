@@ -37,15 +37,15 @@ public interface EstudianteDAOInterface {
      * @param matricula la matrícula del Estudiante deseado
      * @return una instancia del Estudiante
      */
-    Estudiante ReadEstudiante( String matricula );
+    Estudiante Read( String matricula );
 
     /**
      * Actualiza un Estudiante en la base de datos con los datos del
      * Estudiante introducido.
-     * @param estudianteActualizado la versión actualizada del Estudiante
+     * @param estudiante la versión actualizada del Estudiante
      * @return booleano indicando el éxito o fracaso
      */
-    boolean Update( Estudiante estudianteActualizado );
+    boolean Update( Estudiante estudiante );
 
     /**
      * Elimina un Estudiante de la base de datos utilizando la

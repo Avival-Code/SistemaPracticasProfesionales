@@ -35,12 +35,12 @@ public class EstudianteDAO implements EstudianteDAOInterface{
     }
 
     @Override
-    public Estudiante ReadEstudiante( String matricula ) {
+    public Estudiante Read( String matricula ) {
         return null;
     }
 
     @Override
-    public boolean Update( Estudiante estudianteActualizado ) {
+    public boolean Update( Estudiante estudiante ) {
         return false;
     }
 
