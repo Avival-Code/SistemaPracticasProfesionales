@@ -70,7 +70,7 @@ public class DocenteDAO  implements DocenteDAOInterface{
 
             while( result.next() )
             {
-                UsuarioUV usuarioTemp = usuarios.Read( Integer.toString( result.getInt( 1 ) ) );
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 1 ) );
                 docentes.add( new Docente( usuarioTemp, result.getString( 0 ), result.getString( 2 ) ) );
             }
 
@@ -107,7 +107,7 @@ public class DocenteDAO  implements DocenteDAOInterface{
                 int idUsuario = result.getInt( 1 );
                 String nrc = result.getString( 2 );
 
-                UsuarioUV usuario = usuarios.Read( Integer.toString( idUsuario ) );
+                UsuarioUV usuario = usuarios.Read( idUsuario );
                 docente = new Docente( usuario, numeroPersonal, nrc );
             }
         } catch( Exception exception ) {

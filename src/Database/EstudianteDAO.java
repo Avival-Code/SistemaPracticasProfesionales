@@ -41,10 +41,11 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             usuarios.Create( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
                                             estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
                                             estudiante.GetTelefono() ) );
+            UsuarioUV usuarioTemp = usuarios.Read( estudiante.GetUsuario() );
             String query = "INSERT INTO Estudiante( Matricula, IDUsuario, NRC, Estado ) VALUES( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, estudiante.GetMatricula() );
-            statement.setInt( 2, estudiante.GetID() );
+            statement.setInt( 2, usuarioTemp.GetID() );
             statement.setString( 3, estudiante.GetNrc() );
             statement.setInt( 4, estudiante.GetEstado().ordinal() );
             statement.executeQuery();
@@ -72,7 +73,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
 
             while( result.next() )
             {
-                UsuarioUV usuarioTemp = usuarios.Read( Integer.toString( result.getInt( 1 ) ) );
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 1 ) );
                 estudiantes.add( new Estudiante( usuarioTemp, result.getString( 0 ), result.getString( 2 ),
                                                  EstadoEstudiante.values()[ result.getInt( 3 ) ] ) );
             }
@@ -111,7 +112,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
                 String nrc = result.getString( 2 );
                 EstadoEstudiante estado = EstadoEstudiante.values()[ result.getInt( 3 ) ];
 
-                UsuarioUV usuario = usuarios.Read( Integer.toString( idUsuario ) );
+                UsuarioUV usuario = usuarios.Read( idUsuario );
                 estudiante = new Estudiante( usuario, matricula, nrc, estado );
             }
         } catch( Exception exception ) {

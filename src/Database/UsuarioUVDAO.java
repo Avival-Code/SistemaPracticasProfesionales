@@ -92,7 +92,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
      * @return una instancia del UsuarioUV
      */
     @Override
-    public UsuarioUV Read( String idUsuario ) {
+    public UsuarioUV Read( int idUsuario ) {
         UsuarioUV usuario = new UsuarioUV();
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
@@ -100,7 +100,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
         try {
             String query = "SELECT * FROM UsuarioUV WHERE IDUsuario = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setInt( 1, Integer.parseInt( idUsuario ) );
+            statement.setInt( 1, idUsuario );
             statement.executeQuery();
             ResultSet result = statement.getResultSet();
 
@@ -108,6 +108,41 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
                 usuario = new UsuarioUV( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
                                          result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
                                          result.getString( 6 ) );
+            }
+
+            result.close();
+            statement.close();
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
+
+        connection.StopConnection();
+        return usuario;
+    }
+
+    /**
+     * Regresa un UsuarioUV de la base de base de datos. Utiliza el nombre usuario del
+     * para encontrar el usuario deseado. Regresa Null en caso de no
+     * encontrar el UsuarioUV
+     * @param nombreUsuario el nombre usuario
+     * @return una instancia del UsuarioUV
+     */
+    public UsuarioUV Read( String nombreUsuario ) {
+        UsuarioUV usuario = new UsuarioUV();
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+            String query = "SELECT * FROM UsuarioUV WHERE Usuario = ?;";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setString( 1, nombreUsuario );
+            statement.executeQuery();
+            ResultSet result = statement.getResultSet();
+
+            if( result.next() ) {
+                usuario = new UsuarioUV( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
+                        result.getString( 6 ) );
             }
 
             result.close();

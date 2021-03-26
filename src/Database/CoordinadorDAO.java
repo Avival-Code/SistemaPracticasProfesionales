@@ -40,10 +40,11 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
             usuarios.Create( new UsuarioUV( coordinador.GetID(), coordinador.GetNombres(), coordinador.GetApellidos(),
                     coordinador.GetUsuario(), coordinador.GetContrasena(), coordinador.GetCorreo(),
                     coordinador.GetTelefono() ) );
+            UsuarioUV usuarioTemp = usuarios.Read( coordinador.GetUsuario() );
             String query = "INSERT INTO Coordinador( NumeroPersonal, IDUsuario ) VALUES( ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, coordinador.GetNumeroPersonal() );
-            statement.setInt( 2, coordinador.GetID() );
+            statement.setInt( 2, usuarioTemp.GetID() );
             statement.executeQuery();
 
             wasCreated = true;
@@ -69,7 +70,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
 
             while( result.next() )
             {
-                UsuarioUV usuarioTemp = usuarios.Read( Integer.toString( result.getInt( 1 ) ) );
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 1 ) );
                 coordinadores.add( new Coordinador( usuarioTemp, result.getString( 0 ) ) );
             }
 
@@ -105,7 +106,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
             if( result.next() ) {
                 int idUsuario = result.getInt( 1 );
 
-                UsuarioUV usuario = usuarios.Read( Integer.toString( idUsuario ) );
+                UsuarioUV usuario = usuarios.Read( idUsuario );
                 coordinador = new Coordinador( usuario, numeroPersonal );
             }
         } catch( Exception exception ) {
