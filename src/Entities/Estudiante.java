@@ -77,7 +77,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Regresa la matrícula del Estudiante
-     * @return
+     * @return String con la matrícula del estudiante
      */
     public String GetMatricula() {
         return matricula;
@@ -85,7 +85,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Regresa el nrc del Estudiante
-     * @return
+     * @return String con el nrc del estudiante
      */
     public String GetNrc() {
         return nrc;
@@ -93,7 +93,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Regresa el estado actual del Estudiante
-     * @return
+     * @return enumeración del estado actual del estudiante
      */
     public EstadoEstudiante GetEstado() {
         return estado;
@@ -101,7 +101,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Cambia el valor del nrc del Estudiante al valor introducido
-     * @param nrcIn
+     * @param nrcIn el nuevo nrc del estudiante
      */
     public void SetNrc( String nrcIn ) {
         nrc = nrcIn;
@@ -109,7 +109,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Cambia el estado actual del Estudiante al valor introducido
-     * @param estadoIn
+     * @param estadoIn el nuevo estado del estudiante
      */
     public void SetEstadoEstudiante( EstadoEstudiante estadoIn ) {
         estado = estadoIn;

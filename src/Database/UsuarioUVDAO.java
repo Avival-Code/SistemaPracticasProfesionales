@@ -10,7 +10,7 @@
 package Database;
 
 import Entities.UsuarioUV;
-
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Statement;
@@ -35,12 +35,16 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
         connection.StartConnection();
 
         try {
-            Statement statement = connection.GetConnection().createStatement();
             String query = "INSERT INTO UsuarioUV( Nombres, Apellidos, Usuario, Contrasena, CorreoElectronico, " +
-                           "Telefono ) VALUES ( '" + usuario.GetNombres() + "', '" + usuario.GetApellidos() + "', '" +
-                           usuario.GetUsuario() + "', '" + usuario.GetContrasena() + "', '" + usuario.GetCorreo() +
-                           "', '" + usuario.GetTelefono() + "' );";
-            statement.executeQuery( query );
+                           "Telefono ) VALUES ( ?, ?, ?, ?, ?, ? );";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setString( 1, usuario.GetNombres() );
+            statement.setString( 2, usuario.GetApellidos() );
+            statement.setString( 3, usuario.GetUsuario() );
+            statement.setString( 4, usuario.GetContrasena() );
+            statement.setString( 5, usuario.GetCorreo() );
+            statement.setString( 6, usuario.GetTelefono() );
+            statement.executeUpdate();
             wasCreated = true;
         } catch( Exception exception ) {
             exception.printStackTrace();
@@ -94,8 +98,11 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
         connection.StartConnection();
 
         try {
-            Statement statement = connection.GetConnection().createStatement();
-            ResultSet result = statement.executeQuery( "SELECT * FROM UsuarioUV WHERE IDUsuario = " + idUsuario + ";" );
+            String query = "SELECT * FROM UsuarioUV WHERE IDUsuario = ?;";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setInt( 1, Integer.parseInt( idUsuario ) );
+            statement.executeQuery();
+            ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
                 usuario = new UsuarioUV( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
@@ -126,12 +133,17 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
         connection.StartConnection();
 
         try {
-            Statement statement = connection.GetConnection().createStatement();
-            String query = "UPDATE UsuarioUV SET Nombres = '" + usuario.GetNombres() +
-                           "', Apellidos = '" + usuario.GetApellidos() + "', Usuario = '" + usuario.GetUsuario() +
-                           "', Contrasena = '" + usuario.GetContrasena() + "', CorreoElectronico = '" + usuario.GetCorreo() +
-                           "', Telefono = '" + usuario.GetTelefono() + "'WHERE IDUsuario = " + usuario.GetID() + ";";
-            statement.executeQuery( query );
+            String query = "UPDATE UsuarioUV SET Nombres = ?, Apellidos = ?, Usuario = ?, Contrasena = ?," +
+                           " CorreoElectronico = ?, Telefono = ? WHERE IDUsuario = ?;";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setString( 1, usuario.GetNombres() );
+            statement.setString( 2, usuario.GetApellidos() );
+            statement.setString( 3, usuario.GetUsuario() );
+            statement.setString( 4, usuario.GetContrasena() );
+            statement.setString( 5, usuario.GetCorreo() );
+            statement.setString( 6, usuario.GetTelefono() );
+            statement.setInt( 7, usuario.GetID() );
+            statement.executeUpdate();
             updated = true;
         } catch( Exception exception ) {
             exception.printStackTrace();
@@ -154,10 +166,10 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
         connection.StartConnection();
 
         try {
-            Statement statement = connection.GetConnection().createStatement();
-            String query = "DELETE FROM UsuarioUV WHERE IDUsuario = " + idUsuario + ";";
-
-            statement.executeQuery( query );
+            String query = "DELETE FROM UsuarioUV WHERE IDUsuario = ?;";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setInt( 1, Integer.parseInt( idUsuario ) );
+            statement.executeUpdate();
             deleted = true;
         } catch( Exception exception ) {
             exception.printStackTrace();
