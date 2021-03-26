@@ -89,7 +89,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
 
     /**
      * Regresa un estudiante de la base de datos. Utiliza la matrícula
-     * del estudiante para buscarlo en la base de datos.
+     * del estudiante para ubicarlo en la base de datos.
      * @param matricula la matrícula del Estudiante deseado
      * @return estudiante con la información de base de datos.
      */
