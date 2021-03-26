@@ -14,7 +14,7 @@ import java.util.List;
 public interface ResponsableProyectoDAOInterface {
     boolean Create(ResponsableProyecto responsable );
     List< ResponsableProyecto > ReadAll();
-    ResponsableProyecto Read( String idResponsable );
+    ResponsableProyecto Read( int idResponsable );
     boolean Update( ResponsableProyecto responsable );
-    boolean Delete( String idResponsable );
+    boolean Delete( int idResponsable );
 }

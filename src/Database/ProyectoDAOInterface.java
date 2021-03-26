@@ -15,7 +15,7 @@ import java.util.List;
 public interface ProyectoDAOInterface {
     boolean Create( Proyecto proyecto );
     List< Proyecto > ReadAll();
-    Proyecto Read( String idProyecto );
+    Proyecto Read( int idProyecto );
     boolean Update( Proyecto proyecto );
-    boolean Delete( String idProyecto );
+    boolean Delete( int idProyecto );
 }

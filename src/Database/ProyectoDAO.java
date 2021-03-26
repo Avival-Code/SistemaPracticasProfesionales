@@ -90,7 +90,7 @@ public class ProyectoDAO implements ProyectoDAOInterface{
      * @return una instancia del proyecto
      */
     @Override
-    public Proyecto Read( String idProyecto ) {
+    public Proyecto Read( int idProyecto ) {
         Proyecto proyecto = new Proyecto();
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
@@ -98,7 +98,7 @@ public class ProyectoDAO implements ProyectoDAOInterface{
         try {
             String query = "SELECT * FROM Proyecto WHERE IDProyecto = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, idProyecto );
+            statement.setInt( 1, idProyecto );
             statement.executeQuery();
             ResultSet result = statement.getResultSet();
 
@@ -157,7 +157,7 @@ public class ProyectoDAO implements ProyectoDAOInterface{
      * @return booleano indicando éxito o fracaso
      */
     @Override
-    public boolean Delete( String idProyecto ) {
+    public boolean Delete( int idProyecto ) {
         boolean deleted = false;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
@@ -165,7 +165,7 @@ public class ProyectoDAO implements ProyectoDAOInterface{
         try {
             String query = "DELETE FROM Proyecto WHERE IDProyecto = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, idProyecto );
+            statement.setInt( 1, idProyecto );
             statement.executeUpdate();
             deleted = true;
         } catch( Exception exception ) {
