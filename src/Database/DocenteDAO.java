@@ -10,10 +10,7 @@
 package Database;
 
 import Entities.Docente;
-import Entities.Estudiante;
 import Entities.UsuarioUV;
-import Enumerations.EstadoEstudiante;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -70,7 +67,6 @@ public class DocenteDAO  implements DocenteDAOInterface{
         try {
             Statement statement = connection.GetConnection().createStatement();
             ResultSet result = statement.executeQuery( "SELECT * FROM Estudiantes;" );
-            List< UsuarioUV > usuariosTemp = usuarios.ReadAll();
 
             while( result.next() )
             {

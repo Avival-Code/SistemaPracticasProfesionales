@@ -69,7 +69,6 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         try {
             Statement statement = connection.GetConnection().createStatement();
             ResultSet result = statement.executeQuery( "SELECT * FROM Estudiantes;" );
-            List< UsuarioUV > usuariosTemp = usuarios.ReadAll();
 
             while( result.next() )
             {
