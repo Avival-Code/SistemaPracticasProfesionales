@@ -68,6 +68,12 @@ public class Proyecto {
     }
 
     /**
+     * Regresa el ID del proyecto
+     * @return el ID del proyecto
+     */
+    public int GetID() { return idProyecto; }
+
+    /**
      * Regresa el nombre del proyecto
      * @return el nombre del proyecto
      */
