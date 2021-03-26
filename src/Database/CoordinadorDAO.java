@@ -41,6 +41,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
                     coordinador.GetUsuario(), coordinador.GetContrasena(), coordinador.GetCorreo(),
                     coordinador.GetTelefono() ) );
             UsuarioUV usuarioTemp = usuarios.Read( coordinador.GetUsuario() );
+
             String query = "INSERT INTO Coordinador( NumeroPersonal, IDUsuario ) VALUES( ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, coordinador.GetNumeroPersonal() );

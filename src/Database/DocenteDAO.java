@@ -40,10 +40,12 @@ public class DocenteDAO  implements DocenteDAOInterface{
             usuarios.Create( new UsuarioUV( docente.GetID(), docente.GetNombres(), docente.GetApellidos(),
                     docente.GetUsuario(), docente.GetContrasena(), docente.GetCorreo(),
                     docente.GetTelefono() ) );
+            UsuarioUV usuarioTemp = usuarios.Read( docente.GetUsuario() );
+
             String query = "INSERT INTO Docente( NumeroPersonal, IDUsuario, NRC ) VALUES( ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, docente.GetNumeroPersonal() );
-            statement.setInt( 2, docente.GetID() );
+            statement.setInt( 2, usuarioTemp.GetID() );
             statement.setString( 3, docente.GetNrc() );
             statement.executeQuery();
 
