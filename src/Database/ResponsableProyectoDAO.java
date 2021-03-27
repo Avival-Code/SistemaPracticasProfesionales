@@ -82,8 +82,8 @@ public class ResponsableProyectoDAO implements ResponsableProyectoDAOInterface{
 
     /**
      * Regresa una instancia de ResponsableProyecto ubicada en la base de datos
-     * @param idResponsable
-     * @return
+     * @param idResponsable el ID del responsable deseado
+     * @return na instancia de ResponsableProyecto
      */
     @Override
     public ResponsableProyecto Read( int idResponsable ) {
