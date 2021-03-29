@@ -14,7 +14,8 @@ import java.util.List;
 public interface DocumentoDAOInterface {
     boolean Create( Documento documento );
     List< Documento > ReadAll();
-    Documento Read( String idDocumento );
+    Documento Read( int idDocumento );
+    Documento Read( String titulo, int claveExpediente );
     boolean Update( Documento documento );
-    boolean Delete( String idDocumento );
+    boolean Delete( int idDocumento );
 }
