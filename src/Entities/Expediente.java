@@ -12,6 +12,8 @@ package Entities;
  */
 public class Expediente {
     private int claveExpediente;
+    private int idProyecto;
+    private String matricula;
     private String fechaAsignacion;
     private int horasAcumuladas;
     private int numeroArchivos;
@@ -22,6 +24,8 @@ public class Expediente {
      */
     public Expediente() {
         claveExpediente = 0;
+        idProyecto = 0;
+        matricula = "";
         fechaAsignacion = "";
         horasAcumuladas = 0;
         numeroArchivos = 0;
@@ -32,7 +36,8 @@ public class Expediente {
      * @param original la instancia de expediente que ya existe
      */
     public Expediente( Expediente original ) {
-        this( original.claveExpediente, original.fechaAsignacion, original.horasAcumuladas, original.numeroArchivos );
+        this( original.claveExpediente, original.idProyecto, original.matricula, original.fechaAsignacion,
+                original.horasAcumuladas, original.numeroArchivos );
     }
 
     /**
@@ -42,8 +47,11 @@ public class Expediente {
      * @param horasAcumuladasIn las horas acumuladas del estudiante
      * @param numeroArchivosIn el numero de archivos contenidos en el expediente
      */
-    public Expediente( int claveIn, String fechaAsignacionIn, int horasAcumuladasIn, int numeroArchivosIn ) {
+    public Expediente( int claveIn, int idProyectoIn, String matriculaIn, String fechaAsignacionIn,
+                       int horasAcumuladasIn, int numeroArchivosIn ) {
         claveExpediente = claveIn;
+        idProyecto = idProyectoIn;
+        matricula = matriculaIn;
         fechaAsignacion = fechaAsignacionIn;
         horasAcumuladas = horasAcumuladasIn;
         numeroArchivos = numeroArchivosIn;
@@ -56,6 +64,18 @@ public class Expediente {
     public int GetClave() {
         return claveExpediente;
     }
+
+    /**
+     * Regresa el ID del proyecto asociado al expediente
+     * @return el ID del proyecto
+     */
+    public int GetIDProyecto() { return idProyecto; }
+
+    /**
+     * Regresa la matrícula del estudiante asociado al expediente
+     * @return la matrícula de estudiante
+     */
+    public String GetMatricula() { return matricula; }
 
     /**
      * Regresa la fecha en la cual se asignó el proyecto al estudiante

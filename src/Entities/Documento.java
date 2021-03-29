@@ -15,6 +15,7 @@ public class Documento {
     protected String titulo;
     protected String descripcion;
     protected String fechaEntrega;
+    protected int claveExpediente;
 
     /**
      * Crea una instancia con un id = 0 y cadenas vacías
@@ -24,6 +25,7 @@ public class Documento {
         titulo = "";
         descripcion = "";
         fechaEntrega = "";
+        claveExpediente = 0;
     }
 
     /**
@@ -31,7 +33,8 @@ public class Documento {
      * @param original la instancia existe
      */
     public Documento( Documento original ) {
-        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega );
+        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega,
+                original.claveExpediente );
     }
 
     /**
@@ -41,13 +44,19 @@ public class Documento {
      * @param descripcionIn la descripcion del documento
      * @param fechaIn la fecha en la que se subió el documento al sistema
      */
-    public Documento( int idIn, String tituloIn, String descripcionIn, String fechaIn ) {
+    public Documento( int idIn, String tituloIn, String descripcionIn, String fechaIn, int claveExpedienteIn ) {
         idDocumento = idIn;
         titulo = tituloIn;
         descripcion = descripcionIn;
         fechaEntrega = fechaIn;
+        claveExpediente = claveExpedienteIn;
     }
 
+    /**
+     * Regresa el id del documento
+     * @return el id del documento
+     */
+    public int GetID() { return idDocumento; }
     /**
      * Regresa el título del documento
      * @return el título del documento
@@ -71,6 +80,12 @@ public class Documento {
     public String GetFechaEntrega() {
         return fechaEntrega;
     }
+
+    /**
+     * Regresa la clave del expediente ligado al archivo
+     * @return la clave del expediente
+     */
+    public int GetClaveExpediente() { return claveExpediente; }
 
     /**
      * Cambia el título del documento por el valor introducido

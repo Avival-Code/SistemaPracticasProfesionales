@@ -14,6 +14,7 @@ public class ArchivoConsulta {
     private int idArchivo;
     private String titulo;
     private String descripcion;
+    private String numeroPersonal;
 
     /**
      * Crea una instancia de la clase con un id = 0
@@ -23,6 +24,7 @@ public class ArchivoConsulta {
         idArchivo = 0;
         titulo = "";
         descripcion = "";
+        numeroPersonal = "";
     }
 
     /**
@@ -30,7 +32,7 @@ public class ArchivoConsulta {
      * @param original la instancia existente
      */
     public ArchivoConsulta( ArchivoConsulta original ) {
-        this( original.idArchivo, original.titulo, original.descripcion );
+        this( original.idArchivo, original.titulo, original.descripcion, original.numeroPersonal );
     }
 
     /**
@@ -39,12 +41,18 @@ public class ArchivoConsulta {
      * @param tituloIn el título del archivo
      * @param descipcionIn la descripción del archivo
      */
-    public ArchivoConsulta( int idIn, String tituloIn, String descipcionIn ) {
+    public ArchivoConsulta( int idIn, String tituloIn, String descipcionIn, String numeroPersonalIn ) {
         idArchivo = idIn;
         titulo = tituloIn;
         descripcion = descipcionIn;
+        numeroPersonal = numeroPersonalIn;
     }
 
+    /**
+     * Regresa el id del archivo
+     * @returnel id del archivo
+     */
+    public int GetId() { return idArchivo; }
     /**
      * Regresa el título del archivo
      * @return el título del archivo
@@ -58,6 +66,12 @@ public class ArchivoConsulta {
     public String GetDescripcion() { return descripcion; }
 
     /**
+     * Regresa el número de personal del docente que subió el archivo
+     * @return el número de personal
+     */
+    public String GetNumeroPersonal() { return numeroPersonal; }
+
+    /**
      * Cambia el título del arhivo al valor introducido
      * @param tituloIn el nuevo título
      */
@@ -68,4 +82,10 @@ public class ArchivoConsulta {
      * @param descripcionIn la nueva descripción
      */
     public void SetDescripcion( String descripcionIn ) { descripcion = descripcionIn; }
+
+    /**
+     * Cambia el número de personal por el valor introducido
+     * @param numeroPersonalIn el nuevo número de personal
+     */
+    public void SetNumeroPersonal( String numeroPersonalIn ) { numeroPersonal = numeroPersonalIn; }
 }
