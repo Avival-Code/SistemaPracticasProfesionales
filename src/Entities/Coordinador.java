@@ -34,6 +34,11 @@ public class Coordinador extends UsuarioUV {
                 original.correoElectronico, original.telefono, original.numeroPersonal );
     }
 
+    public Coordinador( UsuarioUV usuario, String numeroPersonalIn ) {
+        this( usuario.idUsuario, usuario.nombres, usuario.apellidos, usuario.usuario, usuario.contrasena,
+                usuario.correoElectronico, usuario.telefono, numeroPersonalIn );
+    }
+
     /**
      * Constructor de la clase Coordinador. Crea una insancia con
      * los valores introducidos.

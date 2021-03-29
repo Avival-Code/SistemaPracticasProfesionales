@@ -41,6 +41,19 @@ public class Estudiante extends UsuarioUV {
     }
 
     /**
+     * Crea una instancia de Estudiante a partir de un UsuarioUV, una
+     * matrícula, un nrc y un EstadoEstudiante.
+     * @param usuario el usuario que será utilizado para crear el estudiante
+     * @param matriculaIn la matrícula del estudiante
+     * @param nrcIn el nrc al que pertenece el estudiante
+     * @param estadoIn el estado actual del estudiante
+     */
+    public Estudiante( UsuarioUV usuario, String matriculaIn, String nrcIn, EstadoEstudiante estadoIn ) {
+        this( usuario.idUsuario, usuario.nombres, usuario.apellidos, usuario.usuario, usuario.contrasena, usuario.correoElectronico,
+              usuario.telefono, matriculaIn, nrcIn, estadoIn );
+    }
+
+    /**
      * Constructor de la clase Estudiante. Crea una insancia con
      * los valores introducidos.
      * @param idIn el ID del Estudiante asignado por el SMBDR.
@@ -64,7 +77,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Regresa la matrícula del Estudiante
-     * @return
+     * @return String con la matrícula del estudiante
      */
     public String GetMatricula() {
         return matricula;
@@ -72,7 +85,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Regresa el nrc del Estudiante
-     * @return
+     * @return String con el nrc del estudiante
      */
     public String GetNrc() {
         return nrc;
@@ -80,7 +93,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Regresa el estado actual del Estudiante
-     * @return
+     * @return enumeración del estado actual del estudiante
      */
     public EstadoEstudiante GetEstado() {
         return estado;
@@ -88,7 +101,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Cambia el valor del nrc del Estudiante al valor introducido
-     * @param nrcIn
+     * @param nrcIn el nuevo nrc del estudiante
      */
     public void SetNrc( String nrcIn ) {
         nrc = nrcIn;
@@ -96,7 +109,7 @@ public class Estudiante extends UsuarioUV {
 
     /**
      * Cambia el estado actual del Estudiante al valor introducido
-     * @param estadoIn
+     * @param estadoIn el nuevo estado del estudiante
      */
     public void SetEstadoEstudiante( EstadoEstudiante estadoIn ) {
         estado = estadoIn;

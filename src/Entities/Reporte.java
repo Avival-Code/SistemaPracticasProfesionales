@@ -9,12 +9,15 @@ package Entities;
 
 import Enumerations.TipoReporte;
 
+import javax.swing.text.Document;
+
 /**
  * Clase que contiene la información de Reporte
  */
 public class Reporte extends Documento {
-    private int horasReportadas;
     private TipoReporte tipo;
+    private int horasReportadas;
+    private int idReporte;
 
     /**
      * Crea una instancia de la clase con un id = 0, 0 horas reportadas
@@ -24,6 +27,7 @@ public class Reporte extends Documento {
         super();
         horasReportadas = 0;
         tipo = null;
+        idReporte = 0;
     }
 
     /**
@@ -31,25 +35,43 @@ public class Reporte extends Documento {
      * @param original la instancia existente
      */
     public Reporte( Reporte original ) {
-        this( original.idDocumento, original.titulo, original.descripcion, original.fechaEntrega,
-                original.horasReportadas, original.tipo );
+        this( original.idDocumento, original.idReporte, original.titulo, original.descripcion, original.fechaEntrega,
+                original.GetClaveExpediente(), original.horasReportadas, original.tipo );
+    }
+
+    /**
+     * Crea una instancia de Reporte utilizando un Documento
+     * @param documento la instancia de documento
+     * @param tipoIn el tipo de reporte
+     * @param horasReportadasIn las horas que se reportan en este reporte
+     */
+    public Reporte( Documento documento, TipoReporte tipoIn, int horasReportadasIn, int idReporteIn ) {
+        this( documento.GetID(), idReporteIn, documento.GetTitulo(), documento.GetDescripcion(), documento.GetFechaEntrega(),
+                documento.GetClaveExpediente(), horasReportadasIn, tipoIn );
     }
 
     /**
      * Crea una instancia de la clase con los valores introducidos.
-     * @param idIn el id del reporte
+     * @param idDocumentoIn el id del Documento
      * @param tituloIn el título del reporte
      * @param descripcionIn la descripción del reporte
      * @param fechaIn la fecha en la cual fue entregada el reporte
      * @param horasReportadasIn las horas que se reportan en el archivo
      * @param tipoIn el tipo de reporte
      */
-    public Reporte( int idIn, String tituloIn, String descripcionIn, String fechaIn, int horasReportadasIn,
-                    TipoReporte tipoIn ) {
-        super( idIn, tituloIn, descripcionIn, fechaIn );
+    public Reporte( int idDocumentoIn, int idReporteIn, String tituloIn, String descripcionIn, String fechaIn, int claveExpedienteIn,
+                    int horasReportadasIn, TipoReporte tipoIn ) {
+        super( idDocumentoIn, tituloIn, descripcionIn, fechaIn, claveExpedienteIn );
         horasReportadas = horasReportadasIn;
         tipo = tipoIn;
+        idReporte = idReporteIn;
     }
+
+    /**
+     * Regresa el id del reporte
+     * @return el id del reporte
+     */
+    public int GetIdReporte() { return idReporte; }
 
     /**
      * Regresa las horas reportadas en el reporte
