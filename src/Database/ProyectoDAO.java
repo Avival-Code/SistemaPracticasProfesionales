@@ -91,7 +91,7 @@ public class ProyectoDAO implements ProyectoDAOInterface{
      */
     @Override
     public Proyecto Read( int idProyecto ) {
-        Proyecto proyecto = new Proyecto();
+        Proyecto proyecto = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

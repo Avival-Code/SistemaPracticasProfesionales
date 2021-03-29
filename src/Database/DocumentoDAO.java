@@ -87,7 +87,7 @@ public class DocumentoDAO implements DocumentoDAOInterface {
      */
     @Override
     public Documento Read( int idDocumento ) {
-        Documento documento = new Documento();
+        Documento documento = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 
@@ -114,7 +114,7 @@ public class DocumentoDAO implements DocumentoDAOInterface {
     }
 
     public Documento Read( String titulo, int claveExpediente ) {
-        Documento documento = new Documento();
+        Documento documento = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

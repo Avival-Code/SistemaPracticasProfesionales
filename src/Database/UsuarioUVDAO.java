@@ -93,7 +93,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
      */
     @Override
     public UsuarioUV Read( int idUsuario ) {
-        UsuarioUV usuario = new UsuarioUV();
+        UsuarioUV usuario = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 
@@ -128,7 +128,7 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
      * @return una instancia del UsuarioUV
      */
     public UsuarioUV Read( String nombreUsuario ) {
-        UsuarioUV usuario = new UsuarioUV();
+        UsuarioUV usuario = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

@@ -94,7 +94,7 @@ public class DocenteDAO  implements DocenteDAOInterface{
      */
     @Override
     public Docente Read( String numeroPersonal ) {
-        Docente docente = new Docente();
+        Docente docente = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

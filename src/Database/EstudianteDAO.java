@@ -96,7 +96,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
      */
     @Override
     public Estudiante Read( String matricula ) {
-        Estudiante estudiante = new Estudiante();
+        Estudiante estudiante = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

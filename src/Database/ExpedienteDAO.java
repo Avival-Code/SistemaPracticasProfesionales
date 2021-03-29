@@ -89,7 +89,7 @@ public class ExpedienteDAO implements ExpedienteDAOInterface{
      */
     @Override
     public Expediente Read( int claveExpediente ) {
-        Expediente expediente = new Expediente();
+        Expediente expediente = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

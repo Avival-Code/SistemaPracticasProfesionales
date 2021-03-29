@@ -86,7 +86,7 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
      */
     @Override
     public ArchivoConsulta Read( int idArchivo ) {
-        ArchivoConsulta archivo = new ArchivoConsulta();
+        ArchivoConsulta archivo = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

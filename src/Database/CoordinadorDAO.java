@@ -93,7 +93,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
      */
     @Override
     public Coordinador Read( String numeroPersonal ) {
-        Coordinador coordinador = new Coordinador();
+        Coordinador coordinador = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

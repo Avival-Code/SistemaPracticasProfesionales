@@ -87,7 +87,7 @@ public class ResponsableProyectoDAO implements ResponsableProyectoDAOInterface{
      */
     @Override
     public ResponsableProyecto Read( int idResponsable ) {
-        ResponsableProyecto responsable = new ResponsableProyecto();
+        ResponsableProyecto responsable = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

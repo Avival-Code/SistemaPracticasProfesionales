@@ -90,7 +90,7 @@ public class InformeProblemaDAO implements InformeProblemaDAOInterface {
      */
     @Override
     public InformeProblema Read( int identificador ) {
-        InformeProblema informe = new InformeProblema();
+        InformeProblema informe = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 

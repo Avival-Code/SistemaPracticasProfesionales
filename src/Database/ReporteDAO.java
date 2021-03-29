@@ -94,7 +94,7 @@ public class ReporteDAO implements ReporteDAOInterface{
      */
     @Override
     public Reporte Read( int idReporte ) {
-        Reporte reporte = new Reporte();
+        Reporte reporte = null;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 
