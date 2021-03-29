@@ -47,7 +47,7 @@ public class ReporteDAO implements ReporteDAOInterface{
             statement.setInt( 2, reporte.GetTipoReporte().ordinal() );
             statement.setInt( 3, reporte.GetClaveExpediente() );
             statement.setInt( 4, documento.GetID() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             wasCreated = true;
         } catch( Exception exception ) {
@@ -138,7 +138,7 @@ public class ReporteDAO implements ReporteDAOInterface{
             statement.setInt( 1, reporte.GetHorasReportadas() );
             statement.setInt( 2, reporte.GetTipoReporte().ordinal() );
             statement.setInt( 3, reporte.GetIdReporte() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             documentos.Update( new Documento( reporte.GetID(), reporte.GetTitulo(), reporte.GetDescripcion(),
                     reporte.GetFechaEntrega(), reporte.GetClaveExpediente() ) );
@@ -169,7 +169,7 @@ public class ReporteDAO implements ReporteDAOInterface{
             String query = "DELETE FROM Reporte WHERE IDReporte = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setInt( 1,  idReporte );
-            statement.executeQuery();
+            statement.executeUpdate();
             documentos.Delete( reporte.GetID() );
 
             deleted = true;

@@ -65,8 +65,8 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM ArchivoConsulta;" );
 
             while( result.next() ) {
-                archivos.add( new ArchivoConsulta( result.getInt( 0 ), result.getString( 1 ),
-                        result.getString( 2 ), result.getString( 3) ) );
+                archivos.add( new ArchivoConsulta( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ) ) );
             }
 
             result.close();
@@ -98,8 +98,8 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                archivo = new ArchivoConsulta( result.getInt( 0 ), result.getString( 1),
-                        result.getString( 2 ), result.getString( 3 ) );
+                archivo = new ArchivoConsulta( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ) );
             }
 
             result.close();

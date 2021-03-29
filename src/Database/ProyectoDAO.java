@@ -69,9 +69,9 @@ public class ProyectoDAO implements ProyectoDAOInterface{
             ResultSet result = statement.executeQuery( "SELECT * FROM Proyecto;" );
 
             while( result.next() ) {
-                proyectos.add( new Proyecto( result.getInt( 0 ), result.getString( 1 ),
-                        result.getString( 2 ), result.getInt( 3 ), result.getInt( 4 ),
-                        result.getString( 5 ), EstadoProyecto.values()[ result.getInt( 6 ) ] ) );
+                proyectos.add( new Proyecto( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getInt( 4 ), result.getInt( 5 ),
+                        result.getString( 6 ), EstadoProyecto.values()[ result.getInt( 7 ) ] ) );
             }
 
             result.close();
@@ -103,9 +103,9 @@ public class ProyectoDAO implements ProyectoDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                proyecto = new Proyecto( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
-                        result.getInt( 3 ), result.getInt( 4 ), result.getString( 5 ),
-                        EstadoProyecto.values()[ result.getInt( 6 ) ] );
+                proyecto = new Proyecto( result.getInt( 1 ), result.getString( 2 ), result.getString( 3 ),
+                        result.getInt( 4 ), result.getInt( 5 ), result.getString( 6 ),
+                        EstadoProyecto.values()[ result.getInt( 7 ) ] );
             }
 
             result.close();

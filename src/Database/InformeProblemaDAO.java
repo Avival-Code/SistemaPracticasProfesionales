@@ -68,9 +68,9 @@ public class InformeProblemaDAO implements InformeProblemaDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM InformeProblema;" );
 
             while( result.next() ) {
-                informes.add( new InformeProblema( result.getInt( 0 ), result.getString( 1 ),
-                        result.getString( 2 ), result.getString( 3 ), result.getString( 4 ),
-                        result.getString( 5 ) ) );
+                informes.add( new InformeProblema( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
+                        result.getString( 6 ) ) );
             }
 
             result.close();
@@ -102,9 +102,9 @@ public class InformeProblemaDAO implements InformeProblemaDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                informe = new InformeProblema( result.getInt( 0 ), result.getString( 1),
-                        result.getString( 2 ), result.getString( 3 ), result.getString( 4 ),
-                        result.getString( 5 ) );
+                informe = new InformeProblema( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
+                        result.getString( 6 ) );
             }
 
             result.close();

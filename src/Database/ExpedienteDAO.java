@@ -67,9 +67,9 @@ public class ExpedienteDAO implements ExpedienteDAOInterface{
             ResultSet result = statement.executeQuery( "SELECT * FROM Expediente;" );
 
             while( result.next() ) {
-                expediente.add( new Expediente( result.getInt( 0 ), result.getInt( 1 ),
-                        result.getString( 2 ), result.getString( 3 ), result.getInt( 4 ),
-                        result.getInt( 5 ) ) );
+                expediente.add( new Expediente( result.getInt( 1 ), result.getInt( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ),
+                        result.getInt( 6 ) ) );
             }
 
             result.close();
@@ -101,9 +101,9 @@ public class ExpedienteDAO implements ExpedienteDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                expediente = new Expediente( result.getInt( 0 ), result.getInt( 1),
-                        result.getString( 2 ), result.getString( 3 ), result.getInt( 4 ),
-                        result.getInt( 5 ) );
+                expediente = new Expediente( result.getInt( 1 ), result.getInt( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ),
+                        result.getInt( 6 ) );
             }
 
             result.close();

@@ -46,7 +46,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, coordinador.GetNumeroPersonal() );
             statement.setInt( 2, usuarioTemp.GetID() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             wasCreated = true;
         } catch( Exception exception ) {
@@ -71,8 +71,8 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
 
             while( result.next() )
             {
-                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 1 ) );
-                coordinadores.add( new Coordinador( usuarioTemp, result.getString( 0 ) ) );
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 2 ) );
+                coordinadores.add( new Coordinador( usuarioTemp, result.getString( 1 ) ) );
             }
 
             result.close();
@@ -105,7 +105,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                int idUsuario = result.getInt( 1 );
+                int idUsuario = result.getInt( 2 );
 
                 UsuarioUV usuario = usuarios.Read( idUsuario );
                 coordinador = new Coordinador( usuario, numeroPersonal );
@@ -159,7 +159,7 @@ public class CoordinadorDAO implements CoordinadorDAOInterface{
             String query = "DELETE FROM Docente WHERE NumeroPersonal = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1,  numeroPersonal );
-            statement.executeQuery();
+            statement.executeUpdate();
             usuarios.Delete( Integer.toString( coordinador.GetID() ) );
 
             deleted = true;

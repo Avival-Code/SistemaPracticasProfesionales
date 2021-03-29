@@ -69,9 +69,9 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
             ResultSet result = statement.executeQuery( "SELECT * FROM UsuarioUV;" );
 
             while( result.next() ) {
-                usuarios.add( new UsuarioUV( result.getInt( 0 ), result.getString( 1 ),
-                              result.getString( 2 ), result.getString( 3 ), result.getString( 4 ),
-                              result.getString( 5 ), result.getString( 6 ) ) );
+                usuarios.add( new UsuarioUV( result.getInt( 1 ), result.getString( 2 ),
+                              result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
+                              result.getString( 6 ), result.getString( 7 ) ) );
             }
 
             result.close();
@@ -105,9 +105,9 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                usuario = new UsuarioUV( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
-                                         result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
-                                         result.getString( 6 ) );
+                usuario = new UsuarioUV( result.getInt( 1 ), result.getString( 2 ), result.getString( 3 ),
+                                         result.getString( 4 ), result.getString( 5 ), result.getString( 6 ),
+                                         result.getString( 7 ) );
             }
 
             result.close();
@@ -140,9 +140,9 @@ public class UsuarioUVDAO implements UsuarioUVDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                usuario = new UsuarioUV( result.getInt( 0 ), result.getString( 1), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getString( 5 ),
-                        result.getString( 6 ) );
+                usuario = new UsuarioUV( result.getInt( 1 ), result.getString( 2 ), result.getString( 3 ),
+                        result.getString( 4 ), result.getString( 5 ), result.getString( 6 ),
+                        result.getString( 7 ) );
             }
 
             result.close();

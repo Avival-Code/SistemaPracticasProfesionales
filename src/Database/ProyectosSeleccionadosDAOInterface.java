@@ -18,7 +18,7 @@ import java.util.List;
  * listas de proyectos seleccionados por Estudiantes de la base de datos.
  */
 public interface ProyectosSeleccionadosDAOInterface {
-    boolean Create( String Matricula, List< Integer > idProyectos );
-    List< Integer > Read( String Matricula );
-    boolean Delete( String Matricula );
+    boolean Create( String matricula, List< Integer > idProyectos );
+    List< Integer > Read( String matricula );
+    boolean Delete( String matricula );
 }

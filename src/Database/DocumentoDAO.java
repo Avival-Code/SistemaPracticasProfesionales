@@ -66,8 +66,8 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM Documento;" );
 
             while( result.next() ) {
-                documentos.add( new Documento( result.getInt( 0 ), result.getString( 1 ),
-                        result.getString( 2 ), result.getString( 3 ), result.getInt( 4 ) ) );
+                documentos.add( new Documento( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) ) );
             }
 
             result.close();
@@ -99,8 +99,8 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                documento = new Documento( result.getInt( 0 ), result.getString( 1),
-                        result.getString( 2 ), result.getString( 3 ), result.getInt( 4 ) );
+                documento = new Documento( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -127,8 +127,8 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                documento = new Documento( result.getInt( 0 ), result.getString( 1),
-                        result.getString( 2 ), result.getString( 3 ), result.getInt( 4 ) );
+                documento = new Documento( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) );
             }
 
             result.close();

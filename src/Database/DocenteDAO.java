@@ -47,7 +47,7 @@ public class DocenteDAO  implements DocenteDAOInterface{
             statement.setString( 1, docente.GetNumeroPersonal() );
             statement.setInt( 2, usuarioTemp.GetID() );
             statement.setString( 3, docente.GetNrc() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             wasCreated = true;
         } catch( Exception exception ) {
@@ -68,12 +68,12 @@ public class DocenteDAO  implements DocenteDAOInterface{
 
         try {
             Statement statement = connection.GetConnection().createStatement();
-            ResultSet result = statement.executeQuery( "SELECT * FROM Estudiantes;" );
+            ResultSet result = statement.executeQuery( "SELECT * FROM Docente;" );
 
             while( result.next() )
             {
-                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 1 ) );
-                docentes.add( new Docente( usuarioTemp, result.getString( 0 ), result.getString( 2 ) ) );
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 2 ) );
+                docentes.add( new Docente( usuarioTemp, result.getString( 1 ), result.getString( 3 ) ) );
             }
 
             result.close();
@@ -106,8 +106,8 @@ public class DocenteDAO  implements DocenteDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                int idUsuario = result.getInt( 1 );
-                String nrc = result.getString( 2 );
+                int idUsuario = result.getInt( 2 );
+                String nrc = result.getString( 3 );
 
                 UsuarioUV usuario = usuarios.Read( idUsuario );
                 docente = new Docente( usuario, numeroPersonal, nrc );
@@ -136,7 +136,7 @@ public class DocenteDAO  implements DocenteDAOInterface{
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, docente.GetNrc() );
             statement.setString( 2, docente.GetNumeroPersonal() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             usuarios.Update( new UsuarioUV( docente.GetID(), docente.GetNombres(), docente.GetApellidos(),
                     docente.GetUsuario(), docente.GetContrasena(), docente.GetCorreo(), docente.GetTelefono() ) );
@@ -166,7 +166,7 @@ public class DocenteDAO  implements DocenteDAOInterface{
             String query = "DELETE FROM Docente WHERE NumeroPersonal = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1,  numeroPersonal );
-            statement.executeQuery();
+            statement.executeUpdate();
             usuarios.Delete( Integer.toString( docente.GetID() ) );
 
             deleted = true;

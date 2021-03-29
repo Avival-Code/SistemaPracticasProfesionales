@@ -66,8 +66,8 @@ public class ResponsableProyectoDAO implements ResponsableProyectoDAOInterface{
             ResultSet result = statement.executeQuery( "SELECT * FROM ResponsableProyecto;" );
 
             while( result.next() ) {
-                responsables.add( new ResponsableProyecto( result.getInt( 0 ), result.getString( 1 ),
-                        result.getString( 2 ), result.getString( 3 ), result.getString( 4 ) ) );
+                responsables.add( new ResponsableProyecto( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getString( 5 ) ) );
             }
 
             result.close();
@@ -99,8 +99,8 @@ public class ResponsableProyectoDAO implements ResponsableProyectoDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                responsable = new ResponsableProyecto( result.getInt( 0 ), result.getString( 1),
-                        result.getString( 2 ), result.getString( 3 ), result.getString( 4 ) );
+                responsable = new ResponsableProyecto( result.getInt( 1 ), result.getString( 2 ),
+                        result.getString( 3 ), result.getString( 4 ), result.getString( 5 ) );
             }
 
             result.close();

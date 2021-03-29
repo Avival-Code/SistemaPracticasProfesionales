@@ -22,12 +22,12 @@ public class ProyectosSeleccionadosDAO implements ProyectosSeleccionadosDAOInter
     /**
      * Registra los proyectos seleccionados por un Estudiante en la base
      * de datos.
-     * @param Matricula la matrícula del Estudiante
+     * @param matricula la matrícula del Estudiante
      * @param idProyectos la lista de proyectos seleccionados por el Estudiante
      * @return booleano indicando éxito o fracaso
      */
     @Override
-    public boolean Create( String Matricula, List< Integer > idProyectos ) {
+    public boolean Create( String matricula, List< Integer > idProyectos ) {
         boolean wasCreated = false;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
@@ -37,7 +37,7 @@ public class ProyectosSeleccionadosDAO implements ProyectosSeleccionadosDAOInter
                 String query = "INSERT INTO ProyectosSeleccionados( Matricula, IDProyecto ) " +
                         "VALUES ( ?, ? );";
                 PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-                statement.setString( 1, Matricula );
+                statement.setString( 1, matricula );
                 statement.setInt( 2, idProyectos.get( i ) );
                 statement.executeUpdate();
                 wasCreated = true;
@@ -51,11 +51,11 @@ public class ProyectosSeleccionadosDAO implements ProyectosSeleccionadosDAOInter
 
     /**
      * Regresa una lista con todos los IDProyectos asociados a una matrícula
-     * @param Matricula la matrícula del estudiante
+     * @param matricula la matrícula del estudiante
      * @returnuna lista de IDProyectos
      */
     @Override
-    public List< Integer > Read( String Matricula ) {
+    public List< Integer > Read( String matricula ) {
         List< Integer > proyectos = new ArrayList<>();
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
@@ -63,11 +63,12 @@ public class ProyectosSeleccionadosDAO implements ProyectosSeleccionadosDAOInter
         try {
             String query = "SELECT * FROM ProyectosSeleccionados WHERE Matricula = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.executeUpdate();
+            statement.setString( 1, matricula );
+            statement.executeQuery();
             ResultSet result = statement.getResultSet();
 
             while( result.next() ) {
-                proyectos.add( result.getInt( 1 ) );
+                proyectos.add( result.getInt( 2 ) );
             }
 
             result.close();
@@ -82,11 +83,11 @@ public class ProyectosSeleccionadosDAO implements ProyectosSeleccionadosDAOInter
 
     /**
      * Elimina los proyectos seleccionados asociados a la matrícula introducida
-     * @param Matricula la matrícula de un estudiante
+     * @param matricula la matrícula de un estudiante
      * @return booleano indicando éxito o fracaso
      */
     @Override
-    public boolean Delete( String Matricula ) {
+    public boolean Delete( String matricula ) {
         boolean deleted = false;
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
@@ -94,7 +95,7 @@ public class ProyectosSeleccionadosDAO implements ProyectosSeleccionadosDAOInter
         try {
             String query = "DELETE FROM ProyectosSeleccionados WHERE Matricula = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, Matricula );
+            statement.setString( 1, matricula );
             statement.executeUpdate();
             deleted = true;
         } catch( Exception exception ) {

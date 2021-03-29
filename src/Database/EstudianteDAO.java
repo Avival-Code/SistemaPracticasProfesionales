@@ -48,7 +48,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             statement.setInt( 2, usuarioTemp.GetID() );
             statement.setString( 3, estudiante.GetNrc() );
             statement.setInt( 4, estudiante.GetEstado().ordinal() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             wasCreated = true;
         } catch( Exception exception ) {
@@ -69,13 +69,13 @@ public class EstudianteDAO implements EstudianteDAOInterface{
 
         try {
             Statement statement = connection.GetConnection().createStatement();
-            ResultSet result = statement.executeQuery( "SELECT * FROM Estudiantes;" );
+            ResultSet result = statement.executeQuery( "SELECT * FROM Estudiante;" );
 
             while( result.next() )
             {
-                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 1 ) );
-                estudiantes.add( new Estudiante( usuarioTemp, result.getString( 0 ), result.getString( 2 ),
-                                                 EstadoEstudiante.values()[ result.getInt( 3 ) ] ) );
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 2 ) );
+                estudiantes.add( new Estudiante( usuarioTemp, result.getString( 1 ), result.getString( 3 ),
+                                                 EstadoEstudiante.values()[ result.getInt( 4 ) ] ) );
             }
 
             result.close();
@@ -108,9 +108,9 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                int idUsuario = result.getInt( 1 );
-                String nrc = result.getString( 2 );
-                EstadoEstudiante estado = EstadoEstudiante.values()[ result.getInt( 3 ) ];
+                int idUsuario = result.getInt( 2 );
+                String nrc = result.getString( 3 );
+                EstadoEstudiante estado = EstadoEstudiante.values()[ result.getInt( 4 ) ];
 
                 UsuarioUV usuario = usuarios.Read( idUsuario );
                 estudiante = new Estudiante( usuario, matricula, nrc, estado );
@@ -140,7 +140,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             statement.setString( 1, estudiante.GetNrc() );
             statement.setInt( 2, estudiante.GetEstado().ordinal() );
             statement.setString( 3, estudiante.GetMatricula() );
-            statement.executeQuery();
+            statement.executeUpdate();
 
             usuarios.Update( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
                                             estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
@@ -171,7 +171,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             String query = "DELETE FROM Estudiante WHERE Matricula = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1,  matricula );
-            statement.executeQuery();
+            statement.executeUpdate();
             usuarios.Delete( Integer.toString( estudiante.GetID() ) );
 
             deleted = true;
