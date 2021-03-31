@@ -1,3 +1,11 @@
+/*
+ * Autor: Christian Felipe de Jesus Avila Valdes
+ * Versión: 1.0
+ * Fecha Creación: 31 - mar - 2021
+ * Descripción:
+ * Clase que se encarga de manejar las acciones de la pantalla
+ * Registro_Estudiantes del sistema de prácticas profesionales.
+ */
 package Controllers;
 
 import Enumerations.EstadoEstudiante;
@@ -13,6 +21,10 @@ import Utilities.ScreenChanger;
 import Utilities.InputValidator;
 import Utilities.OutputMessages;
 
+/**
+ * Clase que se encarga de manejar las acciones de la pantalla
+ * Registro_Estudiantes del sistema de prácticas profesionales.
+ */
 public class RegistryScreenController {
     private ScreenChanger screenChanger = new ScreenChanger();
     private InputValidator inputValidator = new InputValidator();
@@ -55,10 +67,17 @@ public class RegistryScreenController {
     @FXML
     private Text successText;
 
+    /**
+     * Cambia la pantalla de Registro_Estudiante a IniciarSesión.
+     * @param mouseEvent el evento de mouse que activo la acción.
+     */
     public void ShowLoginScreen( MouseEvent mouseEvent ) {
         screenChanger.showLoginScreen( mouseEvent, errorText );
     }
 
+    /**
+     * Realiza el registro de un nuevo Estudiante en la base de datos.
+     */
     public void HandleStudentRegistration() {
         CheckUserInput();
         if( inputValidator.IsStudentInformationValid( GetStudent(), confirmPasswordField.getText() ) ) {
@@ -68,6 +87,11 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa si ya existe un Estudiante en la base de datos con
+     * la misma información que fue introducida.
+     * @return true si se encuentra una instancia con la misma información, false sí no.
+     */
     private boolean DoesStudentExist() {
         boolean doesStudentExist = false;
         if( estudiantes.Read( GetStudent().GetMatricula() ) != null ) {
@@ -78,6 +102,10 @@ public class RegistryScreenController {
         return doesStudentExist;
     }
 
+    /**
+     * Intenta crear un Estudiante en la base de datos y coloca
+     * el mensaje correspondiente en caso de éxito o fracaso.
+     */
     private void RegisterStudent() {
         if( estudiantes.Create( GetStudent() ) ) {
             errorText.setText( "" );
@@ -89,6 +117,10 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que toda la información introducida por el usuario
+     * sea valida.
+     */
     private void CheckUserInput() {
         DoPasswordsMatch();
         CheckPassword();
@@ -100,6 +132,9 @@ public class RegistryScreenController {
         CheckNames();
     }
 
+    /**
+     * Revisa que los nombres introducidos sean validos.
+     */
     private void CheckNames() {
         if( !inputValidator.AreNamesValid( nameField.getText() ) ) {
             errorText.setText( outputMessages.InvalidNames() );
@@ -107,6 +142,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que los apellidos introducidos sean validos.
+     */
     private void CheckLastNames() {
         if( !inputValidator.AreLastNamesValid( lastNameField.getText() ) ) {
             errorText.setText( outputMessages.InvalidLastNames() );
@@ -114,6 +152,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que el NRC introducido sea valido.
+     */
     private void CheckNRC() {
         if( !inputValidator.IsNRCValid( nrcField.getText() ) ) {
             errorText.setText( outputMessages.InvalidNRC() );
@@ -121,6 +162,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que el correo electrónico introducido sea valido.
+     */
     private void CheckEmail() {
         if( !inputValidator.IsEmailValid( emailField.getText() ) ) {
             errorText.setText( outputMessages.InvalidEmail() );
@@ -128,6 +172,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que el teléfono introducido sea valido.
+     */
     private void CheckTelephone() {
         if( !inputValidator.IsTelephoneValid( phoneField.getText() ) ) {
             errorText.setText( outputMessages.InvalidTelephone() );
@@ -135,6 +182,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que la matrícula introducida sea valida.
+     */
     private void CheckMatricula() {
         if( !inputValidator.IsMatriculaValid( matriculaField.getText() ) ) {
             errorText.setText( outputMessages.InvalidMatricula() );
@@ -142,6 +192,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que la contraseña introducida sea valida.
+     */
     private void CheckPassword() {
         if( !inputValidator.IsPasswordValid( passwordField.getText() ) ) {
             errorText.setText( outputMessages.InvalidPassword() );
@@ -149,6 +202,9 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Revisa que las contraseñas introducidas coincidan.
+     */
     private void DoPasswordsMatch() {
         if( !inputValidator.DoPasswordsMatch( passwordField.getText(), confirmPasswordField.getText() ) ) {
             errorText.setText( outputMessages.PasswordsDontMatch() );
@@ -156,6 +212,11 @@ public class RegistryScreenController {
         }
     }
 
+    /**
+     * Crea una instancia de Estudiante utilizando la información
+     * introducida por el usuario en todos los campos de texto.
+     * @return una instancia de Estudiante
+     */
     private Estudiante GetStudent() {
         return new Estudiante( 0, nameField.getText(), lastNameField.getText(), "", passwordField.getText(),
                 emailField.getText(), phoneField.getText(), matriculaField.getText(), nrcField.getText(),

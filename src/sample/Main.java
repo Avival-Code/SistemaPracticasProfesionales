@@ -13,6 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Clase Utilizada como punto de entrada de la aplicación.
+ */
 public class Main extends Application {
 
     @Override
