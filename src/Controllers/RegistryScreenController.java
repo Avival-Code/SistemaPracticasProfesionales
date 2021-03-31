@@ -3,6 +3,7 @@ package Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import Utilities.ScreenChanger;
@@ -11,16 +12,16 @@ public class RegistryScreenController {
     private ScreenChanger screenChanger = new ScreenChanger();
 
     @FXML
-    private TextField nameField;
-
-    @FXML
-    private TextField usernameField;
-
-    @FXML
     private Button registerButton;
 
     @FXML
     private Button cancelButton;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField usernameField;
 
     @FXML
     private TextField lastNameField;
@@ -38,10 +39,10 @@ public class RegistryScreenController {
     private TextField emailField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
-    private TextField confirmPasswordField;
+    private PasswordField confirmPasswordField;
 
     @FXML
     private Text errorText;

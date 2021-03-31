@@ -32,7 +32,7 @@ public class ScreenChanger {
 
     private void SetScene( MouseEvent mouseEvent, String resourceName ) throws IOException {
         try {
-            Parent newView = FXMLLoader.load( getClass().getClassLoader().getResource( resourceName ) );
+            Parent newView = FXMLLoader.load( getClass().getResource( resourceName ) );
             Scene sceneView = new Scene( newView );
             Stage window = ( Stage )( ( Node )mouseEvent.getSource() ).getScene().getWindow();
             window.setScene( sceneView );
