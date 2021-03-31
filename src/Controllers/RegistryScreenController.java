@@ -62,18 +62,20 @@ public class RegistryScreenController {
     public void HandleStudentRegistration() {
         CheckUserInput();
         if( inputValidator.IsStudentInformationValid( GetStudent(), confirmPasswordField.getText() ) ) {
-            CheckIfStudentExistsAndRegister();
+            if( !DoesStudentExist() ) {
+                RegisterStudent();
+            }
         }
     }
 
-    private void CheckIfStudentExistsAndRegister() {
-        if( estudiantes.Read( GetStudent().GetMatricula() ) == null ) {
-            RegisterStudent();
-        }
-        else {
+    private boolean DoesStudentExist() {
+        boolean doesStudentExist = false;
+        if( estudiantes.Read( GetStudent().GetMatricula() ) != null ) {
             errorText.setText( outputMessages.StudentAlreadyExists() );
             successText.setText( "" );
+            doesStudentExist = true;
         }
+        return doesStudentExist;
     }
 
     private void RegisterStudent() {
