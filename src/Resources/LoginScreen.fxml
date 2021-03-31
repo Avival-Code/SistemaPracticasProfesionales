@@ -11,30 +11,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginScreenController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="300.0">
+      <Pane prefHeight="435.0" prefWidth="310.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2b2e4a" height="400.0" stroke="#2b2e4a" strokeType="INSIDE" width="300.0" />
-            <TextField fx:id="usernameField" alignment="CENTER" layoutX="76.0" layoutY="248.0" promptText="Usuario" />
-            <TextField fx:id="passwordField" alignment="CENTER" layoutX="76.0" layoutY="291.0" promptText="Contraseña" />
-            <Button fx:id="loginButton" layoutX="109.0" layoutY="335.0" mnemonicParsing="false" text="Inciar Sesión" textFill="#e84545" />
-            <Text fill="#e84545" layoutX="29.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema de Prácticas Profesionales">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2b2e4a" height="435.0" stroke="#2b2e4a" strokeType="INSIDE" width="310.0" />
+            <TextField fx:id="usernameField" alignment="CENTER" layoutX="76.0" layoutY="231.0" promptText="Usuario" />
+            <TextField fx:id="passwordField" alignment="CENTER" layoutX="76.0" layoutY="274.0" promptText="Contraseña" />
+            <Button fx:id="loginButton" layoutX="109.0" layoutY="346.0" mnemonicParsing="false" text="Inciar Sesión" textFill="#e84545" />
+            <Text fill="#e84545" layoutX="20.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema de Prácticas Profesionales">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#e84545" layoutX="126.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FEI UV">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text fill="#e84545" layoutX="127.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FEI UV">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Circle fill="#903749" layoutX="150.0" layoutY="140.0" radius="72.0" stroke="#903749" strokeType="INSIDE" />
-            <ImageView fitHeight="135.0" fitWidth="102.0" layoutX="99.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+            <Circle fill="#903749" layoutX="150.0" layoutY="128.0" radius="72.0" stroke="#903749" strokeType="INSIDE" />
+            <ImageView fitHeight="135.0" fitWidth="102.0" layoutX="99.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/LogoUV.png" />
                </image>
             </ImageView>
+            <Text fx:id="register" fill="#e84545" layoutX="139.0" layoutY="426.0" onMouseClicked="#ShowRegistryScreen" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes Cuenta? ¡Regístrate!" />
+            <Text fx:id="recoverPassword" fill="#e84545" layoutX="76.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Se te olvidó tu contraseña?" />
+            <Text fx:id="errorText" fill="#e84545" layoutX="20.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="257.7578125" />
          </children>
       </Pane>
    </children>
