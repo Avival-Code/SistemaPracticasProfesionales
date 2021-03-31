@@ -1,5 +1,7 @@
 package Utilities;
 
+import Entities.Estudiante;
+
 public class InputValidator {
     private final int minNameSize = 3;
     private final int maxNameSize = 30;
@@ -12,6 +14,13 @@ public class InputValidator {
     private final int maxPasswordSize = 20;
     private final int phoneSize = 10;
     private final int nrcSize = 5;
+
+    public boolean IsStudentInformationValid( Estudiante student ) {
+        return AreNamesValid( student.GetNombres() ) && AreLastNamesValid( student.GetApellidos() ) &&
+                IsMatriculaValid( student.GetMatricula() ) && IsTelephoneValid( student.GetTelefono() ) &&
+                IsEmailValid( student.GetCorreo() ) && IsNRCValid( student.GetNrc() ) &&
+                IsPasswordValid( student.GetContrasena() );
+    }
 
     public boolean AreNamesValid( String name ) {
         return IsStringValidSize( name, minNameSize, maxNameSize ) && !HasInvalidCharacter( name ) &&
@@ -45,6 +54,7 @@ public class InputValidator {
         return IsStringValidSize( password, minPasswordSize, maxPasswordSize ) && !HasInvalidCharacter( password ) &&
                 !HasSpaces( password );
     }
+
     private boolean IsStringValidSize( String input, int minSize, int maxSize ) {
         return ( input.length() >= minSize && input.length() <= maxSize );
     }
