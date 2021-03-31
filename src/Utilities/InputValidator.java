@@ -15,11 +15,11 @@ public class InputValidator {
     private final int phoneSize = 10;
     private final int nrcSize = 5;
 
-    public boolean IsStudentInformationValid( Estudiante student ) {
+    public boolean IsStudentInformationValid( Estudiante student, String passwordConfirm ) {
         return AreNamesValid( student.GetNombres() ) && AreLastNamesValid( student.GetApellidos() ) &&
                 IsMatriculaValid( student.GetMatricula() ) && IsTelephoneValid( student.GetTelefono() ) &&
                 IsEmailValid( student.GetCorreo() ) && IsNRCValid( student.GetNrc() ) &&
-                IsPasswordValid( student.GetContrasena() );
+                IsPasswordValid( student.GetContrasena() ) && DoPasswordsMatch( student.GetContrasena(), passwordConfirm );
     }
 
     public boolean AreNamesValid( String name ) {
@@ -53,6 +53,10 @@ public class InputValidator {
     public boolean IsPasswordValid( String password ) {
         return IsStringValidSize( password, minPasswordSize, maxPasswordSize ) && !HasInvalidCharacter( password ) &&
                 !HasSpaces( password );
+    }
+
+    public boolean DoPasswordsMatch( String password, String confirmPassword ) {
+        return password.equals( confirmPassword );
     }
 
     private boolean IsStringValidSize( String input, int minSize, int maxSize ) {

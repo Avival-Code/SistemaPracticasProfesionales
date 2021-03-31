@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ScreenChanger {
-    private ErrorMessages errorMessages = new ErrorMessages();
+    private OutputMessages outputMessages = new OutputMessages();
     private String loginScreen = "../Resources/LoginScreen.fxml";
     private String registryScreen = "../Resources/RegistryScreen.fxml";
 
@@ -18,7 +18,7 @@ public class ScreenChanger {
         try {
             SetScene( mouseEvent, loginScreen );
         } catch( IOException exception ) {
-            errorText.setText( errorMessages.LoginScreenMissing() );
+            errorText.setText( outputMessages.LoginScreenMissing() );
         }
     }
 
@@ -26,7 +26,7 @@ public class ScreenChanger {
         try {
             SetScene( mouseEvent, registryScreen );
         } catch( IOException exception ) {
-            errorText.setText( errorMessages.RegistryScreenMissing() );
+            errorText.setText( outputMessages.RegistryScreenMissing() );
         }
     }
 

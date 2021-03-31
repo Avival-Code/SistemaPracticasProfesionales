@@ -29,7 +29,7 @@
             <Text fill="#e84545" layoutX="181.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matrícula" />
             <Text fill="#e84545" layoutX="103.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NRC" />
             <Text fill="#e84545" layoutX="266.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono" />
-            <Button fx:id="registerButton" layoutX="213.0" layoutY="454.0" mnemonicParsing="false" text="Registrar" />
+            <Button fx:id="registerButton" layoutX="213.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#HandleStudentRegistration" text="Registrar" />
             <Button fx:id="cancelButton" layoutX="312.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#ShowLoginScreen" text="Cancelar" />
             <TextField fx:id="lastNameField" layoutX="206.0" layoutY="80.0" prefHeight="25.0" prefWidth="168.0" />
             <TextField fx:id="nrcField" layoutX="27.0" layoutY="144.0" prefHeight="25.0" prefWidth="168.0" />
@@ -38,6 +38,7 @@
             <Text fx:id="errorText" fill="#e84545" layoutX="60.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="292.0" />
             <PasswordField fx:id="passwordField" layoutX="58.0" layoutY="333.0" prefHeight="25.0" prefWidth="292.0" />
             <PasswordField fx:id="confirmPasswordField" layoutX="58.0" layoutY="401.0" prefHeight="25.0" prefWidth="292.0" />
+            <Text fx:id="successText" fill="#0400ff" layoutX="60.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="292.0" />
          </children>
       </Pane>
    </children>
