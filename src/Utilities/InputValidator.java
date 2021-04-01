@@ -42,6 +42,16 @@ public class InputValidator {
     }
 
     /**
+     * Verifica que la información de inicia de sesión introducida por el usuario sea valida.
+     * @param username el número personal o matrícula introducida por el usuario
+     * @param password la contraseña introducida por el usuario
+     * @return true si la información es valida, false si no
+     */
+    public boolean IsLoginInformationValid( String username, String password ) {
+        return IsMatriculaValid( username ) && IsPasswordValid( password );
+    }
+
+    /**
      * Verifica que nombres introducidos por el usuario sean validos
      * @param name la cadena con los nombres
      * @return true si los nombres son validos, false si no
@@ -206,7 +216,7 @@ public class InputValidator {
         char[] testInput = input.toCharArray();
         for( char currentCharacter : testInput ) {
             if( Character.isDigit( currentCharacter ) ) {
-                numberCount += 1;
+                numberCount++;
             }
         }
         return numberCount == 8;

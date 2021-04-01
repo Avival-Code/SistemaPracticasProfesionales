@@ -47,6 +47,13 @@ public class OutputMessages {
     public String StudentAlreadyExists() { return "Ya existe un registro con esa información"; }
 
     /**
+     * mensaje mostrado cuando se introduce información de login que no
+     * existe en la base de datos
+     * @return una cadena con el mensaje de error
+     */
+    public String InvalidLoginInformation() { return "El usuario o contraseña es incorrecta."; }
+
+    /**
      * Mensaje mostrado cuando los nombres introducidos por el usuario
      * son inválidos
      * @return una cadena con el mensaje de error
@@ -94,6 +101,13 @@ public class OutputMessages {
      * @return una cadena con el mensaje de error
      */
     public String InvalidPassword() { return "La contraseña no es valida."; }
+
+    /**
+     * Mensaje mostrado el nombre de usuario introducido en la pantalla InicioSesión
+     * no es valido.
+     * @return una cadena con el mensaje de error
+     */
+    public String InvalidUsername() { return "El número personal o matrícula no es valida."; }
 
     /**
      * Mensaje mostrado cuando las contraseñas introducidas por el usuario
