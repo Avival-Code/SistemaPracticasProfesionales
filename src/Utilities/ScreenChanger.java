@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -65,6 +66,8 @@ public class ScreenChanger {
             Stage window = ( Stage )( ( Node )mouseEvent.getSource() ).getScene().getWindow();
             window.setScene( sceneView );
             window.show();
+            window.setX( ( Screen.getPrimary().getBounds().getWidth() - window.getWidth() ) / 2 );
+            window.setY( ( Screen.getPrimary().getBounds().getHeight() - window.getHeight() ) / 2 );
         } catch( IOException exception ) {
             throw exception;
         }
