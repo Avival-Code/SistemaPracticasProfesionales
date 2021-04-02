@@ -68,7 +68,7 @@ public class Estudiante extends UsuarioUV {
      * @param estadoIn estado actual del Estudiante.
      */
     public Estudiante( int idIn, String nombresIn, String apellidosIn, String usuarioIn, String contrasenaIn, String correoElectronicoIn,
-                       String telefonoIn, String matriculaIn, String nrcIn, EstadoEstudiante estadoIn) {
+                       String telefonoIn, String matriculaIn, String nrcIn, EstadoEstudiante estadoIn ) {
         super( idIn, nombresIn, apellidosIn, usuarioIn, contrasenaIn, correoElectronicoIn, telefonoIn );
         matricula = matriculaIn;
         nrc = nrcIn;
