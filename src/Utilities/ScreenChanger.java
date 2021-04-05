@@ -54,6 +54,12 @@ public class ScreenChanger {
         }
     }
 
+    /**
+     * Hace el cambio de pantalla a la pantalla del menú principal de
+     * estudiante
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
     public void ShowStudentMainMenuScreen( MouseEvent mouseEvent, Text errorText ) {
         try {
             SetScene( mouseEvent, studentMainMenu );
