@@ -32,7 +32,21 @@ public class OutputMessages {
      * de Estudiantes
      * @return una cadena con el mensaje de error
      */
-    public String StudentMainMenuMissing() { return "No se encontró el archivo FXML de menú principal de estudiante"; }
+    public String StudentMainMenuMissing() { return "No se encontró el archivo FXML del menú principal de estudiante"; }
+
+    /**
+     * Mensaje mostrado en caso de no encontrar el archivo fxml de la pantalla
+     * EscogerProyectos_Estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String ChooseProjectsMissing() { return "No se encontró el archivo FXML de la pantalla Escoger Proyectos."; }
+
+    /**
+     * Mensaje mostrado cuando se intenta cambiar a la pantalla EscogerProyectos_Estudiante
+     * y el usuario ya ha seleccionado 3 proyectos
+     * @return una cadena con el mensjae de error
+     */
+    public String AlreadyChoseProjects() { return "Ya seleccionaste 3 proyectos para asignación."; }
 
     /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la

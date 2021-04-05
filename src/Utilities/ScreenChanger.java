@@ -26,7 +26,8 @@ public class ScreenChanger {
     private OutputMessages outputMessages = new OutputMessages();
     private String loginScreen = "../Resources/LoginScreen.fxml";
     private String registryScreen = "../Resources/RegistryScreen.fxml";
-    private String studentMainMenu = "../Resources/MainMenuScreen.fxml";
+    private String studentMainMenu = "../Resources/StudentMainMenuScreen.fxml";
+    private String chooseProjectsScreen = "../Resources/SelectProjectsScreen.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
@@ -65,6 +66,21 @@ public class ScreenChanger {
             SetScene( mouseEvent, studentMainMenu );
         } catch( IOException exception ) {
             errorText.setText( outputMessages.StudentMainMenuMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla EscogerProyectos_Estudiante
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowChooseProjectsScreen( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, chooseProjectsScreen );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.ChooseProjectsMissing() );
+            exception.printStackTrace();
         }
     }
 

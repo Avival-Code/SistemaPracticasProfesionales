@@ -71,13 +71,13 @@ public class Proyecto {
      * Regresa el ID del proyecto
      * @return el ID del proyecto
      */
-    public int GetID() { return idProyecto; }
+    public int getIdProyecto() { return idProyecto; }
 
     /**
      * Regresa el nombre del proyecto
      * @return el nombre del proyecto
      */
-    public String GetNombre() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -94,7 +94,7 @@ public class Proyecto {
      * realizar este proyecto
      * @return cantidad de estudiantes requeridos
      */
-    public int GetEstudiantesRequeridos() {
+    public int getNumEstudiantesRequeridos() {
         return numEstudiantesRequeridos;
     }
 

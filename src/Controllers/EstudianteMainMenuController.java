@@ -1,14 +1,28 @@
+/*
+ * Autor: Christian Felipe de Jesus Avila Valdes
+ * Versión: 1.0
+ * Fecha Creación: 4 - abr - 2021
+ * Descripción:
+ * Clase encargada de manejar los eventos de la pantalla
+ * Student Main Menu Screen.
+ */
 package Controllers;
 
+import Enumerations.EstadoEstudiante;
+import Utilities.OutputMessages;
 import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import sample.LoginSession;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class EstudianteMainMenuController {
+public class EstudianteMainMenuController implements Initializable {
     private ScreenChanger screenChanger = new ScreenChanger();
+    private OutputMessages outputMessages = new OutputMessages();
 
     @FXML
     private Text nameText;
@@ -43,7 +57,8 @@ public class EstudianteMainMenuController {
     @FXML
     private Button logoutButton;
 
-    public EstudianteMainMenuController() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources ) {
         nameText.setText( LoginSession.GetInstance().GetEstudiante().GetNombres() );
         lastNameText.setText( LoginSession.GetInstance().GetEstudiante().GetApellidos() );
         matriculaText.setText( LoginSession.GetInstance().GetEstudiante().GetMatricula() );
@@ -65,12 +80,22 @@ public class EstudianteMainMenuController {
 
     }
 
-    public void ShowChooseProjects() {
-
+    public void ShowChooseProjects( MouseEvent mouseEvent ) {
+        if( !HasStudentChosenProjects() ) {
+            screenChanger.ShowChooseProjectsScreen( mouseEvent, errorText );
+        } else {
+            errorText.setText( outputMessages.AlreadyChoseProjects() );
+        }
     }
 
     public void Logout( MouseEvent mouseEvent ) {
         LoginSession.GetInstance().Logout();
         screenChanger.ShowLoginScreen( mouseEvent, errorText );
+    }
+
+    private boolean HasStudentChosenProjects() {
+        return LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.AsignacionPendiente ||
+                LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.ProyectoAsignado ||
+                LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.Evaluado;
     }
 }

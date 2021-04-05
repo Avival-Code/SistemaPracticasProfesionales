@@ -45,7 +45,7 @@
                   <Button fx:id="projectButton" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#ShowAssignedProject" prefHeight="40.0" prefWidth="214.0" text="Consultar Proyecto Asignado" />
                   <Button fx:id="chooseProjectButton" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#ShowChooseProjects" prefHeight="40.0" prefWidth="214.0" text="Escoger Proyectos" />
                   <Button fx:id="logoutButton" layoutY="558.0" mnemonicParsing="false" onMouseClicked="#Logout" prefHeight="40.0" prefWidth="214.0" text="Cerrar Sesión" />
-                  <Text fx:id="errorText" layoutX="11.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="192.0" />
+                  <Text fx:id="errorText" fill="#e84545" layoutX="11.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="192.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
