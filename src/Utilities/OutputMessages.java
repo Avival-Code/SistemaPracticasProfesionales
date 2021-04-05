@@ -49,6 +49,27 @@ public class OutputMessages {
     public String AlreadyChoseProjects() { return "Ya seleccionaste 3 proyectos para asignación."; }
 
     /**
+     * Mensaje mostrado cuando se intenta agregar un proyecto a la lista de proyectos seleccionados
+     * en la pantalla EscogerProyectos_Estudiantes.
+     * @return una cadena con el mensaje de error
+     */
+    public String AlreadySelectedMaxAmountProjects() { return "Ya tienes 3 proyectos seleccionados."; }
+
+    /**
+     * Mensaje mostrado cuando se intenta mandar una selección de proyectos sin tener
+     * 3 proyectos seleccionados en la pantalla EscogerProyectos_Estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String NotEnoughProjectsSelected() { return "No has seleccionado 3 proyectos."; }
+
+    /**
+     * Mensaje mostrado cuando se realiza la selección de proyectos por parte del
+     * Estudiante de manera exitosa.
+     * @return una cadena con el mensaje de éxito
+     */
+    public String ProjectSelectionSuccessful() { return "Selección de proyectos se realizó con éxito."; }
+
+    /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la
      * base de datos de manera exitosa.
      * @return una cadena con el mensaje de éxito
