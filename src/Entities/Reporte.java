@@ -9,8 +9,6 @@ package Entities;
 
 import Enumerations.TipoReporte;
 
-import javax.swing.text.Document;
-
 /**
  * Clase que contiene la información de Reporte
  */
@@ -46,7 +44,7 @@ public class Reporte extends Documento {
      * @param horasReportadasIn las horas que se reportan en este reporte
      */
     public Reporte( Documento documento, TipoReporte tipoIn, int horasReportadasIn, int idReporteIn ) {
-        this( documento.GetID(), idReporteIn, documento.GetTitulo(), documento.GetDescripcion(), documento.GetFechaEntrega(),
+        this( documento.getIdDocumento(), idReporteIn, documento.getTitulo(), documento.GetDescripcion(), documento.getFechaEntrega(),
                 documento.GetClaveExpediente(), horasReportadasIn, tipoIn );
     }
 

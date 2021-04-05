@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -58,13 +59,19 @@ public class ReportsScreenController implements Initializable {
         matriculaText.setText( LoginSession.GetInstance().GetEstudiante().GetMatricula() );
     }
 
+    private void SetCellValueFactory() {
+        nameColumn.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
+        keyColumn.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
+        dateColumn.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
+    }
+
     @FXML
-    void Return( MouseEvent mouseEvent ) {
+    public void Return( MouseEvent mouseEvent ) {
         screenChanger.ShowStudentMainMenuScreen( mouseEvent, errorText );
     }
 
     @FXML
-    void TurnInReport( MouseEvent mouseEvent ) {
+    public void TurnInReport( MouseEvent mouseEvent ) {
 
     }
 }

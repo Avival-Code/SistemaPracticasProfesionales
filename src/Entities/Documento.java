@@ -56,12 +56,12 @@ public class Documento {
      * Regresa el id del documento
      * @return el id del documento
      */
-    public int GetID() { return idDocumento; }
+    public int getIdDocumento() { return idDocumento; }
     /**
      * Regresa el título del documento
      * @return el título del documento
      */
-    public String GetTitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
@@ -77,7 +77,7 @@ public class Documento {
      * Regresa la fecha de entrega del documento
      * @return la fecha de entrega
      */
-    public String GetFechaEntrega() {
+    public String getFechaEntrega() {
         return fechaEntrega;
     }
 

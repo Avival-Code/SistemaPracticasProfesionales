@@ -38,8 +38,8 @@ public class DocumentoDAO implements DocumentoDAOInterface {
                     "VALUES ( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, documento.GetDescripcion() );
-            statement.setString( 2, documento.GetFechaEntrega() );
-            statement.setString( 3, documento.GetTitulo() );
+            statement.setString( 2, documento.getFechaEntrega() );
+            statement.setString( 3, documento.getTitulo() );
             statement.setInt( 4, documento.GetClaveExpediente() );
             statement.executeUpdate();
             wasCreated = true;
@@ -157,10 +157,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
                     " WHERE IDDocumento = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, documento.GetDescripcion() );
-            statement.setString( 2, documento.GetFechaEntrega() );
-            statement.setString( 3, documento.GetTitulo() );
+            statement.setString( 2, documento.getFechaEntrega() );
+            statement.setString( 3, documento.getTitulo() );
             statement.setInt( 4, documento.GetClaveExpediente() );
-            statement.setInt( 5, documento.GetID() );
+            statement.setInt( 5, documento.getIdDocumento() );
             statement.executeUpdate();
             updated = true;
         } catch( Exception exception ) {
