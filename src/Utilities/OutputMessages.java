@@ -28,11 +28,18 @@ public class OutputMessages {
     public String LoginScreenMissing() { return "No se encontró el archivo FXML de pantalla Login."; }
 
     /**
+     * Mensaje mostrado en caso de no encontrar el archivo fxml del menú principal
+     * de Estudiantes
+     * @return una cadena con el mensaje de error
+     */
+    public String StudentMainMenuMissing() { return "No se encontró el archivo FXML de menú principal de estudiante"; }
+
+    /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la
      * base de datos de manera exitosa.
      * @return una cadena con el mensaje de éxito
      */
-    public String RegistrationSuccessfull() { return "Registro Exitoso"; }
+    public String RegistrationSuccessful() { return "Registro Exitoso"; }
 
     /**
      * Mensaje mostrado cuando ocurre un error en la base de datos

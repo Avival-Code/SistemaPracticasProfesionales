@@ -26,13 +26,14 @@ public class ScreenChanger {
     private OutputMessages outputMessages = new OutputMessages();
     private String loginScreen = "../Resources/LoginScreen.fxml";
     private String registryScreen = "../Resources/RegistryScreen.fxml";
+    private String studentMainMenu = "../Resources/MainMenuScreen.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void showLoginScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowLoginScreen( MouseEvent mouseEvent, Text errorText ) {
         try {
             SetScene( mouseEvent, loginScreen );
         } catch( IOException exception ) {
@@ -45,11 +46,19 @@ public class ScreenChanger {
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void showRegistryScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowRegistryScreen( MouseEvent mouseEvent, Text errorText ) {
         try {
             SetScene( mouseEvent, registryScreen );
         } catch( IOException exception ) {
             errorText.setText( outputMessages.RegistryScreenMissing() );
+        }
+    }
+
+    public void ShowStudentMainMenuScreen( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, studentMainMenu );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.StudentMainMenuMissing() );
         }
     }
 
