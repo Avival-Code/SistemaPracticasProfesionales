@@ -58,14 +58,14 @@ public class EstudianteMainMenuController implements Initializable {
     private Button logoutButton;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources ) {
+    public void initialize( URL location, ResourceBundle resources ) {
         nameText.setText( LoginSession.GetInstance().GetEstudiante().GetNombres() );
         lastNameText.setText( LoginSession.GetInstance().GetEstudiante().GetApellidos() );
         matriculaText.setText( LoginSession.GetInstance().GetEstudiante().GetMatricula() );
     }
 
-    public void ShowReports(){
-
+    public void ShowReports( MouseEvent mouseEvent ){
+        screenChanger.ShowStudentReportsScreen( mouseEvent, errorText );
     }
 
     public void ShowAdditionalDocuments() {

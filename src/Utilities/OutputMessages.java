@@ -70,6 +70,13 @@ public class OutputMessages {
     public String ProjectSelectionSuccessful() { return "Selección de proyectos se realizó con éxito."; }
 
     /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * Reportes_Estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String StudentReportScreenMissing() { return "No se encontró el archivo FXML de la pantalla Reportes_Estudiante."; }
+
+    /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la
      * base de datos de manera exitosa.
      * @return una cadena con el mensaje de éxito
