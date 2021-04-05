@@ -30,6 +30,7 @@ public class SelectProjectsController implements Initializable {
     private ScreenChanger screenChanger = new ScreenChanger();
     private ProyectoDAO proyectos = new ProyectoDAO();
     private List< Proyecto > listaProyectos = new ArrayList< Proyecto >();
+    private final int maxSelectedProjects = 3;
 
     @FXML
     private Text nameText;
@@ -102,7 +103,8 @@ public class SelectProjectsController implements Initializable {
     public void SelectProject() {
         int idProyecto = availableProjectsTable.getSelectionModel().getSelectedItem().getIdProyecto();
         for( Proyecto proyecto : listaProyectos ) {
-            if( idProyecto == proyecto.getIdProyecto() ) {
+            if( selectedProjectsTable.getItems().size() < maxSelectedProjects && idProyecto == proyecto.getIdProyecto() &&
+                    !IsProjectSelected( idProyecto ) ) {
                 selectedProjectsTable.getItems().add( proyecto );
             }
         }
@@ -135,5 +137,15 @@ public class SelectProjectsController implements Initializable {
 
     private boolean IsProjectAvailable( Proyecto proyecto ) {
         return proyecto.GetEstado() == EstadoProyecto.Disponible;
+    }
+
+    private boolean IsProjectSelected( int idProyecto ) {
+        boolean isProjectSelected = false;
+        for( Proyecto proyecto : selectedProjectsTable.getItems() ) {
+            if( proyecto.getIdProyecto() == idProyecto ) {
+                isProjectSelected = true;
+            }
+        }
+        return isProjectSelected;
     }
 }
