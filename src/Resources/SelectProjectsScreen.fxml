@@ -69,9 +69,9 @@
                   <Text fx:id="projectDetails" fill="#e84545" layoutX="43.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="689.0" />
                   <TableView fx:id="selectedProjectsTable" layoutX="43.0" layoutY="403.0" prefHeight="124.0" prefWidth="517.0">
                     <columns>
-                      <TableColumn fx:id="chosenName" editable="false" prefWidth="140.0" sortable="false" text="Nombre" />
-                      <TableColumn fx:id="chosenKey" editable="false" prefWidth="103.0" sortable="false" text="Clave" />
-                        <TableColumn fx:id="chosenOrganization" editable="false" prefWidth="273.0" sortable="false" text="Organización Vinculada" />
+                      <TableColumn fx:id="chosenName" editable="false" prefWidth="208.0" sortable="false" text="Nombre" />
+                      <TableColumn fx:id="chosenKey" editable="false" prefWidth="75.0" sortable="false" text="Clave" />
+                        <TableColumn fx:id="chosenOrganization" editable="false" prefWidth="233.0" sortable="false" text="Organización Vinculada" />
                     </columns>
                   </TableView>
                   <Text fill="#e84545" layoutX="224.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proyectos Elegidos:">
@@ -79,9 +79,9 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="deleteProjectButton" layoutX="43.0" layoutY="534.0" mnemonicParsing="false" text="Eliminar de Lista" />
-                  <Button fx:id="sendSelectedProjectsButton" layoutX="622.0" layoutY="559.0" mnemonicParsing="false" text="Mandar Selección" />
-                  <Button fx:id="selectProjectButton" layoutX="606.0" layoutY="324.0" mnemonicParsing="false" text="Seleccionar Proyecto" />
+                  <Button fx:id="deleteProjectButton" layoutX="43.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#RemoveProject" text="Eliminar Proyecto" />
+                  <Button fx:id="sendSelectedProjectsButton" layoutX="622.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#SendSelection" text="Mandar Selección" />
+                  <Button fx:id="selectProjectButton" layoutX="606.0" layoutY="324.0" mnemonicParsing="false" onMouseClicked="#SelectProject" text="Seleccionar Proyecto" />
                </children>
             </AnchorPane>
         </items>

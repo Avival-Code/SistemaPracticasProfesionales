@@ -11,6 +11,7 @@ package Controllers;
 
 import Database.ProyectoDAO;
 import Entities.Proyecto;
+import Enumerations.EstadoProyecto;
 import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -94,28 +95,45 @@ public class SelectProjectsController implements Initializable {
 
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle ) {
-        availableProjectName.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
-        availableProjectKey.setCellValueFactory( new PropertyValueFactory<>( "idProyecto" ) );
-        availableTotalSpace.setCellValueFactory( new PropertyValueFactory<>( "numEstudiantesRequeridos" ) );
-
-        chosenName.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
-        chosenKey.setCellValueFactory( new PropertyValueFactory<>( "idProyecto" ) );
-
-        listaProyectos = proyectos.ReadAll();
-        for( Proyecto proyecto : listaProyectos ) {
-            availableProjectsTable.getItems().add( proyecto );
-        }
+        SetTableCellValueFactory();
+        ShowAvailableProjects();
     }
 
     public void SelectProject() {
-
+        int idProyecto = availableProjectsTable.getSelectionModel().getSelectedItem().getIdProyecto();
+        for( Proyecto proyecto : listaProyectos ) {
+            if( idProyecto == proyecto.getIdProyecto() ) {
+                selectedProjectsTable.getItems().add( proyecto );
+            }
+        }
     }
 
     public void RemoveProject() {
-
+        selectedProjectsTable.getItems().remove( selectedProjectsTable.getSelectionModel().getSelectedItem() );
     }
 
     public void SendSelection() {
 
+    }
+
+    private void SetTableCellValueFactory() {
+        availableProjectName.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
+        availableProjectKey.setCellValueFactory( new PropertyValueFactory<>( "idProyecto" ) );
+        availableTotalSpace.setCellValueFactory( new PropertyValueFactory<>( "numEstudiantesRequeridos" ) );
+        chosenName.setCellValueFactory( new PropertyValueFactory<>( "nombre" ) );
+        chosenKey.setCellValueFactory( new PropertyValueFactory<>( "idProyecto" ) );
+    }
+
+    private void ShowAvailableProjects() {
+        listaProyectos = proyectos.ReadAll();
+        for( Proyecto proyecto : listaProyectos ) {
+            if( IsProjectAvailable( proyecto ) ) {
+                availableProjectsTable.getItems().add( proyecto );
+            }
+        }
+    }
+
+    private boolean IsProjectAvailable( Proyecto proyecto ) {
+        return proyecto.GetEstado() == EstadoProyecto.Disponible;
     }
 }
