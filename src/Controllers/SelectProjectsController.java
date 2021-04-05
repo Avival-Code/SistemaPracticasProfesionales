@@ -101,15 +101,6 @@ public class SelectProjectsController implements Initializable {
     private Button selectProjectButton;
 
     /**
-     * Se regresa al menú principal de Estudiante
-     * @param mouseEvent el evento de mouse que invocó el método
-     */
-    @FXML
-    public void Return( MouseEvent mouseEvent ) {
-        screenChanger.ShowStudentMainMenuScreen( mouseEvent, errorText );
-    }
-
-    /**
      * Configura los elementos utilizados en la pantalla EscogerProyectos_Estudiante
      * @param url un url sin utilizar
      * @param resourceBundle un conjunto de recursos no utilizados
@@ -119,6 +110,15 @@ public class SelectProjectsController implements Initializable {
         SetUserInformation();
         SetTableCellValueFactory();
         ShowAvailableProjects();
+    }
+
+    /**
+     * Se regresa al menú principal de Estudiante
+     * @param mouseEvent el evento de mouse que invocó el método
+     */
+    @FXML
+    public void Return( MouseEvent mouseEvent ) {
+        screenChanger.ShowStudentMainMenuScreen( mouseEvent, errorText );
     }
 
     /**
