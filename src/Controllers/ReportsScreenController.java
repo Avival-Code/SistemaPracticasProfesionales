@@ -1,7 +1,12 @@
 package Controllers;
 
+import Database.ExpedienteDAO;
+import Database.ProyectoDAO;
 import Database.ReporteDAO;
+import Entities.Expediente;
 import Entities.Reporte;
+import Enumerations.EstadoProyecto;
+import Enumerations.TipoReporte;
 import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,12 +21,16 @@ import javafx.stage.Stage;
 import sample.LoginSession;
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReportsScreenController implements Initializable {
     private FileChooser fileChooser = new FileChooser();
     private ScreenChanger screenChanger = new ScreenChanger();
     private ReporteDAO reportes = new ReporteDAO();
+    private ExpedienteDAO expedientes = new ExpedienteDAO();
+    private ProyectoDAO proyectos = new ProyectoDAO();
 
     @FXML
     private Text nameText;
@@ -89,10 +98,29 @@ public class ReportsScreenController implements Initializable {
     public void TurnInReport( MouseEvent mouseEvent ) {
         File report = GetFile( mouseEvent );
         if( report != null ) {
+            reportes.Create( GetReport( report ) );
         }
     }
 
     private File GetFile( MouseEvent mouseEvent ) {
         return fileChooser.showOpenDialog( ( (Node)mouseEvent.getSource() ).getScene().getWindow() );
+    }
+
+    private Expediente GetUserExpediente() {
+        List< Expediente > expedienteList = expedientes.ReadAll();
+        Expediente userExpediente = null;
+        for( Expediente expediente : expedienteList ) {
+            if( expediente.GetMatricula().equals( LoginSession.GetInstance().GetEstudiante().GetMatricula() ) &&
+                proyectos.Read( expediente.GetIDProyecto() ).GetEstado() == EstadoProyecto.Asignado ) {
+                userExpediente = expediente;
+            }
+        }
+        return userExpediente;
+    }
+
+    private Reporte GetReport( File reportFile ) {
+        LocalDate currentDate = LocalDate.now();
+        return new Reporte( 0 , 0, reportFile.getName(), reportFile, currentDate.toString(),
+                GetUserExpediente().GetClave(), 0, TipoReporte.cienHoras );
     }
 }
