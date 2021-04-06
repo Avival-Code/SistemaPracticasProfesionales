@@ -29,6 +29,7 @@ public class ScreenChanger {
     private String studentMainMenu = "../Resources/StudentMainMenuScreen.fxml";
     private String chooseProjectsScreen = "../Resources/SelectProjectsScreen.fxml";
     private String studentReportsScreen = "../Resources/StudentReports.fxml";
+    private String pantallaPrincipalCoordinador = "../Resources/Principal_Coordinador.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
@@ -95,6 +96,20 @@ public class ScreenChanger {
             SetScene( mouseEvent, studentReportsScreen );
         } catch( IOException exception ) {
             errorText.setText( outputMessages.StudentReportScreenMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla Principal_Coordinador
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void MostrarPantallaPrincipalCoordinador( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, pantallaPrincipalCoordinador );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.PantallaPrincipalCoordinadorPerdido() );
             exception.printStackTrace();
         }
     }
