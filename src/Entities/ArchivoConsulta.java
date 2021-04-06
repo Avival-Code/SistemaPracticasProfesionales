@@ -7,13 +7,15 @@
  */
 package Entities;
 
+import java.io.File;
+
 /**
  * Clase que contiene la información de ArchivoConsulta
  */
 public class ArchivoConsulta {
     private int idArchivo;
     private String titulo;
-    private String descripcion;
+    private File descripcion;
     private String numeroPersonal;
 
     /**
@@ -23,7 +25,7 @@ public class ArchivoConsulta {
     public ArchivoConsulta() {
         idArchivo = 0;
         titulo = "";
-        descripcion = "";
+        descripcion = null;
         numeroPersonal = "";
     }
 
@@ -41,7 +43,7 @@ public class ArchivoConsulta {
      * @param tituloIn el título del archivo
      * @param descipcionIn la descripción del archivo
      */
-    public ArchivoConsulta( int idIn, String tituloIn, String descipcionIn, String numeroPersonalIn ) {
+    public ArchivoConsulta( int idIn, String tituloIn, File descipcionIn, String numeroPersonalIn ) {
         idArchivo = idIn;
         titulo = tituloIn;
         descripcion = descipcionIn;
@@ -63,7 +65,7 @@ public class ArchivoConsulta {
      * Regresa la descripción del archivo
      * @return la descripción del archivo
      */
-    public String GetDescripcion() { return descripcion; }
+    public File GetDescripcion() { return descripcion; }
 
     /**
      * Regresa el número de personal del docente que subió el archivo
@@ -81,7 +83,7 @@ public class ArchivoConsulta {
      * Cambia la descripción del archivo al valor introducido
      * @param descripcionIn la nueva descripción
      */
-    public void SetDescripcion( String descripcionIn ) { descripcion = descripcionIn; }
+    public void SetDescripcion( File descripcionIn ) { descripcion = descripcionIn; }
 
     /**
      * Cambia el número de personal por el valor introducido

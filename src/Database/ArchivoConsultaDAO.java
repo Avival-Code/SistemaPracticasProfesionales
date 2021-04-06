@@ -10,9 +10,9 @@
 package Database;
 
 import Entities.ArchivoConsulta;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +34,12 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
         connection.StartConnection();
 
         try {
+            InputStream fileStream = new FileInputStream( archivo.GetDescripcion() );
             String query = "INSERT INTO ArchivoConsulta( Titulo, Descripcion, NumeroPersonal ) " +
                     "VALUES ( ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, archivo.GetTitulo() );
-            statement.setString( 2, archivo.GetDescripcion() );
+            statement.setBlob( 2, fileStream );
             statement.setString( 3, archivo.GetNumeroPersonal() );
             statement.executeUpdate();
             wasCreated = true;
@@ -65,8 +66,10 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM ArchivoConsulta;" );
 
             while( result.next() ) {
-                archivos.add( new ArchivoConsulta( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ) ) );
+                String titulo = result.getString( 2 );
+                archivos.add( new ArchivoConsulta( result.getInt( 1 ),
+                        titulo, CreateFile( titulo, result.getBlob( 3 ) ),
+                        result.getString( 4 ) ) );
             }
 
             result.close();
@@ -98,8 +101,10 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                archivo = new ArchivoConsulta( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ) );
+                String titulo = result.getString( 2 );
+                archivo = new ArchivoConsulta( result.getInt( 1 ),
+                        titulo, CreateFile( titulo, result.getBlob( 3 ) ),
+                        result.getString( 4 ) );
             }
 
             result.close();
@@ -124,11 +129,12 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
         connection.StartConnection();
 
         try {
+            InputStream fileStream = new FileInputStream( archivo.GetDescripcion() );
             String query = "UPDATE ArchivoConsulta SET Titulo = ?, Descripcion = ?, NumeroPersonal = ? " +
                            "WHERE IDResponsableProyecto = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, archivo.GetTitulo() );
-            statement.setString( 2, archivo.GetDescripcion() );
+            statement.setBlob( 2, fileStream );
             statement.setString( 3, archivo.GetNumeroPersonal() );
             statement.setInt( 4, archivo.GetId() );
             statement.executeUpdate();
@@ -165,5 +171,24 @@ public class ArchivoConsultaDAO implements ArchivoConsultaDAOInterface {
 
         connection.StopConnection();
         return deleted;
+    }
+
+    private File CreateFile(String filename, Blob fileContent ) {
+        File temp = new File( filename );
+        try {
+            FileOutputStream outputStream = new FileOutputStream( temp );
+            InputStream inputStream = fileContent.getBinaryStream();
+            byte[] buffer = new byte[ 4096 ];
+
+            while( inputStream.read( buffer ) > 0 ) {
+                outputStream.write( buffer );
+            }
+
+            inputStream.close();
+            outputStream.close();
+        } catch( SQLException | IOException exception ) {
+            exception.printStackTrace();
+        }
+        return temp;
     }
 }
