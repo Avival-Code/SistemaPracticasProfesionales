@@ -45,6 +45,7 @@ public class ReportsScreenController implements Initializable {
     private ExpedienteDAO expedientes = new ExpedienteDAO();
     private ProyectoDAO proyectos = new ProyectoDAO();
     private List< Reporte > reportesEstudiante = new ArrayList< Reporte >();
+    private Reporte reporte = null;
 
     @FXML
     private Text nameText;
@@ -124,6 +125,7 @@ public class ReportsScreenController implements Initializable {
      * actual
      */
     private void ShowReports() {
+        studentReportsTable.getItems().clear();
         reportesEstudiante = reportes.ReadAll();
         int claveExpediente = GetUserExpediente().GetClave();
         for( Reporte reporte : reportesEstudiante )
@@ -152,6 +154,7 @@ public class ReportsScreenController implements Initializable {
         File report = GetFile( mouseEvent );
         if( report != null ) {
             reportes.Create( GetReport( report ) );
+            ShowReports();
         }
     }
 
@@ -188,7 +191,8 @@ public class ReportsScreenController implements Initializable {
      */
     private Reporte GetReport( File reportFile ) {
         LocalDate currentDate = LocalDate.now();
-        return new Reporte( 0 , 0, reportFile.getName(), reportFile, currentDate.toString(),
+        reporte = new Reporte( 0 , 0, reportFile.getName(), reportFile, currentDate.toString(),
                 GetUserExpediente().GetClave(), 0, TipoReporte.cienHoras );
+        return reporte;
     }
 }

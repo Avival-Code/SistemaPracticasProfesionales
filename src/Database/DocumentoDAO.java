@@ -10,7 +10,7 @@
 package Database;
 
 import Entities.Documento;
-
+import Utilities.FileCreator;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,6 +22,8 @@ import java.util.List;
  * en la base de datos.
  */
 public class DocumentoDAO implements DocumentoDAOInterface {
+    private FileCreator creator = new FileCreator();
+
     /**
      * Crea una instancia de Documento en la base de datos
      * @param documento el documento que se desea crear
@@ -67,9 +69,9 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM Documento;" );
 
             while( result.next() ) {
-                String titulo = result.getString( 2 );
+                String titulo = result.getString( 4 );
                 documentos.add( new Documento( result.getInt( 1 ), titulo,
-                        CreateFile( titulo, result.getBlob( 3 ) ), result.getString( 4 ),
+                        creator.CreateFile( titulo, result.getBlob( 2 ) ), result.getString( 3 ),
                         result.getInt( 5 ) ) );
             }
 
@@ -102,10 +104,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                String retrievedTitulo = result.getString( 2 );
+                String retrievedTitulo = result.getString( 4 );
                 documento = new Documento( result.getInt( 1 ), retrievedTitulo,
-                        CreateFile( retrievedTitulo, result.getBlob( 3 ) ),
-                        result.getString( 4 ), result.getInt( 5 ) );
+                        creator.CreateFile( retrievedTitulo, result.getBlob( 2 ) ),
+                        result.getString( 3 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -132,10 +134,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                String retrievedTitulo = result.getString( 2 );
+                String retrievedTitulo = result.getString( 4 );
                 documento = new Documento( result.getInt( 1 ), retrievedTitulo,
-                        CreateFile( retrievedTitulo, result.getBlob( 3 ) ),
-                        result.getString( 4 ), result.getInt( 5 ) );
+                        creator.CreateFile( retrievedTitulo, result.getBlob( 2 ) ),
+                        result.getString( 3 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -203,24 +205,5 @@ public class DocumentoDAO implements DocumentoDAOInterface {
 
         connection.StopConnection();
         return deleted;
-    }
-
-    private File CreateFile( String filename, Blob fileContent ) {
-        File temp = new File( filename );
-        try {
-            FileOutputStream outputStream = new FileOutputStream( temp );
-            InputStream inputStream = fileContent.getBinaryStream();
-            byte[] buffer = new byte[ 4096 ];
-
-            while( inputStream.read( buffer ) > 0 ) {
-                outputStream.write( buffer );
-            }
-
-            inputStream.close();
-            outputStream.close();
-        } catch( SQLException | IOException exception ) {
-            exception.printStackTrace();
-        }
-        return temp;
     }
 }

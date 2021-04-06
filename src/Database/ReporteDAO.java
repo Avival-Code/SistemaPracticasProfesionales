@@ -24,7 +24,7 @@ import java.util.List;
  * en la base de datos.
  */
 public class ReporteDAO implements ReporteDAOInterface{
-    private DocumentoDAO documentos;
+    private DocumentoDAO documentos = new DocumentoDAO();
 
     /**
      * Crea una instancia de Reporte en la base de datos
