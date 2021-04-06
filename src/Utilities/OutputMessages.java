@@ -28,11 +28,60 @@ public class OutputMessages {
     public String LoginScreenMissing() { return "No se encontró el archivo FXML de pantalla Login."; }
 
     /**
+     * Mensaje mostrado en caso de no encontrar el archivo fxml del menú principal
+     * de Estudiantes
+     * @return una cadena con el mensaje de error
+     */
+    public String StudentMainMenuMissing() { return "No se encontró el archivo FXML del menú principal de estudiante"; }
+
+    /**
+     * Mensaje mostrado en caso de no encontrar el archivo fxml de la pantalla
+     * EscogerProyectos_Estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String ChooseProjectsMissing() { return "No se encontró el archivo FXML de la pantalla Escoger Proyectos."; }
+
+    /**
+     * Mensaje mostrado cuando se intenta cambiar a la pantalla EscogerProyectos_Estudiante
+     * y el usuario ya ha seleccionado 3 proyectos
+     * @return una cadena con el mensjae de error
+     */
+    public String AlreadyChoseProjects() { return "Ya seleccionaste 3 proyectos para asignación."; }
+
+    /**
+     * Mensaje mostrado cuando se intenta agregar un proyecto a la lista de proyectos seleccionados
+     * en la pantalla EscogerProyectos_Estudiantes.
+     * @return una cadena con el mensaje de error
+     */
+    public String AlreadySelectedMaxAmountProjects() { return "Ya tienes 3 proyectos seleccionados."; }
+
+    /**
+     * Mensaje mostrado cuando se intenta mandar una selección de proyectos sin tener
+     * 3 proyectos seleccionados en la pantalla EscogerProyectos_Estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String NotEnoughProjectsSelected() { return "No has seleccionado 3 proyectos."; }
+
+    /**
+     * Mensaje mostrado cuando se realiza la selección de proyectos por parte del
+     * Estudiante de manera exitosa.
+     * @return una cadena con el mensaje de éxito
+     */
+    public String ProjectSelectionSuccessful() { return "Selección de proyectos se realizó con éxito."; }
+
+    /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * Reportes_Estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String StudentReportScreenMissing() { return "No se encontró el archivo FXML de la pantalla Reportes_Estudiante."; }
+
+    /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la
      * base de datos de manera exitosa.
      * @return una cadena con el mensaje de éxito
      */
-    public String RegistrationSuccessfull() { return "Registro Exitoso"; }
+    public String RegistrationSuccessful() { return "Registro Exitoso"; }
 
     /**
      * Mensaje mostrado cuando ocurre un error en la base de datos
@@ -45,6 +94,13 @@ public class OutputMessages {
      * @return una cadena con el mensaje de error
      */
     public String StudentAlreadyExists() { return "Ya existe un registro con esa información"; }
+
+    /**
+     * Mensaje mostrado cuando se quiere acceder a funcionalidad que requiere tener
+     * un proyecto asigando.
+     * @return una cadena con el mensaje de error
+     */
+    public String ProjectNotAssigned() { return "Aún no te han asignado un proyecto."; }
 
     /**
      * mensaje mostrado cuando se introduce información de login que no

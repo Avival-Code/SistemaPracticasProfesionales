@@ -48,7 +48,8 @@ public class InputValidator {
      * @return true si la información es valida, false si no
      */
     public boolean IsLoginInformationValid( String username, String password ) {
-        return IsMatriculaValid( username ) && IsPasswordValid( password );
+        return ( IsMatriculaValid( username ) || IsNumeroPersonalDocenteValid( username ) ||
+                IsNumeroPersonalCoordinadorValid( username ) ) && IsPasswordValid( password );
     }
 
     /**
@@ -79,6 +80,26 @@ public class InputValidator {
     public boolean IsMatriculaValid( String matricula ) {
         return matricula.length() == matriculaSize && !HasSpaces( matricula ) && HasZAndSChar( matricula ) &&
                 Has8Numbers( matricula ) && !HasInvalidCharacter( matricula );
+    }
+
+    /**
+     * Verifica que el numero personal introducido por el usuario sea valido
+     * @param numeroPersonal la cadena con el numero personal
+     * @return true si el numero personal es valido, false si no
+     */
+    public boolean IsNumeroPersonalCoordinadorValid( String numeroPersonal ) {
+        return numeroPersonal.length() == matriculaSize && !HasSpaces( numeroPersonal ) && HasZAndCChar( numeroPersonal ) &&
+                Has8Numbers( numeroPersonal ) && !HasInvalidCharacter( numeroPersonal );
+    }
+
+    /**
+     * Verifica que el numero personal introducido por el usuario sea valido
+     * @param numeroPersonal la cadena con el numero personal
+     * @return true si el numero personal es valido, false si no
+     */
+    public boolean IsNumeroPersonalDocenteValid( String numeroPersonal ) {
+        return numeroPersonal.length() == matriculaSize && !HasSpaces( numeroPersonal ) && HasZAndDChar( numeroPersonal ) &&
+                Has8Numbers( numeroPersonal ) && !HasInvalidCharacter( numeroPersonal );
     }
 
     /**
@@ -223,7 +244,7 @@ public class InputValidator {
     }
 
     /**
-     * Revisa si una cadena contiene los characteres zS al
+     * Revisa si una cadena contiene los caracteres zS al
      * inicio de la cadena
      * @param input la cadena que se desea revisar
      * @return true si contiene zS al inicio, false si no
@@ -231,6 +252,22 @@ public class InputValidator {
     private boolean HasZAndSChar( String input ) {
         return input.contains( "zS" ) && input.lastIndexOf( "zS" ) == 0;
     }
+
+    /**
+     * Revisa si una cadena contiene los caracteres zC al inicio
+     * de la cadena
+     * @param input la cadena que se desea revisar
+     * @return true si contiene zC al inicio, false si no
+     */
+    private boolean HasZAndCChar( String input ) { return input.contains( "zC" ) && input.lastIndexOf( "zC" ) == 0; }
+
+    /**
+     * Recisa si una cadena contiene los caracteres zD al inicio
+     * de la cadena
+     * @param input la cadena que se desea revisar
+     * @return true si contiene zD al inicio, false si no
+     */
+    private boolean HasZAndDChar( String input ) { return input.contains( "zD" ) && input.lastIndexOf( "zD" ) == 0; }
 
     /**
      * Revisa si una cadena esta compuesta únicamente de números
