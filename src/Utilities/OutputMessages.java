@@ -96,6 +96,13 @@ public class OutputMessages {
     public String StudentAlreadyExists() { return "Ya existe un registro con esa información"; }
 
     /**
+     * Mensaje mostrado cuando se quiere acceder a funcionalidad que requiere tener
+     * un proyecto asigando.
+     * @return una cadena con el mensaje de error
+     */
+    public String ProjectNotAssigned() { return "Aún no te han asignado un proyecto."; }
+
+    /**
      * mensaje mostrado cuando se introduce información de login que no
      * existe en la base de datos
      * @return una cadena con el mensaje de error

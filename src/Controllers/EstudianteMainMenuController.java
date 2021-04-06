@@ -65,7 +65,11 @@ public class EstudianteMainMenuController implements Initializable {
     }
 
     public void ShowReports( MouseEvent mouseEvent ){
-        screenChanger.ShowStudentReportsScreen( mouseEvent, errorText );
+        if( DoesStudentHaveProjectAssigned() ) {
+            screenChanger.ShowStudentReportsScreen(mouseEvent, errorText);
+        } else {
+            errorText.setText( outputMessages.ProjectNotAssigned() );
+        }
     }
 
     public void ShowAdditionalDocuments() {
@@ -96,6 +100,11 @@ public class EstudianteMainMenuController implements Initializable {
     private boolean HasStudentChosenProjects() {
         return LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.AsignacionPendiente ||
                 LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.ProyectoAsignado ||
+                LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.Evaluado;
+    }
+
+    private boolean DoesStudentHaveProjectAssigned() {
+        return LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.ProyectoAsignado ||
                 LoginSession.GetInstance().GetEstudiante().GetEstado() == EstadoEstudiante.Evaluado;
     }
 }

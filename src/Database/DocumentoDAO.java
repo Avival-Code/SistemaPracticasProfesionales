@@ -10,9 +10,9 @@
 package Database;
 
 import Entities.Documento;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +34,11 @@ public class DocumentoDAO implements DocumentoDAOInterface {
         connection.StartConnection();
 
         try {
+            InputStream fileStream = new FileInputStream( documento.GetDescripcion() );
             String query = "INSERT INTO Documento( Descripcion, FechaEntrega, Titulo, ClaveExpediente ) " +
                     "VALUES ( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, documento.GetDescripcion() );
+            statement.setBlob( 1, fileStream );
             statement.setString( 2, documento.getFechaEntrega() );
             statement.setString( 3, documento.getTitulo() );
             statement.setInt( 4, documento.GetClaveExpediente() );
@@ -66,8 +67,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM Documento;" );
 
             while( result.next() ) {
-                documentos.add( new Documento( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) ) );
+                String titulo = result.getString( 2 );
+                documentos.add( new Documento( result.getInt( 1 ), titulo,
+                        CreateFile( titulo, result.getBlob( 3 ) ), result.getString( 4 ),
+                        result.getInt( 5 ) ) );
             }
 
             result.close();
@@ -99,8 +102,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                documento = new Documento( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) );
+                String retrievedTitulo = result.getString( 2 );
+                documento = new Documento( result.getInt( 1 ), retrievedTitulo,
+                        CreateFile( retrievedTitulo, result.getBlob( 3 ) ),
+                        result.getString( 4 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -127,8 +132,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                documento = new Documento( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) );
+                String retrievedTitulo = result.getString( 2 );
+                documento = new Documento( result.getInt( 1 ), retrievedTitulo,
+                        CreateFile( retrievedTitulo, result.getBlob( 3 ) ),
+                        result.getString( 4 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -153,10 +160,11 @@ public class DocumentoDAO implements DocumentoDAOInterface {
         connection.StartConnection();
 
         try {
+            InputStream fileStream = new FileInputStream( documento.GetDescripcion() );
             String query = "UPDATE Documento SET Descripcion = ?, FechaEntrega = ?, Titulo = ?, ClaveExpediente = ?" +
                     " WHERE IDDocumento = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, documento.GetDescripcion() );
+            statement.setBlob( 1, fileStream );
             statement.setString( 2, documento.getFechaEntrega() );
             statement.setString( 3, documento.getTitulo() );
             statement.setInt( 4, documento.GetClaveExpediente() );
@@ -195,5 +203,24 @@ public class DocumentoDAO implements DocumentoDAOInterface {
 
         connection.StopConnection();
         return deleted;
+    }
+
+    private File CreateFile( String filename, Blob fileContent ) {
+        File temp = new File( filename );
+        try {
+            FileOutputStream outputStream = new FileOutputStream( temp );
+            InputStream inputStream = fileContent.getBinaryStream();
+            byte[] buffer = new byte[ 4096 ];
+
+            while( inputStream.read( buffer ) > 0 ) {
+                outputStream.write( buffer );
+            }
+
+            inputStream.close();
+            outputStream.close();
+        } catch( SQLException | IOException exception ) {
+            exception.printStackTrace();
+        }
+        return temp;
     }
 }

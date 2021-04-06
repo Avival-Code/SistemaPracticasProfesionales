@@ -9,6 +9,8 @@ package Entities;
 
 import Enumerations.TipoReporte;
 
+import java.io.File;
+
 /**
  * Clase que contiene la información de Reporte
  */
@@ -57,8 +59,8 @@ public class Reporte extends Documento {
      * @param horasReportadasIn las horas que se reportan en el archivo
      * @param tipoIn el tipo de reporte
      */
-    public Reporte( int idDocumentoIn, int idReporteIn, String tituloIn, String descripcionIn, String fechaIn, int claveExpedienteIn,
-                    int horasReportadasIn, TipoReporte tipoIn ) {
+    public Reporte(int idDocumentoIn, int idReporteIn, String tituloIn, File descripcionIn, String fechaIn, int claveExpedienteIn,
+                   int horasReportadasIn, TipoReporte tipoIn ) {
         super( idDocumentoIn, tituloIn, descripcionIn, fechaIn, claveExpedienteIn );
         horasReportadas = horasReportadasIn;
         tipo = tipoIn;

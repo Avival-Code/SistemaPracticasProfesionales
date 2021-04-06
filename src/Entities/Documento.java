@@ -7,13 +7,15 @@
  */
 package Entities;
 
+import java.io.File;
+
 /**
  * Clase que contiene la información de Documento
  */
 public class Documento {
     protected int idDocumento;
     protected String titulo;
-    protected String descripcion;
+    protected File descripcion;
     protected String fechaEntrega;
     protected int claveExpediente;
 
@@ -23,7 +25,7 @@ public class Documento {
     public Documento() {
         idDocumento = 0;
         titulo = "";
-        descripcion = "";
+        descripcion = null;
         fechaEntrega = "";
         claveExpediente = 0;
     }
@@ -41,10 +43,10 @@ public class Documento {
      * Crea una intancia a partir de los valores introducidos
      * @param idIn el id del documento
      * @param tituloIn el titulo del documento
-     * @param descripcionIn la descripcion del documento
+     * @param descripcionIn el archivo en binario
      * @param fechaIn la fecha en la que se subió el documento al sistema
      */
-    public Documento( int idIn, String tituloIn, String descripcionIn, String fechaIn, int claveExpedienteIn ) {
+    public Documento( int idIn, String tituloIn, File descripcionIn, String fechaIn, int claveExpedienteIn ) {
         idDocumento = idIn;
         titulo = tituloIn;
         descripcion = descripcionIn;
@@ -69,7 +71,7 @@ public class Documento {
      * Regresa la descripción del documento
      * @return la descripción del documento
      */
-    public String GetDescripcion() {
+    public File GetDescripcion() {
         return descripcion;
     }
 
@@ -99,7 +101,7 @@ public class Documento {
      * Cambia la descripción del documento por el valor introducido
      * @param descripcionIn la nueva descripción
      */
-    public void SetDescripcion( String descripcionIn ) {
+    public void SetDescripcion( File descripcionIn ) {
         descripcion = descripcionIn;
     }
 
