@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -29,6 +30,7 @@ import sample.LoginSession;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -42,6 +44,7 @@ public class ReportsScreenController implements Initializable {
     private ReporteDAO reportes = new ReporteDAO();
     private ExpedienteDAO expedientes = new ExpedienteDAO();
     private ProyectoDAO proyectos = new ProyectoDAO();
+    private List< Reporte > reportesEstudiante = new ArrayList< Reporte >();
 
     @FXML
     private Text nameText;
@@ -63,6 +66,9 @@ public class ReportsScreenController implements Initializable {
 
     @FXML
     private Text errorText;
+
+    @FXML
+    private TableView< Reporte > studentReportsTable;
 
     @FXML
     private TableColumn< Reporte, String > nameColumn;
@@ -118,7 +124,14 @@ public class ReportsScreenController implements Initializable {
      * actual
      */
     private void ShowReports() {
-
+        reportesEstudiante = reportes.ReadAll();
+        int claveExpediente = GetUserExpediente().GetClave();
+        for( Reporte reporte : reportesEstudiante )
+        {
+            if( reporte.GetClaveExpediente() == claveExpediente ) {
+                studentReportsTable.getItems().add( reporte );
+            }
+        }
     }
 
     /**

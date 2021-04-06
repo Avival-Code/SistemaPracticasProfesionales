@@ -53,7 +53,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <TableView layoutX="61.0" layoutY="49.0" prefHeight="463.0" prefWidth="653.0">
+                  <TableView fx:id="studentReportsTable" layoutX="61.0" layoutY="49.0" prefHeight="463.0" prefWidth="653.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="287.0" text="Nombre de Archivo" />
                       <TableColumn fx:id="keyColumn" minWidth="0.0" prefWidth="70.0" text="Clave" />
