@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import sample.LoginSession;
 import java.io.File;
 import java.net.URL;
@@ -67,6 +66,7 @@ public class ReportsScreenController implements Initializable {
         SetUserInformation();
         SetCellValueFactory();
         ConfigureFileChooser();
+        ShowReports();
     }
 
     private void SetUserInformation() {
