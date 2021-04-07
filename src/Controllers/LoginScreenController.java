@@ -73,7 +73,7 @@ public class LoginScreenController {
     public void HandleLogin( MouseEvent mouseEvent ) {
         CheckUserInput();
         if( inputValidator.IsLoginInformationValid( usernameField.getText(), passwordField.getText() ) ) {
-            if( DoesUsernameExist() && DoesPasswordMatchUserPassword()) {
+            if( DoesUsernameExist() && DoesPasswordMatchUserPassword() ) {
                 Login( mouseEvent );
             } else {
                 errorText.setText( outputMessages.InvalidLoginInformation() );
@@ -176,7 +176,9 @@ public class LoginScreenController {
      * Revisa que el nombre de usuario introducido sea valido
      */
     private void CheckNumeroPersonalMatricula() {
-        if( !inputValidator.IsMatriculaValid( usernameField.getText() ) ) {
+        if( !inputValidator.IsMatriculaValid( usernameField.getText() ) ||
+                !inputValidator.IsNumeroPersonalCoordinadorValid( usernameField.getText() ) ||
+                !inputValidator.IsNumeroPersonalDocenteValid( usernameField.getText() ) ) {
             errorText.setText( outputMessages.InvalidUsername() );
         }
     }
