@@ -129,8 +129,9 @@ public class EstudianteDAO implements EstudianteDAOInterface{
      * @param NRC la matrícula del Estudiante deseado
      * @return estudiante con la información de base de datos.
      */
-    public Estudiante ReadByGroup( String NRC ) {
-        Estudiante estudiante = null;
+    @Override
+    public List< Estudiante > ReadByGroup( String NRC ) {
+        List< Estudiante > estudiantes = new ArrayList<>();
         MySqlConnection connection = new MySqlConnection();
         connection.StartConnection();
 
@@ -141,20 +142,21 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             statement.executeQuery();
             ResultSet result = statement.getResultSet();
 
-            if( result.next() ) {
-                int idUsuario = result.getInt( 2 );
-                String matricula = result.getString( 1 );
-                EstadoEstudiante estado = EstadoEstudiante.values()[ result.getInt( 4 ) ];
-
-                UsuarioUV usuario = usuarios.Read( idUsuario );
-                estudiante = new Estudiante( usuario, matricula, NRC, estado );
+            while( result.next() )
+            {
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 2 ) );
+                estudiantes.add( new Estudiante( usuarioTemp, result.getString( 1 ), result.getString( 3 ),
+                        EstadoEstudiante.values()[ result.getInt( 4 ) ] ) );
             }
+
+            result.close();
+            statement.close();
         } catch( Exception exception ) {
             exception.printStackTrace();
         }
 
         connection.StopConnection();
-        return estudiante;
+        return estudiantes;
     }
 
     /**

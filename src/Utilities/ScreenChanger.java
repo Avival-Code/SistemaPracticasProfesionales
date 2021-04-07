@@ -67,6 +67,7 @@ public class ScreenChanger {
             SetScene( mouseEvent, mainScreenDocente);
         } catch( IOException exception ) {
             errorText.setText( outputMessages.MainScreenDocenteMissing() );
+            exception.printStackTrace();
         }
     }
 

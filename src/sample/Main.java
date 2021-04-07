@@ -32,15 +32,6 @@ public class Main extends Application {
 
 
     public static void main( String[] args ) {
-        DocenteDAO docentes = new DocenteDAO();
-        Docente docente = docentes.Read( "1" );
-        if(docente == null) {
-            System.out.print("es nulo");
-        } else {
-            System.out.println("No es nulo");
-            System.out.println(docente.GetNombres());
-        }
-
         launch( args );
     }
 }
