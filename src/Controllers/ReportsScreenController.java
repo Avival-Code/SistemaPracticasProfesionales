@@ -160,6 +160,12 @@ public class ReportsScreenController implements Initializable {
         }
     }
 
+    /**
+     * Revisa si el nombre del reporte que se desea entregar ya
+     * existe en el expediente del estudiante
+     * @param reporte el reporte que se desea entregar
+     * @return true si el nombre no existe, false en caso de existir
+     */
     public boolean ReportNameDoesNotExist( Reporte reporte ) {
         boolean nameDoesNotExist = true;
         List< Reporte > listaReportes = reportes.ReadAll();
