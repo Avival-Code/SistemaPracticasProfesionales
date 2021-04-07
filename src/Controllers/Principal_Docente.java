@@ -26,14 +26,15 @@ import javafx.scene.text.Text;
 import sample.LoginSession;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class Principal_Docente implements Initializable {
 
     private EstudianteDAO estudianteDAO = new EstudianteDAO();
-    private ObservableList< Estudiante > grupo;
-    private ScreenChanger screenChanger;
+    private List< Estudiante > grupo = new ArrayList< Estudiante >();
+    private ScreenChanger screenChanger = new ScreenChanger();
 
     @FXML
     private Text errorText;
@@ -61,23 +62,22 @@ public class Principal_Docente implements Initializable {
     private TableColumn tcDescripcion;
 
     public void irPantallaDescargarArchivos( MouseEvent mouseEvent ) {
-
+        //TODO
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO
-        setUsuario();
-        recuperarGrupo();
-
+        SetUsuario();
+        RecuperarGrupo();
     }
 
-    public void recuperarGrupo() {
+    public void RecuperarGrupo() {
         String nrc = LoginSession.GetInstance().GetDocente().GetNrc();
-        grupo = (ObservableList<Estudiante>) estudianteDAO.ReadByGroup( nrc );
+        grupo = estudianteDAO.ReadByGroup( nrc );
     }
 
-    public void setUsuario() {
+    public void SetUsuario() {
         lbNombre.setText( LoginSession.GetInstance().GetDocente().GetNombres() );
         lbApellidos.setText( LoginSession.GetInstance().GetDocente().GetApellidos() );
         lbCedulaProfesional.setText( LoginSession.GetInstance().GetDocente().GetNumeroPersonal() );
