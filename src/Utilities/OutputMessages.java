@@ -81,14 +81,23 @@ public class OutputMessages {
      * Principal_Coordinador
      * @return una cadena con el mensaje de error
      */
-    public String PantallaPrincipalCoordinadorPerdido() { return "No se encontró el archivo FXML de la pantalla Reportes_Estudiante."; }
+    public String PantallaPrincipalCoordinadorPerdido() { return "No se encontró el archivo FXML de la pantalla Principal_Coordinador."; }
 
     /**
      * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
      * GestionarOrganizacion_Coordinador
      * @return una cadena con el mensaje de error
      */
-    public String PantallaGestionarOrganizacionPerdido() { return "No se encontró el archivo FXML de la pantalla Reportes_Estudiante."; }
+    public String PantallaGestionarOrganizacionPerdido() { return "No se encontró el archivo FXML de la pantalla GestionarOrganizacion_Coordinador."; }
+
+    /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * RegistrarOrganizacion_Coordinador
+     * @return una cadena con el mensaje de error
+     */
+    public String PantallaRegistrarOrganizacionPerdido() { return "No se encontró el archivo FXML de la pantalla " +
+            "RegistrarOrganizacion_Coordinador."; }
+
 
     /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la

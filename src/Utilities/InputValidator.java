@@ -35,8 +35,8 @@ public class InputValidator {
      * @return true si todos los campos del Estudiante son validos, false si no
      */
     public boolean IsStudentInformationValid( Estudiante student, String passwordConfirm ) {
-        return AreNamesValid( student.GetNombres() ) && AreLastNamesValid( student.GetApellidos() ) &&
-                IsMatriculaValid( student.GetMatricula() ) && IsTelephoneValid( student.GetTelefono() ) &&
+        return AreNamesValid( student.getNombres() ) && AreLastNamesValid( student.GetApellidos() ) &&
+                IsMatriculaValid( student.getMatricula() ) && IsTelephoneValid( student.GetTelefono() ) &&
                 IsEmailValid( student.GetCorreo() ) && IsNRCValid( student.getNrc() ) &&
                 IsPasswordValid( student.GetContrasena() ) && DoPasswordsMatch( student.GetContrasena(), passwordConfirm );
     }

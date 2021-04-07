@@ -1,13 +1,17 @@
 package Controllers;
 
+import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GestionarOrganizacion_Coordinador implements Initializable {
+    private ScreenChanger screenChanger = new ScreenChanger();
+
     @FXML
     private Label lbNombres;
 
@@ -50,8 +54,19 @@ public class GestionarOrganizacion_Coordinador implements Initializable {
     @FXML
     private Button btnModificarOrganizacion;
 
+    @FXML
+    private Text errorText;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void ClicRegresar ( MouseEvent mouseEvent ){
+        screenChanger.MostrarPantallaPrincipalCoordinador( mouseEvent, errorText );
+    }
+
+    public void ClicRegistrar( MouseEvent mouseEvent ){
+        screenChanger.MostrarPantallaRegistrarOrganizacion( mouseEvent, errorText );
     }
 }

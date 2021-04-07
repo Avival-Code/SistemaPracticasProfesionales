@@ -2,7 +2,7 @@ package Controllers;
 
 import Database.EstudianteDAO;
 import Entities.Estudiante;
-import Entities.Proyecto;
+import Entities.UsuarioUV;
 import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,9 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import sample.LoginSession;
-
-import javax.swing.text.StyledEditorKit;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,10 +78,10 @@ public class Principal_Coordinador implements Initializable {
     private Button btnBuscar;
 
     @FXML
-    private TableView <Estudiante> tbEstudianteDocente;
+    private TableView <UsuarioUV> tbEstudianteDocente;
 
     @FXML
-    private TableColumn<Estudiante, String > clnMatriculaNoTrabajador;
+    private TableColumn<UsuarioUV, String > clnMatriculaNoTrabajador;
 
     @FXML
     private Text errorText;
@@ -111,7 +108,7 @@ public class Principal_Coordinador implements Initializable {
      * nombres, apellidos y No.Trabajador
      */
     public void DatosUsuario(){
-        lbNombres.setText( LoginSession.GetInstance().GetCoordinador().GetNombres() );
+        lbNombres.setText( LoginSession.GetInstance().GetCoordinador().getNombres() );
         lbApellidos.setText( LoginSession.GetInstance().GetCoordinador().GetApellidos() );
         lbNoTrabajador.setText( LoginSession.GetInstance().GetCoordinador().GetNumeroPersonal() );
     }
@@ -148,7 +145,7 @@ public class Principal_Coordinador implements Initializable {
      * Configura la columna de la tabla Estudiantes/Docentes
      */
     private void ValorColumnasEstudianteDocente() {
-        clnMatriculaNoTrabajador.setCellValueFactory( new PropertyValueFactory<>( "matricula" ) );
+        clnMatriculaNoTrabajador.setCellValueFactory( new PropertyValueFactory<>( "nombreCompleto" ) );
     }
 
     /**
@@ -157,7 +154,7 @@ public class Principal_Coordinador implements Initializable {
     private void MostrarEstudiantesDisponibles() {
         listaEstudiantes = estudiantes.ReadAll();
         for( Estudiante estudiante : listaEstudiantes ) {
-            estudiante.GetNombres();
+            estudiante.getNombres();
             tbEstudianteDocente.getItems().add( estudiante );
         }
     }
@@ -165,7 +162,7 @@ public class Principal_Coordinador implements Initializable {
     /**
      * Permite cambiar la pantalla a la pantalla deseada por el usuario que seleccione un boton
      */
-    private void MostrarPantallaGestionarOrganizacion( MouseEvent mouseEvent ) {
+    public void MostrarPantallaGestionarOrganizacion( MouseEvent mouseEvent ) {
         screenChanger.MostrarPantallaGestionarOrganizacion( mouseEvent, errorText );
     }
 }

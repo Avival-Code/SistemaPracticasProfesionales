@@ -38,13 +38,13 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         connection.StartConnection();
 
         try {
-            usuarios.Create( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
+            usuarios.Create( new UsuarioUV( estudiante.GetID(), estudiante.getNombres(), estudiante.GetApellidos(),
                                             estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
                                             estudiante.GetTelefono() ) );
             UsuarioUV usuarioTemp = usuarios.Read( estudiante.GetUsuario() );
             String query = "INSERT INTO Estudiante( Matricula, IDUsuario, NRC, Estado ) VALUES( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, estudiante.GetMatricula() );
+            statement.setString( 1, estudiante.getMatricula() );
             statement.setInt( 2, usuarioTemp.GetID() );
             statement.setString( 3, estudiante.getNrc() );
             statement.setInt( 4, estudiante.GetEstado().ordinal() );
@@ -139,10 +139,10 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, estudiante.getNrc() );
             statement.setInt( 2, estudiante.GetEstado().ordinal() );
-            statement.setString( 3, estudiante.GetMatricula() );
+            statement.setString( 3, estudiante.getMatricula() );
             statement.executeUpdate();
 
-            usuarios.Update( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
+            usuarios.Update( new UsuarioUV( estudiante.GetID(), estudiante.getNombres(), estudiante.GetApellidos(),
                                             estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
                                             estudiante.GetTelefono() ) );
 

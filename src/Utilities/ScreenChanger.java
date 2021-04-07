@@ -31,6 +31,7 @@ public class ScreenChanger {
     private String studentReportsScreen = "../Resources/StudentReports.fxml";
     private String pantallaPrincipalCoordinador = "../Resources/Principal_Coordinador.fxml";
     private String pantallaGestionarOrganizacion = "../Resources/GestionarOrganizacion_Coordinador.fxml";
+    private String pantallaRegistrarOrganizacion = "../Resources/RegistrarOrganizacion_Coordinador.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
@@ -112,11 +113,11 @@ public class ScreenChanger {
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void MostrarPantallaPrincipalCoordinador(MouseEvent mouseEvent, Text errorText) {
+    public void MostrarPantallaPrincipalCoordinador( MouseEvent mouseEvent, Text errorText ) {
         try {
-            SetScene(mouseEvent, pantallaPrincipalCoordinador);
+            SetScene( mouseEvent, pantallaPrincipalCoordinador );
         } catch (IOException exception) {
-            errorText.setText(outputMessages.PantallaPrincipalCoordinadorPerdido());
+            errorText.setText( outputMessages.PantallaPrincipalCoordinadorPerdido() );
             exception.printStackTrace();
         }
     }
@@ -131,6 +132,20 @@ public class ScreenChanger {
             SetScene( mouseEvent, pantallaGestionarOrganizacion );
         } catch( IOException exception ) {
             errorText.setText( outputMessages.PantallaGestionarOrganizacionPerdido() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla RegistrarOrganizacion_Coordinador
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void MostrarPantallaRegistrarOrganizacion( MouseEvent mouseEvent, Text errorText ){
+        try {
+            SetScene( mouseEvent, pantallaRegistrarOrganizacion );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.PantallaRegistrarOrganizacionPerdido() );
             exception.printStackTrace();
         }
     }
