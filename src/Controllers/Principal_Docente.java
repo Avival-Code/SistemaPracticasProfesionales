@@ -139,6 +139,6 @@ public class Principal_Docente implements Initializable {
      * @param mouseEvent evento del mouse que inicia el metodo.
      */
     public void irPantallaDescargarArchivos( MouseEvent mouseEvent ) {
-        //TODO
+        screenChanger.ShowScreenDescargarArchivoDocente(mouseEvent, errorText);
     }
 }

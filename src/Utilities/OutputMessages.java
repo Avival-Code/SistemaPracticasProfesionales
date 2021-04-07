@@ -37,6 +37,15 @@ public class OutputMessages {
     }
 
     /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * DescargarArchivo_Docente
+     * @return una cadena con el mensaje de error
+     */
+    public String DescargarArchivoScreenMissing() {
+        return "No se encontro el archivo FXML de la pantalla descargar archivo";
+    }
+
+    /**
      * Mensaje mostrado en caso de no encontrar el archivo fxml del menú principal
      * de Estudiantes
      * @return una cadena con el mensaje de error

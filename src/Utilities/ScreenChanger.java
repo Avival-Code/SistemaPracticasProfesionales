@@ -30,6 +30,7 @@ public class ScreenChanger {
     private String studentMainMenu = "../Resources/StudentMainMenuScreen.fxml";
     private String chooseProjectsScreen = "../Resources/SelectProjectsScreen.fxml";
     private String studentReportsScreen = "../Resources/StudentReports.fxml";
+    private String descargarArchivoScreen = "../Resources/DescargarArchivo_Docente.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
@@ -62,11 +63,25 @@ public class ScreenChanger {
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void ShowPantallaPrincipalDocente( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowScreenPrincipalDocente(MouseEvent mouseEvent, Text errorText ) {
         try {
             SetScene( mouseEvent, mainScreenDocente);
         } catch( IOException exception ) {
             errorText.setText( outputMessages.MainScreenDocenteMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla de descargar archivos de un estudiante.
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowScreenDescargarArchivoDocente( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, descargarArchivoScreen);
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.DescargarArchivoScreenMissing() );
             exception.printStackTrace();
         }
     }
