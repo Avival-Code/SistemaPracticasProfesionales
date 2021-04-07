@@ -26,12 +26,14 @@ public class ScreenChanger {
     private OutputMessages outputMessages = new OutputMessages();
     private String loginScreen = "../Resources/LoginScreen.fxml";
     private String registryScreen = "../Resources/RegistryScreen.fxml";
+    private String mainScreenDocente = "../Resources/Principal_Docente.fxml";
     private String studentMainMenu = "../Resources/StudentMainMenuScreen.fxml";
     private String chooseProjectsScreen = "../Resources/SelectProjectsScreen.fxml";
     private String studentReportsScreen = "../Resources/StudentReports.fxml";
     private String pantallaPrincipalCoordinador = "../Resources/Principal_Coordinador.fxml";
     private String pantallaGestionarOrganizacion = "../Resources/GestionarOrganizacion_Coordinador.fxml";
     private String pantallaRegistrarOrganizacion = "../Resources/RegistrarOrganizacion_Coordinador.fxml";
+    private String descargarArchivoScreen = "../Resources/DescargarArchivo_Docente.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
@@ -58,6 +60,34 @@ public class ScreenChanger {
             SetScene(mouseEvent, registryScreen);
         } catch (IOException exception) {
             errorText.setText(outputMessages.RegistryScreenMissing());
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla principal del docente.
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowScreenPrincipalDocente(MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, mainScreenDocente);
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.MainScreenDocenteMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla de descargar archivos de un estudiante.
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowScreenDescargarArchivoDocente( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, descargarArchivoScreen);
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.DescargarArchivoScreenMissing() );
+            exception.printStackTrace();
         }
     }
 

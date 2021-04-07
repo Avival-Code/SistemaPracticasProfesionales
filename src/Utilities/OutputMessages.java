@@ -28,6 +28,24 @@ public class OutputMessages {
     public String LoginScreenMissing() { return "No se encontró el archivo FXML de pantalla Login."; }
 
     /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * IniciarSesion
+     * @return una cadena con el mensaje de error
+     */
+    public String MainScreenDocenteMissing() {
+        return "No se encontro el archivo FXML de la pantalla principal de los docentes";
+    }
+
+    /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * DescargarArchivo_Docente
+     * @return una cadena con el mensaje de error
+     */
+    public String DescargarArchivoScreenMissing() {
+        return "No se encontro el archivo FXML de la pantalla descargar archivo";
+    }
+
+    /**
      * Mensaje mostrado en caso de no encontrar el archivo fxml del menú principal
      * de Estudiantes
      * @return una cadena con el mensaje de error
@@ -124,6 +142,13 @@ public class OutputMessages {
      * @return una cadena con el mensaje de error
      */
     public String ProjectNotAssigned() { return "Aún no te han asignado un proyecto."; }
+
+    /**
+     * Mensaje mostrado cuando se intenta entregar un reporte con
+     * que tiene el mismo nombre que otro el el expediente del estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String ReportNameAlreadyExists() { return "Ya existe un reporte con ese nombre en tu expediente."; }
 
     /**
      * mensaje mostrado cuando se introduce información de login que no

@@ -7,6 +7,10 @@
 */
 package sample;
 
+import Database.DocenteDAO;
+import Database.EstudianteDAO;
+import Entities.Docente;
+import Entities.Estudiante;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -142,6 +142,7 @@ public class LoginScreenController {
 
     /**
      * Inicia sesión y cambia la pantalla a la pantalla del usuario correspondiente
+     * @param mouseEvent evento que accionó el inicio de sesión
      */
     private void Login( MouseEvent mouseEvent ) {
         if( coordinador != null ) {
@@ -149,6 +150,7 @@ public class LoginScreenController {
             screenChanger.MostrarPantallaPrincipalCoordinador( mouseEvent, errorText );
         } else if( docente != null ) {
             LoginSession.GetInstance().Login( docente );
+            screenChanger.ShowScreenPrincipalDocente( mouseEvent, errorText );
         } else if( estudiante != null ) {
             LoginSession.GetInstance().Login( estudiante );
             screenChanger.ShowStudentMainMenuScreen( mouseEvent, errorText );

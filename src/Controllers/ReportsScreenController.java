@@ -15,6 +15,7 @@ import Entities.Expediente;
 import Entities.Reporte;
 import Enumerations.EstadoProyecto;
 import Enumerations.TipoReporte;
+import Utilities.OutputMessages;
 import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,7 +45,9 @@ public class ReportsScreenController implements Initializable {
     private ReporteDAO reportes = new ReporteDAO();
     private ExpedienteDAO expedientes = new ExpedienteDAO();
     private ProyectoDAO proyectos = new ProyectoDAO();
+    private OutputMessages outputMessages = new OutputMessages();
     private List< Reporte > reportesEstudiante = new ArrayList< Reporte >();
+    private Reporte reporte = null;
 
     @FXML
     private Text nameText;
@@ -124,6 +127,7 @@ public class ReportsScreenController implements Initializable {
      * actual
      */
     private void ShowReports() {
+        studentReportsTable.getItems().clear();
         reportesEstudiante = reportes.ReadAll();
         int claveExpediente = GetUserExpediente().GetClave();
         for( Reporte reporte : reportesEstudiante )
@@ -150,9 +154,29 @@ public class ReportsScreenController implements Initializable {
     @FXML
     public void TurnInReport( MouseEvent mouseEvent ) {
         File report = GetFile( mouseEvent );
-        if( report != null ) {
+        if( report != null && ReportNameDoesNotExist( GetReport( report ) ) ) {
             reportes.Create( GetReport( report ) );
+            ShowReports();
         }
+    }
+
+    /**
+     * Revisa si el nombre del reporte que se desea entregar ya
+     * existe en el expediente del estudiante
+     * @param reporte el reporte que se desea entregar
+     * @return true si el nombre no existe, false en caso de existir
+     */
+    public boolean ReportNameDoesNotExist( Reporte reporte ) {
+        boolean nameDoesNotExist = true;
+        List< Reporte > listaReportes = reportes.ReadAll();
+        for( Reporte ejemplar : listaReportes ) {
+            if( ejemplar.GetClaveExpediente() == reporte.GetClaveExpediente() &&
+                    ejemplar.getTitulo().equals( reporte.getTitulo() ) ) {
+                nameDoesNotExist = false;
+                errorText.setText( outputMessages.ReportNameAlreadyExists() );
+            }
+        }
+        return nameDoesNotExist;
     }
 
     /**
@@ -188,7 +212,8 @@ public class ReportsScreenController implements Initializable {
      */
     private Reporte GetReport( File reportFile ) {
         LocalDate currentDate = LocalDate.now();
-        return new Reporte( 0 , 0, reportFile.getName(), reportFile, currentDate.toString(),
+        reporte = new Reporte( 0 , 0, reportFile.getName(), reportFile, currentDate.toString(),
                 GetUserExpediente().GetClave(), 0, TipoReporte.cienHoras );
+        return reporte;
     }
 }
