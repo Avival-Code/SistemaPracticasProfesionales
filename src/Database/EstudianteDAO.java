@@ -38,13 +38,13 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         connection.StartConnection();
 
         try {
-            usuarios.Create( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
+            usuarios.Create( new UsuarioUV( estudiante.GetID(), estudiante.getNombres(), estudiante.GetApellidos(),
                                             estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
                                             estudiante.GetTelefono() ) );
             UsuarioUV usuarioTemp = usuarios.Read( estudiante.GetUsuario() );
             String query = "INSERT INTO Estudiante( Matricula, IDUsuario, NRC, Estado ) VALUES( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, estudiante.GetMatricula() );
+            statement.setString( 1, estudiante.getMatricula() );
             statement.setInt( 2, usuarioTemp.GetID() );
             statement.setString( 3, estudiante.GetNrc() );
             statement.setInt( 4, estudiante.GetEstado().ordinal() );
@@ -124,6 +124,42 @@ public class EstudianteDAO implements EstudianteDAOInterface{
     }
 
     /**
+     * Regresa un estudiante de la base de datos. Utiliza el grupo
+     * del estudiante para ubicarlo en la base de datos.
+     * @param NRC la matrícula del Estudiante deseado
+     * @return estudiante con la información de base de datos.
+     */
+    @Override
+    public List< Estudiante > ReadByGroup( String NRC ) {
+        List< Estudiante > estudiantes = new ArrayList<>();
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+            String query = "SELECT * FROM Estudiante WHERE NRC = ?;";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setString( 1,  NRC );
+            statement.executeQuery();
+            ResultSet result = statement.getResultSet();
+
+            while( result.next() )
+            {
+                UsuarioUV usuarioTemp = usuarios.Read( result.getInt( 2 ) );
+                estudiantes.add( new Estudiante( usuarioTemp, result.getString( 1 ), result.getString( 3 ),
+                        EstadoEstudiante.values()[ result.getInt( 4 ) ] ) );
+            }
+
+            result.close();
+            statement.close();
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
+
+        connection.StopConnection();
+        return estudiantes;
+    }
+
+    /**
      * Actualiza la información de un estudiante en la base de datos.
      * @param estudiante la versión actualizada del Estudiante
      * @return booleano indicando éxito o fracaso
@@ -139,10 +175,10 @@ public class EstudianteDAO implements EstudianteDAOInterface{
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, estudiante.GetNrc() );
             statement.setInt( 2, estudiante.GetEstado().ordinal() );
-            statement.setString( 3, estudiante.GetMatricula() );
+            statement.setString( 3, estudiante.getMatricula() );
             statement.executeUpdate();
 
-            usuarios.Update( new UsuarioUV( estudiante.GetID(), estudiante.GetNombres(), estudiante.GetApellidos(),
+            usuarios.Update( new UsuarioUV( estudiante.GetID(), estudiante.getNombres(), estudiante.GetApellidos(),
                                             estudiante.GetUsuario(), estudiante.GetContrasena(), estudiante.GetCorreo(),
                                             estudiante.GetTelefono() ) );
 

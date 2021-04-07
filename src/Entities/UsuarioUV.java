@@ -81,7 +81,7 @@ public class UsuarioUV {
      * Regresa los nombres del UsuarioUV.
      * @return
      */
-    public String GetNombres() {
+    public String getNombres() {
         return nombres;
     }
 

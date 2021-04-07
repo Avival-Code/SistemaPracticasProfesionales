@@ -31,6 +31,13 @@ public interface EstudianteDAOInterface {
     List< Estudiante > ReadAll();
 
     /**
+     * Regresa una lista con todos los Estudiantes de la base de datos. Utiliza una matricula para encontrar
+     * a los estudiantes deseados
+     * @return lista con todos los Estudiantes de la base de datos con el NRC especificado.
+     */
+    List< Estudiante > ReadByGroup( String NRC );
+
+    /**
      * Regresa un estudiante de la base de datos. Utiliza una matrícula
      * para encontrar el Estudiante deseado. Regresa Null en caso de no
      * encontrar al Estudiante
