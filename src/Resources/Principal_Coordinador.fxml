@@ -20,9 +20,9 @@
                                 <Label layoutX="14.0" layoutY="98.0" text="No.Trabajador:" textFill="#e84545" />
                                 <Label fx:id="lbNoTrabajador" layoutX="14.0" layoutY="115.0" text="Label" textFill="#e84545" />
                             </children></AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="154.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="154.0" style="-fx-background-color: #2b2e4a;">
                             <children>
-                                <VBox alignment="BOTTOM_CENTER" fillWidth="false" layoutX="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="292.0" style="-fx-background-color: #2b2e4a;">
+                                <VBox alignment="BOTTOM_CENTER" fillWidth="false" layoutY="119.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="292.0" style="-fx-background-color: #2b2e4a;">
                                     <children>
                                         <Button fx:id="btnAsignarProyecto" mnemonicParsing="false" prefHeight="25.0" prefWidth="313.0" text="Asignar Proyecto" textFill="#e84545" />
                                         <Button fx:id="btnGenerarOficioAsignacion" mnemonicParsing="false" prefHeight="25.0" prefWidth="343.0" text="Generar Ofició De Asignación" textFill="#e84545" />
@@ -33,6 +33,7 @@
                                         <Button fx:id="btnCerrarSesion" mnemonicParsing="false" prefHeight="25.0" prefWidth="301.0" text="Cerrar Sesión" textFill="#e84545" />
                                     </children>
                                 </VBox>
+                        <Label fx:id="errorText" layoutX="14.0" layoutY="30.0" textFill="#e84545" />
                             </children></AnchorPane>
                     </items>
                 </SplitPane>
@@ -52,7 +53,7 @@
                             <children>
                                 <TableView fx:id="tbEstudianteDocente" layoutX="-2.0" prefHeight="272.0" prefWidth="295.0">
                                     <columns>
-                                        <TableColumn fx:id="clnNrcNoTrabajador" prefWidth="294.0" text="Estudiante" />
+                                        <TableColumn fx:id="clnMatriculaNoTrabajador" prefWidth="294.0" text="Estudiante" />
                                     </columns>
                                 </TableView>
                             </children>

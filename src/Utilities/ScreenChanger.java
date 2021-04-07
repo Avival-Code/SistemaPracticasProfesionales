@@ -30,86 +30,107 @@ public class ScreenChanger {
     private String chooseProjectsScreen = "../Resources/SelectProjectsScreen.fxml";
     private String studentReportsScreen = "../Resources/StudentReports.fxml";
     private String pantallaPrincipalCoordinador = "../Resources/Principal_Coordinador.fxml";
+    private String pantallaGestionarOrganizacion = "../Resources/GestionarOrganizacion_Coordinador.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
+     *
      * @param mouseEvent el evento de mouse que inicio el cambio
-     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void ShowLoginScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowLoginScreen(MouseEvent mouseEvent, Text errorText) {
         try {
-            SetScene( mouseEvent, loginScreen );
-        } catch( IOException exception ) {
-            errorText.setText( outputMessages.LoginScreenMissing() );
+            SetScene(mouseEvent, loginScreen);
+        } catch (IOException exception) {
+            errorText.setText(outputMessages.LoginScreenMissing());
         }
     }
 
     /**
      * Hace el cambio de pantalla a la pantalla de Registro_Estudiante.
+     *
      * @param mouseEvent el evento de mouse que inicio el cambio
-     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void ShowRegistryScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowRegistryScreen(MouseEvent mouseEvent, Text errorText) {
         try {
-            SetScene( mouseEvent, registryScreen );
-        } catch( IOException exception ) {
-            errorText.setText( outputMessages.RegistryScreenMissing() );
+            SetScene(mouseEvent, registryScreen);
+        } catch (IOException exception) {
+            errorText.setText(outputMessages.RegistryScreenMissing());
         }
     }
 
     /**
      * Hace el cambio de pantalla a la pantalla del menú principal de
      * estudiante
+     *
      * @param mouseEvent el evento de mouse que inicio el cambio
-     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void ShowStudentMainMenuScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowStudentMainMenuScreen(MouseEvent mouseEvent, Text errorText) {
         try {
-            SetScene( mouseEvent, studentMainMenu );
-        } catch( IOException exception ) {
-            errorText.setText( outputMessages.StudentMainMenuMissing() );
+            SetScene(mouseEvent, studentMainMenu);
+        } catch (IOException exception) {
+            errorText.setText(outputMessages.StudentMainMenuMissing());
             exception.printStackTrace();
         }
     }
 
     /**
      * Hace el cambio de pantalla a la pantalla EscogerProyectos_Estudiante
+     *
      * @param mouseEvent el evento de mouse que inicio el cambio
-     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void ShowChooseProjectsScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowChooseProjectsScreen(MouseEvent mouseEvent, Text errorText) {
         try {
-            SetScene( mouseEvent, chooseProjectsScreen );
-        } catch( IOException exception ) {
-            errorText.setText( outputMessages.ChooseProjectsMissing() );
+            SetScene(mouseEvent, chooseProjectsScreen);
+        } catch (IOException exception) {
+            errorText.setText(outputMessages.ChooseProjectsMissing());
             exception.printStackTrace();
         }
     }
 
     /**
      * Hace el cambio de pantalla a la pantalla Reportes_Estudiante
+     *
      * @param mouseEvent el evento de mouse que inicio el cambio
-     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void ShowStudentReportsScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowStudentReportsScreen(MouseEvent mouseEvent, Text errorText) {
         try {
-            SetScene( mouseEvent, studentReportsScreen );
-        } catch( IOException exception ) {
-            errorText.setText( outputMessages.StudentReportScreenMissing() );
+            SetScene(mouseEvent, studentReportsScreen);
+        } catch (IOException exception) {
+            errorText.setText(outputMessages.StudentReportScreenMissing());
             exception.printStackTrace();
         }
     }
 
     /**
      * Hace el cambio de pantalla a la pantalla Principal_Coordinador
+     *
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText  el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void MostrarPantallaPrincipalCoordinador(MouseEvent mouseEvent, Text errorText) {
+        try {
+            SetScene(mouseEvent, pantallaPrincipalCoordinador);
+        } catch (IOException exception) {
+            errorText.setText(outputMessages.PantallaPrincipalCoordinadorPerdido());
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla GestionarOrganizacion
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void MostrarPantallaPrincipalCoordinador( MouseEvent mouseEvent, Text errorText ) {
+    public void MostrarPantallaGestionarOrganizacion( MouseEvent mouseEvent, Text errorText ){
         try {
-            SetScene( mouseEvent, pantallaPrincipalCoordinador );
+            SetScene( mouseEvent, pantallaGestionarOrganizacion );
         } catch( IOException exception ) {
-            errorText.setText( outputMessages.PantallaPrincipalCoordinadorPerdido() );
+            errorText.setText( outputMessages.PantallaGestionarOrganizacionPerdido() );
             exception.printStackTrace();
         }
     }
