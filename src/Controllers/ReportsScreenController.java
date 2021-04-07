@@ -15,6 +15,7 @@ import Entities.Expediente;
 import Entities.Reporte;
 import Enumerations.EstadoProyecto;
 import Enumerations.TipoReporte;
+import Utilities.OutputMessages;
 import Utilities.ScreenChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +45,7 @@ public class ReportsScreenController implements Initializable {
     private ReporteDAO reportes = new ReporteDAO();
     private ExpedienteDAO expedientes = new ExpedienteDAO();
     private ProyectoDAO proyectos = new ProyectoDAO();
+    private OutputMessages outputMessages = new OutputMessages();
     private List< Reporte > reportesEstudiante = new ArrayList< Reporte >();
     private Reporte reporte = null;
 
@@ -152,10 +154,23 @@ public class ReportsScreenController implements Initializable {
     @FXML
     public void TurnInReport( MouseEvent mouseEvent ) {
         File report = GetFile( mouseEvent );
-        if( report != null ) {
+        if( report != null && ReportNameDoesNotExist( GetReport( report ) ) ) {
             reportes.Create( GetReport( report ) );
             ShowReports();
         }
+    }
+
+    public boolean ReportNameDoesNotExist( Reporte reporte ) {
+        boolean nameDoesNotExist = true;
+        List< Reporte > listaReportes = reportes.ReadAll();
+        for( Reporte ejemplar : listaReportes ) {
+            if( ejemplar.GetClaveExpediente() == reporte.GetClaveExpediente() &&
+                    ejemplar.getTitulo().equals( reporte.getTitulo() ) ) {
+                nameDoesNotExist = false;
+                errorText.setText( outputMessages.ReportNameAlreadyExists() );
+            }
+        }
+        return nameDoesNotExist;
     }
 
     /**

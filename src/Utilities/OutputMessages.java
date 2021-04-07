@@ -103,6 +103,13 @@ public class OutputMessages {
     public String ProjectNotAssigned() { return "Aún no te han asignado un proyecto."; }
 
     /**
+     * Mensaje mostrado cuando se intenta entregar un reporte con
+     * que tiene el mismo nombre que otro el el expediente del estudiante
+     * @return una cadena con el mensaje de error
+     */
+    public String ReportNameAlreadyExists() { return "Ya existe un reporte con ese nombre en tu expediente."; }
+
+    /**
      * mensaje mostrado cuando se introduce información de login que no
      * existe en la base de datos
      * @return una cadena con el mensaje de error
