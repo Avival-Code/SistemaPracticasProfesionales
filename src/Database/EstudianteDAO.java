@@ -124,6 +124,40 @@ public class EstudianteDAO implements EstudianteDAOInterface{
     }
 
     /**
+     * Regresa un estudiante de la base de datos. Utiliza el grupo
+     * del estudiante para ubicarlo en la base de datos.
+     * @param NRC la matrícula del Estudiante deseado
+     * @return estudiante con la información de base de datos.
+     */
+    public Estudiante ReadByGroup( String NRC ) {
+        Estudiante estudiante = null;
+        MySqlConnection connection = new MySqlConnection();
+        connection.StartConnection();
+
+        try {
+            String query = "SELECT * FROM Estudiante WHERE NRC = ?;";
+            PreparedStatement statement = connection.GetConnection().prepareStatement( query );
+            statement.setString( 1,  NRC );
+            statement.executeQuery();
+            ResultSet result = statement.getResultSet();
+
+            if( result.next() ) {
+                int idUsuario = result.getInt( 2 );
+                String matricula = result.getString( 1 );
+                EstadoEstudiante estado = EstadoEstudiante.values()[ result.getInt( 4 ) ];
+
+                UsuarioUV usuario = usuarios.Read( idUsuario );
+                estudiante = new Estudiante( usuario, matricula, NRC, estado );
+            }
+        } catch( Exception exception ) {
+            exception.printStackTrace();
+        }
+
+        connection.StopConnection();
+        return estudiante;
+    }
+
+    /**
      * Actualiza la información de un estudiante en la base de datos.
      * @param estudiante la versión actualizada del Estudiante
      * @return booleano indicando éxito o fracaso

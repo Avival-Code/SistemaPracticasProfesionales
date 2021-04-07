@@ -26,6 +26,7 @@ public class ScreenChanger {
     private OutputMessages outputMessages = new OutputMessages();
     private String loginScreen = "../Resources/LoginScreen.fxml";
     private String registryScreen = "../Resources/RegistryScreen.fxml";
+    private String mainScreenDocente = "../Resources/Principal_Docente.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
@@ -54,6 +55,19 @@ public class ScreenChanger {
     }
 
     /**
+     * Hace el cambio de pantalla a la pantalla principal del docente.
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowPantallaPrincipalDocente( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, mainScreenDocente);
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.MainScreenDocenteMissing() );
+        }
+    }
+
+    /**
      * Método utiliado en todos los cambios de pantalla.
      * @param mouseEvent el evento de mouse utilizado para conseguir la ventana actual
      * @param resourceName el nombre del archivo FXML de la pantalla deseada
@@ -69,6 +83,8 @@ public class ScreenChanger {
             window.setX( ( Screen.getPrimary().getBounds().getWidth() - window.getWidth() ) / 2 );
             window.setY( ( Screen.getPrimary().getBounds().getHeight() - window.getHeight() ) / 2 );
         } catch( IOException exception ) {
+            exception.printStackTrace();
+
             throw exception;
         }
     }

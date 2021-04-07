@@ -7,6 +7,10 @@
 */
 package sample;
 
+import Database.DocenteDAO;
+import Database.EstudianteDAO;
+import Entities.Docente;
+import Entities.Estudiante;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +32,15 @@ public class Main extends Application {
 
 
     public static void main( String[] args ) {
+        DocenteDAO docentes = new DocenteDAO();
+        Docente docente = docentes.Read( "1" );
+        if(docente == null) {
+            System.out.print("es nulo");
+        } else {
+            System.out.println("No es nulo");
+            System.out.println(docente.GetNombres());
+        }
+
         launch( args );
     }
 }

@@ -1,23 +1,37 @@
+/*
+ * Autor: Dan Javier Olvera Villeda
+ * Versión: 1.0
+ * Fecha Creación: 30 - mar - 2021
+ * Descripción:
+ * Clase encargada de manejar los eventos de la pantalla
+ * Principal_Docente.
+ */
 package Controllers;
 
-import Entities.UsuarioUV;
+import Database.DocenteDAO;
+import Database.EstudianteDAO;
+import Entities.Docente;
+import Entities.Estudiante;
+import Utilities.ScreenChanger;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import sample.LoginSession;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Principal_Docente implements Initializable {
 
-    private UsuarioUV usuarioUV;
+    private EstudianteDAO estudianteDAO = new EstudianteDAO();
+    private ObservableList< Estudiante > grupo;
 
     @FXML
     private AnchorPane root;
@@ -42,15 +56,32 @@ public class Principal_Docente implements Initializable {
     @FXML
     private TableColumn tcDescripcion;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void irPantallaDescargarArchivos( MouseEvent mouseEvent ) {
+
     }
 
-    public void setUsuario(UsuarioUV usuarioUV) {
-        this.usuarioUV = usuarioUV;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO
+        setUsuario();
+        recuperarGrupo();
 
-        lbNombre.setText( usuarioUV.GetNombres() );
-        lbApellidos.setText( usuarioUV.GetApellidos() );
+    }
+
+    public void recuperarGrupo() {
+        String nrc = LoginSession.GetInstance().GetDocente().GetNrc();
+        grupo = (ObservableList<Estudiante>) estudianteDAO.ReadByGroup( nrc );
+    }
+
+    public void setUsuario() {
+        lbNombre.setText( LoginSession.GetInstance().GetDocente().GetNombres() );
+        lbApellidos.setText( LoginSession.GetInstance().GetDocente().GetApellidos() );
+        lbCedulaProfesional.setText( LoginSession.GetInstance().GetDocente().GetNumeroPersonal() );
+    }
+
+    public void Logout() {
+        LoginSession.GetInstance().Logout();
+
     }
 
 

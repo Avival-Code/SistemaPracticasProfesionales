@@ -28,6 +28,15 @@ public class OutputMessages {
     public String LoginScreenMissing() { return "No se encontró el archivo FXML de pantalla Login."; }
 
     /**
+     * Mensaje mostrado en caso de no encontrar el archivo FXML de la pantalla
+     * IniciarSesion
+     * @return una cadena con el mensaje de error
+     */
+    public String MainScreenDocenteMissing() {
+        return "No se encontro el archivo FXML de la pantalla principal de los docentes";
+    }
+
+    /**
      * Mensaje mostrado cuando se registra un nuevo Estudiante a la
      * base de datos de manera exitosa.
      * @return una cadena con el mensaje de éxito

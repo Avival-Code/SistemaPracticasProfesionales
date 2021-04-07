@@ -68,12 +68,13 @@ public class LoginScreenController {
     /**
      * Intenta Realizar un login utilizando la información introducida
      * por el usuario
+     * @param mouseEvent el evento de mouse que inicia el cambio
      */
-    public void HandleLogin() {
+    public void HandleLogin( MouseEvent mouseEvent ) {
         CheckUserInput();
         if( inputValidator.IsLoginInformationValid( usernameField.getText(), passwordField.getText() ) ) {
             if( DoesUsernameExist() && DoesPasswordMatchUserPassword()) {
-                Login();
+                Login( mouseEvent );
             } else {
                 errorText.setText( outputMessages.InvalidLoginInformation() );
             }
@@ -108,6 +109,10 @@ public class LoginScreenController {
      */
     private boolean DoesPasswordMatchDocente() {
         boolean passwordsMatch = false;
+
+        //Prueba
+        System.out.println(docente);
+
         if( docente != null && docente.GetContrasena().equals( passwordField.getText() ) ) {
             passwordsMatch = true;
         }
@@ -133,20 +138,28 @@ public class LoginScreenController {
      * @return true si se logra recuperar algún usuario
      */
     private boolean DoesUsernameExist() {
-        Coordinador coordinador = coordinadores.Read( usernameField.getText() );
-        Docente docente = docentes.Read( usernameField.getText() );
-        Estudiante estudiante = estudiantes.Read( usernameField.getText() );
+        coordinador = coordinadores.Read( usernameField.getText() );
+        docente = docentes.Read( usernameField.getText() );
+        estudiante = estudiantes.Read( usernameField.getText() );
+
+        //Prueba
+        if( docente != null ){
+            System.out.println("Encontro a un docente");
+        }
+
         return coordinador != null || docente != null || estudiante != null;
     }
 
     /**
      * Inicia sesión y cambia la pantalla a la pantalla del usuario correspondiente
+     * @param mouseEvent evento que accionó el inicio de sesión
      */
-    private void Login() {
+    private void Login( MouseEvent mouseEvent ) {
         if( coordinador != null ) {
             LoginSession.GetInstance().Login( coordinador );
         } else if( docente != null ) {
             LoginSession.GetInstance().Login( docente );
+            screenChanger.ShowPantallaPrincipalDocente( mouseEvent, errorText );
         } else if( estudiante != null ) {
             LoginSession.GetInstance().Login( estudiante );
         }
