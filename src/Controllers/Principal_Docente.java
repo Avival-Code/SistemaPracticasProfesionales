@@ -61,10 +61,6 @@ public class Principal_Docente implements Initializable {
     @FXML
     private TableColumn tcDescripcion;
 
-    public void irPantallaDescargarArchivos( MouseEvent mouseEvent ) {
-        //TODO
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO
@@ -72,21 +68,39 @@ public class Principal_Docente implements Initializable {
         RecuperarGrupo();
     }
 
+    /**
+     * Recupera los estudiantes existentes en la base de datos, tomando en cuenta el grupo al que pertenece
+     * el docente que inicio sesion
+     */
     public void RecuperarGrupo() {
         String nrc = LoginSession.GetInstance().GetDocente().GetNrc();
         grupo = estudianteDAO.ReadByGroup( nrc );
     }
 
+    /**
+     * Coloca la informacion del usuario actual en las etiquetas. Se coloca nombres, apellidos,
+     * y numero personal.
+     */
     public void SetUsuario() {
         lbNombre.setText( LoginSession.GetInstance().GetDocente().GetNombres() );
         lbApellidos.setText( LoginSession.GetInstance().GetDocente().GetApellidos() );
         lbCedulaProfesional.setText( LoginSession.GetInstance().GetDocente().GetNumeroPersonal() );
     }
 
+    /**
+     * Cierra sesion y se muestra la pantalla de inicio de sesion
+     * @param mouseEvent evento del mouse que inicia el metodo
+     */
     public void Logout( MouseEvent mouseEvent ) {
         LoginSession.GetInstance().Logout();
         screenChanger.ShowLoginScreen( mouseEvent, errorText );
     }
 
-
+    /**
+     * Muestra la pantalla "DescargarArchivos" y cierra la actual.
+     * @param mouseEvent evento del mouse que inicia el metodo.
+     */
+    public void irPantallaDescargarArchivos( MouseEvent mouseEvent ) {
+        //TODO
+    }
 }
