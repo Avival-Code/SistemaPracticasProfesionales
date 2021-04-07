@@ -22,6 +22,7 @@ public class UsuarioUV {
     protected String contrasena;
     protected String correoElectronico;
     protected String telefono;
+    private String nombreCompleto;
 
     /**
      * constructor sin parametros de la superclase UsuarioUV.
@@ -124,6 +125,8 @@ public class UsuarioUV {
     public String GetTelefono() {
         return telefono;
     }
+
+    public String getNombreCompleto(){return nombres + " " + apellidos;}
 
     /**
      * Cambio los nombres del UsuarioUV al valor introducido
