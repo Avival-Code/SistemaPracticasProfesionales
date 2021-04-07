@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CrearProyecto">
+   <children>
+      <SplitPane dividerPositions="0.17782217782217782" layoutX="-1.0" layoutY="-4.0" prefHeight="608.0" prefWidth="1003.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.28642384105960267" orientation="VERTICAL" prefHeight="606.0" prefWidth="175.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <VBox layoutY="-2.0" prefHeight="178.0" prefWidth="178.0">
+                                 <children>
+                                    <Label text="Nombre" />
+                                    <Label fx:id="lbNombre" text="Angel Juan" />
+                                    <Label text="Apellidos" />
+                                    <Label fx:id="lbApellidos" text="Sanchez Garcia" />
+                                    <Label text="No. Personal" />
+                                    <Label fx:id="lbNumeroPersonal" text="01" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="173.0">
+                           <children>
+                              <VBox alignment="BOTTOM_CENTER" prefHeight="428.0" prefWidth="173.0">
+                                 <children>
+                                    <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Regresar" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="527.0" prefWidth="820.0">
+               <children>
+                  <Button fx:id="registerButton" layoutX="342.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#HandleProjectRegistration" text="Registrar" />
+                  <Label layoutX="309.0" layoutY="34.0" text="CREAR PROYECTO">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="nombreProyectoField" layoutX="50.0" layoutY="192.0" prefHeight="25.0" prefWidth="278.0" />
+                  <Label layoutX="50.0" layoutY="154.0" text="Nombre:" />
+                  <TextField fx:id="descripcionProyectoField" layoutX="50.0" layoutY="259.0" prefHeight="25.0" prefWidth="278.0" />
+                  <Label layoutX="50.0" layoutY="230.0" text="Descripcion:" />
+                  <Label layoutX="49.0" layoutY="303.0" text="Estudiantes requeridos:" />
+                  <TextField fx:id="estudiantesRequeridosField" layoutX="50.0" layoutY="333.0" prefHeight="25.0" prefWidth="278.0" />
+                  <TextField fx:id="nombresResponsableField" layoutX="439.0" layoutY="192.0" prefHeight="25.0" prefWidth="242.0" />
+                  <TextField fx:id="apellidosResponsableField" layoutX="439.0" layoutY="259.0" prefHeight="25.0" prefWidth="242.0" />
+                  <TextField fx:id="correoResponsableField" layoutX="439.0" layoutY="403.0" prefHeight="25.0" prefWidth="242.0" />
+                  <TextField fx:id="telefonoResponsableField" layoutX="439.0" layoutY="333.0" prefHeight="25.0" prefWidth="242.0" />
+                  <Label layoutX="439.0" layoutY="154.0" text="Nombres:" />
+                  <Label layoutX="439.0" layoutY="230.0" text="Apellidos:" />
+                  <Label layoutX="441.0" layoutY="304.0" text="Telefono:" />
+                  <Label layoutX="440.0" layoutY="371.0" text="Correo Electronico:" />
+                  <Label layoutX="160.0" layoutY="111.0" text="PROYECTO" />
+                  <Label layoutX="491.0" layoutY="111.0" text="RESPONSABLE PROYECTO" />
+                  <Text fx:id="successText" fill="#1932d7" layoutX="74.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="612.05078125" />
+                  <Text fx:id="errorText" fill="#f50707f3" layoutX="74.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="612.0507812499998" />
+               </children>
+               <padding>
+                  <Insets right="2.0" top="34.0" />
+               </padding>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
