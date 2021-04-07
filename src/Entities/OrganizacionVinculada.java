@@ -18,6 +18,8 @@ public class OrganizacionVinculada {
     private TipoSector sector;
     private String telefono;
     private String correoElectronico;
+    private int idResponsable;
+    private int idProyecto;
 
     /**
      * Constructor sin parámetros de la clase OrganizaciónVinculada.
@@ -29,6 +31,8 @@ public class OrganizacionVinculada {
         sector = null;
         telefono = "";
         correoElectronico = "";
+        idResponsable = 0;
+        idProyecto = 0;
     }
 
     /**
@@ -37,7 +41,8 @@ public class OrganizacionVinculada {
      * @param original la instancia que se desea duplicar
      */
     public OrganizacionVinculada( OrganizacionVinculada original ) {
-        this( original.nombre, original.direccion, original.sector, original.telefono, original.correoElectronico);
+        this( original.nombre, original.direccion, original.sector, original.telefono, original.correoElectronico,
+                original.idResponsable, original.idProyecto );
     }
 
     /**
@@ -50,19 +55,25 @@ public class OrganizacionVinculada {
      * @param correoIn el correo electronico de la organización
      */
     public OrganizacionVinculada( String nombreIn, String direccionIn, TipoSector sectorIn, String telefonoIn,
-                                  String correoIn ) {
+                                  String correoIn, int idResponsableIn, int idProyectoIn ) {
         nombre = nombreIn;
         direccion = direccionIn;
         sector = sectorIn;
         telefono = telefonoIn;
         correoElectronico = correoIn;
+        idResponsable = idResponsableIn;
+        idProyecto = idProyectoIn;
     }
+
+    public int getIdResponsable() { return idResponsable; }
+
+    public int getIdProyecto() { return idProyecto; }
 
     /**
      * Regresa el nombre de la organización vinculada
      * @return el nombre de la organización
      */
-    public String GetNombre() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -70,7 +81,7 @@ public class OrganizacionVinculada {
      * Regresa la dirección de la organización vinculada
      * @return la dirección de la organización
      */
-    public String GetDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
@@ -78,7 +89,7 @@ public class OrganizacionVinculada {
      * Regresa el sector de la organización vinculada
      * @return el sector de la organización
      */
-    public TipoSector GetSector() {
+    public TipoSector getSector() {
         return sector;
     }
 
@@ -86,7 +97,7 @@ public class OrganizacionVinculada {
      * Regresa el telefono de la organización vinculada
      * @return el telefono de la organización
      */
-    public String GetTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -94,7 +105,7 @@ public class OrganizacionVinculada {
      * Regresa el correo electrónico de la organización vinculada
      * @return el correo de la organización
      */
-    public String GetCorreo() {
+    public String getCorreo() {
         return correoElectronico;
     }
 
@@ -138,4 +149,8 @@ public class OrganizacionVinculada {
     public void SetCorreo( String correoIn ) {
         correoElectronico = correoIn;
     }
+
+    public void SetIdResponsable( int idResponsableIn ) { idResponsable = idResponsableIn; }
+
+    public void SetIdProyecto( int idProyectoIn ) { idProyecto = idProyectoIn; }
 }

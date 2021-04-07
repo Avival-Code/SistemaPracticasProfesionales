@@ -101,7 +101,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         connection.StartConnection();
 
         try {
-            String query = "SELECT * FROM Estudiante WHERE matricula = ?;";
+            String query = "SELECT * FROM Estudiante WHERE Matricula = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1,  matricula );
             statement.executeQuery();
@@ -135,7 +135,7 @@ public class EstudianteDAO implements EstudianteDAOInterface{
         connection.StartConnection();
 
         try {
-            String query = "UPDATE Estudiante SET NRC = ?, estado = ? WHERE Matricula = ?;";
+            String query = "UPDATE Estudiante SET NRC = ?, Estado = ? WHERE Matricula = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setString( 1, estudiante.GetNrc() );
             statement.setInt( 2, estudiante.GetEstado().ordinal() );
