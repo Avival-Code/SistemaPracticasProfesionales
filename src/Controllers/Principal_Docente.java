@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import sample.LoginSession;
 
 import java.net.URL;
@@ -32,7 +33,10 @@ public class Principal_Docente implements Initializable {
 
     private EstudianteDAO estudianteDAO = new EstudianteDAO();
     private ObservableList< Estudiante > grupo;
+    private ScreenChanger screenChanger;
 
+    @FXML
+    private Text errorText;
     @FXML
     private AnchorPane root;
     @FXML
@@ -79,9 +83,9 @@ public class Principal_Docente implements Initializable {
         lbCedulaProfesional.setText( LoginSession.GetInstance().GetDocente().GetNumeroPersonal() );
     }
 
-    public void Logout() {
+    public void Logout( MouseEvent mouseEvent ) {
         LoginSession.GetInstance().Logout();
-
+        screenChanger.ShowLoginScreen( mouseEvent, errorText );
     }
 
 
