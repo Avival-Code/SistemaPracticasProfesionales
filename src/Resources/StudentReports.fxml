@@ -61,6 +61,11 @@
                     </columns>
                   </TableView>
                   <Button fx:id="entregarReporte" layoutX="607.0" layoutY="535.0" mnemonicParsing="false" onMouseClicked="#TurnInReport" text="Entregar Reporte" />
+                  <Text fx:id="errorText" fill="#e84545" layoutX="232.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="311.14306640625">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
         </items>
