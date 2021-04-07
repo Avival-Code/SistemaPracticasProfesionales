@@ -9,6 +9,8 @@
 package Utilities;
 
 import Entities.Estudiante;
+import Entities.Proyecto;
+import Entities.ResponsableProyecto;
 
 /**
  * Clase encargada de validar la información introducida
@@ -40,6 +42,26 @@ public class InputValidator {
                 IsEmailValid( student.GetCorreo() ) && IsNRCValid( student.GetNrc() ) &&
                 IsPasswordValid( student.GetContrasena() ) && DoPasswordsMatch( student.GetContrasena(), passwordConfirm );
     }
+
+    /**
+     * Verifica que la información de una instancia de Proyecto sea valida y que las
+     * @param project la instancia de Estudiante que se desea verificar
+     * @return true si todos los campos del Estudiante son validos, false si no
+     */
+    public boolean IsProjectInformationValid( Proyecto project ) {
+        return AreNamesValid( project.GetNombre() );
+    }
+
+    /**
+     * Verifica que la información de una instancia de ResponsableProyecto sea valida y que las
+     * @param responsableProject la instancia de ResponsableProyecto que se desea verificar
+     * @return true si todos los campos del ResponsableProyecto son validos, false si no
+     */
+    public boolean IsResponsableProjectInformationValid( ResponsableProyecto responsableProject){
+        return AreNamesValid( responsableProject.GetNombres() ) && AreLastNamesValid( responsableProject.GetApellidos() ) &&
+                IsTelephoneValid( responsableProject.GetTelefono() ) && IsEmailValid( responsableProject.GetCorreo() );
+    }
+
 
     /**
      * Verifica que la información de inicia de sesión introducida por el usuario sea valida.
@@ -126,6 +148,22 @@ public class InputValidator {
      */
     public boolean DoPasswordsMatch( String password, String confirmPassword ) {
         return password.equals( confirmPassword );
+    }
+
+    /**
+     * Verifica que las que se ha introducido un digito en el campo de estudiantes requeridos
+     * @param NumeroRequeridos  la cadena con el digito
+     * @return true si el valor es un digito, false si no
+     */
+    public boolean RequiredNumberValid( String input ) {
+        boolean requiredNumberValid = true;
+        char[] testInput = input.toCharArray();
+        for( char currentCharacter : testInput ) {
+            if( !Character.isDigit( currentCharacter ) ) {
+                requiredNumberValid = false;
+            }
+        }
+        return requiredNumberValid;
     }
 
     /**
@@ -247,4 +285,5 @@ public class InputValidator {
         }
         return hasOnlyNumbers;
     }
+
 }
