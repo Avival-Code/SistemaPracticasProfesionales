@@ -86,7 +86,7 @@ public class OutputMessages {
      * es inválido
      * @return una cadena con el mensaje de error
      */
-    public String InvalidNRC() { return "El nrc no es vlido."; }
+    public String InvalidNRC() { return "El nrc no es valido."; }
 
     /**
      * Mensaje mostrado cuando el teléfono introducido por el usuario
@@ -115,4 +115,18 @@ public class OutputMessages {
      * @return una cadena con el mensaje de error
      */
     public String PasswordsDontMatch() { return "Las contraseñas no coinciden."; }
+
+    /**
+     * Mensaje mostrado en caso de que alguno de los campos de informacion para el registro esten vacios
+     * CrearProyecto
+     * @return una cadena con el mensaje de error
+     */
+    public String EmptyFields() { return "Uno o varios campos están vacíos."; }
+
+    /**
+     * Mensaje mostrado en caso de que alguno de los campos de informacion para el registro ingrese valores no validos
+     * CrearProyecto
+     * @return una cadena con el mensaje de error
+     */
+    public String InvalidFields() { return "Uno o varios valores ingresados son inválidos."; }
 }
