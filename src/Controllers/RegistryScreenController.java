@@ -72,7 +72,7 @@ public class RegistryScreenController {
      * @param mouseEvent el evento de mouse que activo la acción.
      */
     public void ShowLoginScreen( MouseEvent mouseEvent ) {
-        screenChanger.showLoginScreen( mouseEvent, errorText );
+        screenChanger.ShowLoginScreen( mouseEvent, errorText );
     }
 
     /**
@@ -109,7 +109,7 @@ public class RegistryScreenController {
     private void RegisterStudent() {
         if( estudiantes.Create( GetStudent() ) ) {
             errorText.setText( "" );
-            successText.setText( outputMessages.RegistrationSuccessfull() );
+            successText.setText( outputMessages.RegistrationSuccessful() );
         }
         else {
             errorText.setText( outputMessages.DatabaseConnectionFailed() );

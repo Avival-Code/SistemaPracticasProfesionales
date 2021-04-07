@@ -62,18 +62,19 @@ public class LoginScreenController {
      * @param mouseEvent el evento de mouse que inicia el cambio
      */
     public void ShowRegistryScreen( MouseEvent mouseEvent ) {
-        screenChanger.showRegistryScreen( mouseEvent, errorText );
+        screenChanger.ShowRegistryScreen( mouseEvent, errorText );
     }
 
     /**
      * Intenta Realizar un login utilizando la información introducida
      * por el usuario
+     * @param mouseEvent el evento de mouse que es utilizado para cambiar la pantalla
      */
-    public void HandleLogin() {
+    public void HandleLogin( MouseEvent mouseEvent ) {
         CheckUserInput();
         if( inputValidator.IsLoginInformationValid( usernameField.getText(), passwordField.getText() ) ) {
             if( DoesUsernameExist() && DoesPasswordMatchUserPassword()) {
-                Login();
+                Login( mouseEvent );
             } else {
                 errorText.setText( outputMessages.InvalidLoginInformation() );
             }
@@ -133,22 +134,23 @@ public class LoginScreenController {
      * @return true si se logra recuperar algún usuario
      */
     private boolean DoesUsernameExist() {
-        Coordinador coordinador = coordinadores.Read( usernameField.getText() );
-        Docente docente = docentes.Read( usernameField.getText() );
-        Estudiante estudiante = estudiantes.Read( usernameField.getText() );
+        coordinador = coordinadores.Read( usernameField.getText() );
+        docente = docentes.Read( usernameField.getText() );
+        estudiante = estudiantes.Read( usernameField.getText() );
         return coordinador != null || docente != null || estudiante != null;
     }
 
     /**
      * Inicia sesión y cambia la pantalla a la pantalla del usuario correspondiente
      */
-    private void Login() {
+    private void Login( MouseEvent mouseEvent ) {
         if( coordinador != null ) {
             LoginSession.GetInstance().Login( coordinador );
         } else if( docente != null ) {
             LoginSession.GetInstance().Login( docente );
         } else if( estudiante != null ) {
             LoginSession.GetInstance().Login( estudiante );
+            screenChanger.ShowStudentMainMenuScreen( mouseEvent, errorText );
         }
     }
 

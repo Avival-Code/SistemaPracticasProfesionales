@@ -38,9 +38,9 @@ public class ProyectoDAO implements ProyectoDAOInterface{
             String query = "INSERT INTO Proyecto( Nombre, Descripcion, NumEstudiantesRequeridos, NumEstudiantesAsignados, FechaRegistro, " +
                            "Estado ) VALUES ( ?, ?, ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, proyecto.GetNombre() );
+            statement.setString( 1, proyecto.getNombre() );
             statement.setString( 2, proyecto.GetDescripcion() );
-            statement.setInt( 3, proyecto.GetEstudiantesRequeridos() );
+            statement.setInt( 3, proyecto.getNumEstudiantesRequeridos() );
             statement.setInt( 4, proyecto.GetEstudiantesAsignados() );
             statement.setString( 5, proyecto.GetFechaRegistro() );
             statement.setInt( 6, proyecto.GetEstado().ordinal() );
@@ -133,13 +133,13 @@ public class ProyectoDAO implements ProyectoDAOInterface{
             String query = "UPDATE Proyecto SET Nombre = ?, Descripcion = ?, NumEstudiantesRequeridos = ?, NumEstudiantesAsignados = ?," +
                     " FechaRegistro = ?, Estado = ? WHERE IDProyecto = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, proyecto.GetNombre() );
+            statement.setString( 1, proyecto.getNombre() );
             statement.setString( 2, proyecto.GetDescripcion() );
-            statement.setInt( 3, proyecto.GetEstudiantesRequeridos() );
+            statement.setInt( 3, proyecto.getNumEstudiantesRequeridos() );
             statement.setInt( 4, proyecto.GetEstudiantesAsignados() );
             statement.setString( 5, proyecto.GetFechaRegistro() );
             statement.setInt( 6, proyecto.GetEstado().ordinal() );
-            statement.setInt( 7, proyecto.GetID() );
+            statement.setInt( 7, proyecto.getIdProyecto() );
             statement.executeUpdate();
             updated = true;
         } catch( Exception exception ) {

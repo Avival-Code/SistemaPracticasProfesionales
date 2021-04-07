@@ -24,7 +24,7 @@ import java.util.List;
  * en la base de datos.
  */
 public class ReporteDAO implements ReporteDAOInterface{
-    private DocumentoDAO documentos;
+    private DocumentoDAO documentos = new DocumentoDAO();
 
     /**
      * Crea una instancia de Reporte en la base de datos
@@ -38,15 +38,15 @@ public class ReporteDAO implements ReporteDAOInterface{
         connection.StartConnection();
 
         try {
-            documentos.Create( new Documento( reporte.GetID(), reporte.GetTitulo(), reporte.GetDescripcion(),
-                    reporte.GetFechaEntrega(), reporte.GetClaveExpediente() ) );
-            Documento documento = documentos.Read( reporte.GetTitulo(), reporte.GetClaveExpediente() );
+            documentos.Create( new Documento( reporte.getIdDocumento(), reporte.getTitulo(), reporte.GetDescripcion(),
+                    reporte.getFechaEntrega(), reporte.GetClaveExpediente() ) );
+            Documento documento = documentos.Read( reporte.getTitulo(), reporte.GetClaveExpediente() );
             String query = "INSERT INTO Reporte( HorasReportadas, Tipo, ClaveExpediente, IDDocumento ) VALUES( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setInt( 1, reporte.GetHorasReportadas() );
             statement.setInt( 2, reporte.GetTipoReporte().ordinal() );
             statement.setInt( 3, reporte.GetClaveExpediente() );
-            statement.setInt( 4, documento.GetID() );
+            statement.setInt( 4, documento.getIdDocumento() );
             statement.executeUpdate();
 
             wasCreated = true;
@@ -140,8 +140,8 @@ public class ReporteDAO implements ReporteDAOInterface{
             statement.setInt( 3, reporte.GetIdReporte() );
             statement.executeUpdate();
 
-            documentos.Update( new Documento( reporte.GetID(), reporte.GetTitulo(), reporte.GetDescripcion(),
-                    reporte.GetFechaEntrega(), reporte.GetClaveExpediente() ) );
+            documentos.Update( new Documento( reporte.getIdDocumento(), reporte.getTitulo(), reporte.GetDescripcion(),
+                    reporte.getFechaEntrega(), reporte.GetClaveExpediente() ) );
 
             updated = true;
         } catch( Exception exception ) {
@@ -170,7 +170,7 @@ public class ReporteDAO implements ReporteDAOInterface{
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
             statement.setInt( 1,  idReporte );
             statement.executeUpdate();
-            documentos.Delete( reporte.GetID() );
+            documentos.Delete( reporte.getIdDocumento() );
 
             deleted = true;
         } catch( Exception exception ) {
