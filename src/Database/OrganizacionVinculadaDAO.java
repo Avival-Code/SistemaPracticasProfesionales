@@ -1,18 +1,34 @@
+/*
+ * Autor: Christian Felipe de Jesus Avila Valdes
+ * Versión: 1.0
+ * Fecha Creación: 7 - abr - 2021
+ * Descripción:
+ * Data Access Object para la entidad OrganizacionVinculada. Se
+ * encarga de realizar varias funciones relacionadas con OrganizacionVinculada
+ * en la base de datos.
+ */
 package Database;
 
-import Entities.Estudiante;
 import Entities.OrganizacionVinculada;
-import Entities.UsuarioUV;
-import Enumerations.EstadoEstudiante;
 import Enumerations.TipoSector;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object para la entidad OrganizacionVinculada. Se
+ * encarga de realizar varias funciones relacionadas con OrganizacionVinculada
+ * en la base de datos.
+ */
 public class OrganizacionVinculadaDAO implements OrganizacionVinculadaDAOInterface{
+
+    /**
+     * Crea una nueva organizacion vinculada en la base de datos
+     * @param organizacion la instancia de organizacion vinculada que se desea crear
+     * @return booleano indicando éxito o fracaso
+     */
     @Override
     public boolean Create( OrganizacionVinculada organizacion ) {
         boolean wasCreated = false;
@@ -40,6 +56,10 @@ public class OrganizacionVinculadaDAO implements OrganizacionVinculadaDAOInterfa
         return wasCreated;
     }
 
+    /**
+     * Regresa una lista con todas las organizaciones vinculadas de la base de datos
+     * @return una lista de OrganizacionVinculada
+     */
     @Override
     public List< OrganizacionVinculada > ReadAll() {
         List< OrganizacionVinculada > organizaciones = new ArrayList<>();
@@ -68,6 +88,11 @@ public class OrganizacionVinculadaDAO implements OrganizacionVinculadaDAOInterfa
         return organizaciones;
     }
 
+    /**
+     * Regresa una instancia de OrganizacionVinculada
+     * @param idProyecto el ID del proyecto asociado con la organizacion vinculada
+     * @return una instancia de OrganizacionVinculada, null en caso de no encontrarla
+     */
     @Override
     public OrganizacionVinculada Read( int idProyecto ) {
         OrganizacionVinculada organizacion = null;
@@ -95,6 +120,11 @@ public class OrganizacionVinculadaDAO implements OrganizacionVinculadaDAOInterfa
         return organizacion;
     }
 
+    /**
+     * Actualiza la información de una organizacion vinculada de la base de datos
+     * @param organizacion la instancia de OrganizacionVinculada con su información actualizada
+     * @return booleano indicando éxito o fracaso
+     */
     @Override
     public boolean Update( OrganizacionVinculada organizacion ) {
         boolean updated = false;
@@ -122,6 +152,11 @@ public class OrganizacionVinculadaDAO implements OrganizacionVinculadaDAOInterfa
         return updated;
     }
 
+    /**
+     * Elimina una organizacion vinculada de la base de datos
+     * @param idProyecto el ID del proyecto asociado a la organizacion
+     * @return booleano indicando éxito o fracaso
+     */
     @Override
     public boolean Delete( int idProyecto ) {
         boolean deleted = false;
