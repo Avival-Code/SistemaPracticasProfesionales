@@ -27,13 +27,16 @@ public class ScreenChanger {
     private String loginScreen = "../Resources/LoginScreen.fxml";
     private String registryScreen = "../Resources/RegistryScreen.fxml";
     private String mainScreenDocente = "../Resources/Principal_Docente.fxml";
+    private String studentMainMenu = "../Resources/StudentMainMenuScreen.fxml";
+    private String chooseProjectsScreen = "../Resources/SelectProjectsScreen.fxml";
+    private String studentReportsScreen = "../Resources/StudentReports.fxml";
 
     /**
      * Hace el cambio de pantalla a la pantalla de IniciarSesión.
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void showLoginScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowLoginScreen( MouseEvent mouseEvent, Text errorText ) {
         try {
             SetScene( mouseEvent, loginScreen );
         } catch( IOException exception ) {
@@ -46,7 +49,7 @@ public class ScreenChanger {
      * @param mouseEvent el evento de mouse que inicio el cambio
      * @param errorText el campo de texto donde se coloca un mensaje en caso de error
      */
-    public void showRegistryScreen( MouseEvent mouseEvent, Text errorText ) {
+    public void ShowRegistryScreen( MouseEvent mouseEvent, Text errorText ) {
         try {
             SetScene( mouseEvent, registryScreen );
         } catch( IOException exception ) {
@@ -68,6 +71,49 @@ public class ScreenChanger {
     }
 
     /**
+     * Hace el cambio de pantalla a la pantalla del menú principal de
+     * estudiante
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowStudentMainMenuScreen( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, studentMainMenu );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.StudentMainMenuMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla EscogerProyectos_Estudiante
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowChooseProjectsScreen( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, chooseProjectsScreen );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.ChooseProjectsMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Hace el cambio de pantalla a la pantalla Reportes_Estudiante
+     * @param mouseEvent el evento de mouse que inicio el cambio
+     * @param errorText el campo de texto donde se coloca un mensaje en caso de error
+     */
+    public void ShowStudentReportsScreen( MouseEvent mouseEvent, Text errorText ) {
+        try {
+            SetScene( mouseEvent, studentReportsScreen );
+        } catch( IOException exception ) {
+            errorText.setText( outputMessages.StudentReportScreenMissing() );
+            exception.printStackTrace();
+        }
+    }
+
+    /**
      * Método utiliado en todos los cambios de pantalla.
      * @param mouseEvent el evento de mouse utilizado para conseguir la ventana actual
      * @param resourceName el nombre del archivo FXML de la pantalla deseada
@@ -83,8 +129,6 @@ public class ScreenChanger {
             window.setX( ( Screen.getPrimary().getBounds().getWidth() - window.getWidth() ) / 2 );
             window.setY( ( Screen.getPrimary().getBounds().getHeight() - window.getHeight() ) / 2 );
         } catch( IOException exception ) {
-            exception.printStackTrace();
-
             throw exception;
         }
     }

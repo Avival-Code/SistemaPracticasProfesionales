@@ -62,13 +62,13 @@ public class LoginScreenController {
      * @param mouseEvent el evento de mouse que inicia el cambio
      */
     public void ShowRegistryScreen( MouseEvent mouseEvent ) {
-        screenChanger.showRegistryScreen( mouseEvent, errorText );
+        screenChanger.ShowRegistryScreen( mouseEvent, errorText );
     }
 
     /**
      * Intenta Realizar un login utilizando la información introducida
      * por el usuario
-     * @param mouseEvent el evento de mouse que inicia el cambio
+     * @param mouseEvent el evento de mouse que es utilizado para cambiar la pantalla
      */
     public void HandleLogin( MouseEvent mouseEvent ) {
         CheckUserInput();
@@ -109,10 +109,6 @@ public class LoginScreenController {
      */
     private boolean DoesPasswordMatchDocente() {
         boolean passwordsMatch = false;
-
-        //Prueba
-        System.out.println(docente);
-
         if( docente != null && docente.GetContrasena().equals( passwordField.getText() ) ) {
             passwordsMatch = true;
         }
@@ -141,12 +137,6 @@ public class LoginScreenController {
         coordinador = coordinadores.Read( usernameField.getText() );
         docente = docentes.Read( usernameField.getText() );
         estudiante = estudiantes.Read( usernameField.getText() );
-
-        //Prueba
-        if( docente != null ){
-            System.out.println("Encontro a un docente");
-        }
-
         return coordinador != null || docente != null || estudiante != null;
     }
 
@@ -162,6 +152,7 @@ public class LoginScreenController {
             screenChanger.ShowPantallaPrincipalDocente( mouseEvent, errorText );
         } else if( estudiante != null ) {
             LoginSession.GetInstance().Login( estudiante );
+            screenChanger.ShowStudentMainMenuScreen( mouseEvent, errorText );
         }
     }
 

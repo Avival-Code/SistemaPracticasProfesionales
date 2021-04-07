@@ -10,9 +10,9 @@
 package Database;
 
 import Entities.Documento;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import Utilities.FileCreator;
+import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +22,8 @@ import java.util.List;
  * en la base de datos.
  */
 public class DocumentoDAO implements DocumentoDAOInterface {
+    private FileCreator creator = new FileCreator();
+
     /**
      * Crea una instancia de Documento en la base de datos
      * @param documento el documento que se desea crear
@@ -34,12 +36,13 @@ public class DocumentoDAO implements DocumentoDAOInterface {
         connection.StartConnection();
 
         try {
+            InputStream fileStream = new FileInputStream( documento.GetDescripcion() );
             String query = "INSERT INTO Documento( Descripcion, FechaEntrega, Titulo, ClaveExpediente ) " +
                     "VALUES ( ?, ?, ?, ? );";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, documento.GetDescripcion() );
-            statement.setString( 2, documento.GetFechaEntrega() );
-            statement.setString( 3, documento.GetTitulo() );
+            statement.setBlob( 1, fileStream );
+            statement.setString( 2, documento.getFechaEntrega() );
+            statement.setString( 3, documento.getTitulo() );
             statement.setInt( 4, documento.GetClaveExpediente() );
             statement.executeUpdate();
             wasCreated = true;
@@ -66,8 +69,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.executeQuery( "SELECT * FROM Documento;" );
 
             while( result.next() ) {
-                documentos.add( new Documento( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) ) );
+                String titulo = result.getString( 4 );
+                documentos.add( new Documento( result.getInt( 1 ), titulo,
+                        creator.CreateFile( titulo, result.getBlob( 2 ) ), result.getString( 3 ),
+                        result.getInt( 5 ) ) );
             }
 
             result.close();
@@ -99,8 +104,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                documento = new Documento( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) );
+                String retrievedTitulo = result.getString( 4 );
+                documento = new Documento( result.getInt( 1 ), retrievedTitulo,
+                        creator.CreateFile( retrievedTitulo, result.getBlob( 2 ) ),
+                        result.getString( 3 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -127,8 +134,10 @@ public class DocumentoDAO implements DocumentoDAOInterface {
             ResultSet result = statement.getResultSet();
 
             if( result.next() ) {
-                documento = new Documento( result.getInt( 1 ), result.getString( 2 ),
-                        result.getString( 3 ), result.getString( 4 ), result.getInt( 5 ) );
+                String retrievedTitulo = result.getString( 4 );
+                documento = new Documento( result.getInt( 1 ), retrievedTitulo,
+                        creator.CreateFile( retrievedTitulo, result.getBlob( 2 ) ),
+                        result.getString( 3 ), result.getInt( 5 ) );
             }
 
             result.close();
@@ -153,14 +162,15 @@ public class DocumentoDAO implements DocumentoDAOInterface {
         connection.StartConnection();
 
         try {
+            InputStream fileStream = new FileInputStream( documento.GetDescripcion() );
             String query = "UPDATE Documento SET Descripcion = ?, FechaEntrega = ?, Titulo = ?, ClaveExpediente = ?" +
                     " WHERE IDDocumento = ?;";
             PreparedStatement statement = connection.GetConnection().prepareStatement( query );
-            statement.setString( 1, documento.GetDescripcion() );
-            statement.setString( 2, documento.GetFechaEntrega() );
-            statement.setString( 3, documento.GetTitulo() );
+            statement.setBlob( 1, fileStream );
+            statement.setString( 2, documento.getFechaEntrega() );
+            statement.setString( 3, documento.getTitulo() );
             statement.setInt( 4, documento.GetClaveExpediente() );
-            statement.setInt( 5, documento.GetID() );
+            statement.setInt( 5, documento.getIdDocumento() );
             statement.executeUpdate();
             updated = true;
         } catch( Exception exception ) {
